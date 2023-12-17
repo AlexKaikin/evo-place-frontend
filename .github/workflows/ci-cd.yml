@@ -10,15 +10,12 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
-      - name: Starting Nodejs ${{ matrix.node-version }}
+      - name: Starting Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.x.x
       - name: Install modules
         run: npm ci
       - name: Lint
