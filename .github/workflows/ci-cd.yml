@@ -42,5 +42,5 @@ jobs:
           port: ${{secrets.PROD_SSH_PORT}}
           user: ${{ secrets.PROD_SSH_USERNAME }}
           private_key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-          host_key: ${{ secrets.PROD_SSH_FINGERPRINT }}
+          host_fingerprint: ${{ secrets.PROD_SSH_FINGERPRINT }}
           command: source ~/.nvm/nvm.sh; echo 'hi'
