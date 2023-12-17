@@ -1,4 +1,4 @@
-name: CI
+name: CD/CD
 on:
   push:
     branches: ['main']
@@ -8,7 +8,7 @@ env:
   NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
   NEXT_PUBLIC_SAIT_URL: ${{ secrets.NEXT_PUBLIC_SAIT_URL }}
 jobs:
-  init:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,5 +27,19 @@ jobs:
         run: npm run lint:types
       - name: Test
         run: npm run test
-      - name: Build project
-        run: npm run build
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    concurrency:
+      group: prod
+      cancel-in-progress: true
+    steps:
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.2
+        with:
+          # hostname / IP of the server
+          host: ${{ secrets.PROD_SSH_HOST }}
+          user: ${{ secrets.PROD_SSH_USERNAME }}
+          private_key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          host_key: ${{ secrets.PROD_SSH_FINGERPRINT }}
+          command: source ~/.nvm/nvm.sh; echo 'hi'
