@@ -39,6 +39,7 @@ jobs:
         with:
           # hostname / IP of the server
           host: ${{ secrets.PROD_SSH_HOST }}
+          port: ${{secrets.PROD_SSH_PORT}}
           user: ${{ secrets.PROD_SSH_USERNAME }}
           private_key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           host_key: ${{ secrets.PROD_SSH_FINGERPRINT }}
