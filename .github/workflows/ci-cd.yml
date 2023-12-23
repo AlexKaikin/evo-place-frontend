@@ -1,4 +1,4 @@
-name: CD/CD
+name: CI/CD
 on:
   push:
     branches: ['main']
@@ -8,7 +8,7 @@ env:
   NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
   NEXT_PUBLIC_SAIT_URL: ${{ secrets.NEXT_PUBLIC_SAIT_URL }}
 jobs:
-  lint:
+  CI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,8 +24,10 @@ jobs:
         run: npm run lint:types
       - name: Test
         run: npm run test
-  deploy:
-    needs: lint
+      - name: Build project
+        run: npm run build
+  CD:
+    needs: CI
     runs-on: ubuntu-latest
     concurrency:
       group: prod
@@ -34,9 +36,8 @@ jobs:
       - name: SSH Command
         uses: D3rHase/ssh-command-action@v0.2.2
         with:
-          # hostname / IP of the server
           host: ${{ secrets.PROD_SSH_HOST }}
-          port: ${{secrets.PROD_SSH_PORT}}
+          port: ${{ secrets.PROD_SSH_PORT }}
           user: ${{ secrets.PROD_SSH_USERNAME }}
           private_key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           host_fingerprint: ${{ secrets.PROD_SSH_FINGERPRINT }}
