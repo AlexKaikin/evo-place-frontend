@@ -26,6 +26,10 @@ jobs:
         run: npm run test
       - name: Build project
         run: npm run build
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release
   CD:
     needs: CI
     runs-on: ubuntu-latest
