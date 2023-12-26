@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.0.0...v1.1.0) (2023-12-26)
+
+
+### Features
+
+* added husky ([8c398fb](https://github.com/AlexKaikin/evo-place-frontend/commit/8c398fbe93de87f76cbc31d5c8f12bf19dd907b9))
+
 # 1.0.0 (2023-12-26)
 
 
