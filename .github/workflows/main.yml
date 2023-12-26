@@ -7,9 +7,12 @@ on:
 env:
   NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
   NEXT_PUBLIC_SAIT_URL: ${{ secrets.NEXT_PUBLIC_SAIT_URL }}
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 jobs:
   CI:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - name: Starting Nodejs
@@ -27,8 +30,6 @@ jobs:
       - name: Build project
         run: npm run build
       - name: Semantic release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
   CD:
     needs: CI
