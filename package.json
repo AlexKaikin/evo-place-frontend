@@ -12,7 +12,12 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "next lint  --max-warnings=0",
+    "*.{js,jsx,ts,tsx,css, scss}": "npx prettier . --write"
   },
   "dependencies": {
     "classnames": "^2.3.3",
@@ -69,8 +74,10 @@
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "semantic-release": "^22.0.12",
     "storybook": "^7.6.6",
