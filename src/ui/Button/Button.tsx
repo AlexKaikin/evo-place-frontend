@@ -14,7 +14,6 @@ type Props = ComponentProps<'button'> & {
 }
 
 export function Button(props: Props) {
-  console.log('s')
   const {
     size,
     color,
