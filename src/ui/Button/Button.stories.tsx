@@ -71,7 +71,6 @@ export const State: Story = {
     return (
       <Stack gap={10}>
         <Button disabled>disabled</Button>
-        <Button readOnly>readonly</Button>
       </Stack>
     )
   },
