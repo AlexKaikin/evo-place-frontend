@@ -35,7 +35,7 @@
       "@services": ["./services/index"],
       "@services/*": ["./services/*"],
       "@configs": ["./configs/index"],
-      "@configs/*": ["./configs/*"],
+      "@configs/*": ["./configs/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

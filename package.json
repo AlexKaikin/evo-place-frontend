@@ -16,7 +16,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css, scss}": "npx prettier . --write"
+    "*.{js,jsx,ts,tsx}": "eslint",
+    "*.{js,jsx,ts,tsx,css, scss}": "prettier -w ."
   },
   "dependencies": {
     "classnames": "^2.3.3",

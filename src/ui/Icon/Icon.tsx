@@ -10,7 +10,6 @@ import * as fiIcons from 'react-icons/fi'
 import { IconType } from 'react-icons'
 import { HTMLAttributes } from 'react'
 
-
 type Props = HTMLAttributes<SVGElement> & {
   name: string
   size?: string

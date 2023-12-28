@@ -14,6 +14,7 @@ type Props = ComponentProps<'button'> & {
 }
 
 export function Button(props: Props) {
+  console.log('s')
   const {
     size,
     color,
@@ -24,6 +25,7 @@ export function Button(props: Props) {
     isFullWidth,
     ...restProps
   } = props
+
   return (
     <button
       className={cn(styles.btn, {
