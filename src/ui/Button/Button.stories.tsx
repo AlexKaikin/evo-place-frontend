@@ -19,7 +19,7 @@ export const Default = {
 export const Color: Story = {
   render: args => {
     return (
-      <Stack gap={10}>
+      <Stack direction="row" gap={10}>
         <Button {...args}>primary</Button>
         <Button {...args} color="secondary">
           secondary
@@ -44,7 +44,7 @@ export const Color: Story = {
 export const Size: Story = {
   render: args => {
     return (
-      <Stack gap={10}>
+      <Stack direction="row" alignItems="center" gap={10}>
         <Button {...args} size="small">
           small
         </Button>
@@ -62,7 +62,7 @@ export const Size: Story = {
 export const Icons: Story = {
   render: args => {
     return (
-      <Stack gap={10}>
+      <Stack direction="row" gap={10}>
         <Button {...args} startIcon={<Icon name="BsChevronLeft" />}>
           startIcon
         </Button>
@@ -77,7 +77,7 @@ export const Icons: Story = {
 export const Variant: Story = {
   render: args => {
     return (
-      <Stack gap={10}>
+      <Stack direction="row" gap={10}>
         <Button {...args} variant="text">
           text
         </Button>
@@ -95,7 +95,7 @@ export const Variant: Story = {
 export const State: Story = {
   render: args => {
     return (
-      <Stack gap={10}>
+      <Stack direction="row" gap={10}>
         <Button {...args} disabled>
           disabled
         </Button>

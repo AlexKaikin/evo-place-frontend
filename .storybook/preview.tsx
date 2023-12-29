@@ -30,7 +30,7 @@ const preview: Preview = {
   decorators: [
     Story => {
       return (
-        <Stack>
+        <Stack alignItems="center" justifyContent="center">
           <Story />
         </Stack>
       )
