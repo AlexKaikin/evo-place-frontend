@@ -12,5 +12,6 @@
   ],
   "rules": {
     "no-console": "warn"
-  }
+  },
+  "ignorePatterns": ["!.storybook"]
 }

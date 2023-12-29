@@ -1,9 +1,8 @@
-import type { Preview } from '@storybook/react'
+import React from 'react'
 import '@assets/styles/_var.css'
 import '@assets/styles/globals.css'
-//@ts-ignore
-import { Stack } from '@ui'
-import React from 'react'
+import type { Preview } from '@storybook/react'
+import { Stack } from '../src/ui'
 
 const preview: Preview = {
   parameters: {

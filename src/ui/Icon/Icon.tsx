@@ -1,14 +1,14 @@
 'use client'
 
-import * as bsIcons from 'react-icons/bs'
+import { HTMLAttributes } from 'react'
+import { IconType } from 'react-icons'
 import * as aiIcons from 'react-icons/ai'
 import * as biIcons from 'react-icons/bi'
-import * as giIcons from 'react-icons/gi'
+import * as bsIcons from 'react-icons/bs'
 import * as faIcons from 'react-icons/fa'
-import * as tbIcons from 'react-icons/tb'
 import * as fiIcons from 'react-icons/fi'
-import { IconType } from 'react-icons'
-import { HTMLAttributes } from 'react'
+import * as giIcons from 'react-icons/gi'
+import * as tbIcons from 'react-icons/tb'
 
 type Props = HTMLAttributes<SVGElement> & {
   name: string
