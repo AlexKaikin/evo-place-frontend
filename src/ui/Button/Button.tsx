@@ -1,7 +1,7 @@
+import { ComponentProps, ReactNode } from 'react'
 import cn from 'classnames'
-import { ReactNode, ComponentProps } from 'react'
+import { sizes, solors, variants } from '../constants'
 import styles from './Button.module.css'
-import { variants, sizes, solors } from '../constants'
 
 type Props = ComponentProps<'button'> & {
   size?: (typeof sizes)[number]
