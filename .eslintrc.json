@@ -13,7 +13,7 @@
     "no-console": "warn"
   },
   "ignorePatterns": ["!.storybook"],
-   "env": {
+  "env": {
     "jest": true,
     "node": true
   }
