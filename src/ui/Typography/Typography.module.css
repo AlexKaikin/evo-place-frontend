@@ -1,0 +1,104 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.title-1 {
+  font-size: 2.2rem;
+  font-weight: 300;
+}
+
+.title-2 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.title-3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.title-4 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.title-5 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.title-6 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+}
+
+.text {
+  margin: var(--bottom-getter);
+  font-size: var(--typography-font-size-6);
+  line-height: 1.2;
+  font-family: var(--typography-font-family-text);
+  font-weight: var(--typography-font-weight-regular);
+}
+
+.button-large {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-6);
+  font-weight: var(--typography-font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+.button-medium {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-6);
+  font-weight: var(--typography-font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.button-small {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-7);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.caption {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-7);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: 1.2;
+}
+
+.input-label {
+  margin-bottom: var(--bottom-getter);
+  font-size: var(--typography-font-size-7);
+  line-height: 1.2;
+  font-family: var(--typography-font-family-text);
+  font-weight: var(--typography-font-weight-medium);
+}
+
+.input-text {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-3);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: 1.2;
+}
+
+.tooltip {
+  font-family: var(--typography-font-family-text);
+  font-size: var(--typography-font-size-1);
+  font-weight: var(--typography-font-weight-medium);
+  line-height: 1.2;
+}

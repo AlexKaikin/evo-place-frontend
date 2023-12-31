@@ -1,0 +1,5 @@
+.root {
+  margin-top: calc(var(--spacing) * 0.5);
+  padding-left: var(--spacing);
+  color: var(--warning);
+}

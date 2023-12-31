@@ -1,0 +1,56 @@
+.RootMenu {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.RootMenu[data-open],
+.RootMenu:hover {
+  background: var(--gray);
+}
+
+.Menu {
+  background: var(--bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow:
+    2px 4px 50px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+  outline: 0;
+  overflow: hidden;
+}
+
+.MenuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  width: 100%;
+  border: none;
+  min-width: 110px;
+  margin: 0;
+  outline: 0;
+  color: var(--dark);
+  cursor: pointer;
+  padding: calc(var(--spacing)) calc(var(--spacing) * 2);
+}
+
+.MenuItem:focus {
+  background: var(--border);
+  color: var(--dark);
+}
+
+.MenuItem[data-nested][data-open]:not([data-focus-inside]) {
+  background: var(--border);
+  color: var(--dark);
+}
+
+.MenuItem[data-focus-inside][data-open] {
+  background: var(--gray);
+}

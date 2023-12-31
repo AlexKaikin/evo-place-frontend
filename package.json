@@ -20,11 +20,15 @@
     "*.{js,jsx,ts,tsx,css, scss}": "prettier -w ."
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.4",
+    "@hookform/resolvers": "^3.3.3",
     "classnames": "^2.3.3",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-hook-form": "^7.49.2",
+    "react-icons": "^4.12.0",
+    "zod": "^3.22.4"
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
@@ -70,6 +74,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",

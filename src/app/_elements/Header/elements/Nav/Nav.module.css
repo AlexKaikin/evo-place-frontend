@@ -1,0 +1,30 @@
+.nav {
+  flex-grow: 1;
+  display: flex;
+  gap: 10px;
+
+  @media only screen and (max-width: 1100px) {
+    flex-grow: 0;
+    flex-direction: column;
+  }
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: var(--radius);
+  gap: 10px;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  font-size: 0.9rem;
+
+  &:hover {
+    color: var(--primary);
+  }
+
+  &.active {
+    color: var(--primary);
+  }
+}
