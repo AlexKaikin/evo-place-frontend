@@ -1,4 +1,5 @@
 @import url('./_var.css');
+@import url('./_animation.css');
 
 * {
   box-sizing: border-box;
@@ -9,6 +10,8 @@
   outline: none;
   border: 0;
   font-family: var(--font-primary);
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 }
 
 html,
@@ -41,4 +44,14 @@ button {
   width: max-content;
   font-weight: inherit;
   color: var(--dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
