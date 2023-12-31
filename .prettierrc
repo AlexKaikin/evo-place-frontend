@@ -6,11 +6,5 @@
   "singleQuote": true,
   "arrowParens": "avoid",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": [
-    "^react(.*)",
-    "antd/(.*)",
-    "<THIRD_PARTY_MODULES>",
-    "@/(.*)",
-    "^[./]"
-  ]
+  "importOrder": ["^react(.*)", "<THIRD_PARTY_MODULES>", "@(.*)", "^[./]"]
 }

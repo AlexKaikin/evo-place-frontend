@@ -6,7 +6,7 @@ describe('Page', () => {
   it('renders a logo', () => {
     render(<Page />)
 
-    const logo = screen.getByText(/evo place/i)
+    const logo = screen.getByText(/Home page/i)
 
     expect(logo).toBeInTheDocument()
   })

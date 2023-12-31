@@ -29,6 +29,7 @@ export function Icon({ name, size = '1.5rem', ...rest }: Props) {
     return iconsMap.get(iconName.substring(0, 2))
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const icons: any = getIcon(name)
   const Icon: IconType = icons[name]
 

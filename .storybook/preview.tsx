@@ -7,7 +7,7 @@ import { Stack } from '../src/ui'
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: 'dark',
+      default: 'light',
       values: [
         {
           name: 'dark',
