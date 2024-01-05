@@ -2,12 +2,16 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import Page from './page'
 
+jest.mock('next/navigation', () => ({
+  useRouter() {
+    return { prefetch: () => null }
+  },
+}))
+
 describe('Page', () => {
-  it('renders a logo', () => {
+  it('render title', () => {
     render(<Page />)
-
-    const logo = screen.getByText(/Home page/i)
-
-    expect(logo).toBeInTheDocument()
+    const title = screen.getByText(/International community/i)
+    expect(title).toBeInTheDocument()
   })
 })

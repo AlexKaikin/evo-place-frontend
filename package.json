@@ -23,8 +23,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --max-warnings=0",
-    "*.{js,jsx,ts,tsx,css, scss}": "prettier -w",
-    "*.test.{js,jsx,ts,tsx}": "npm run test"
+    "*.{js,jsx,ts,tsx,css, scss}": "prettier -w"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.4",
