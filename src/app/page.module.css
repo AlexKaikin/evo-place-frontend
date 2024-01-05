@@ -1,3 +1,38 @@
-.main {
-  padding: 20px;
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 80px;
+  padding: calc(var(--spacing) * 2);
+  width: 100%;
+
+  @media only screen and (max-width: 800px) {
+    flex-wrap: wrap;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  @media only screen and (max-width: 800px) {
+    order: 2;
+  }
+}
+
+.imgContainer {
+  width: 100%;
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.img {
+  border-radius: calc(var(--spacing) * 2);
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }

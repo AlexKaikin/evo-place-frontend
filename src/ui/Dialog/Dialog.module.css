@@ -1,9 +1,7 @@
 .overlay {
   display: grid;
   place-items: center;
-  background-color: rgb(0 0 0 / 20%);
-  transition: backdrop-filter 0.3s ease;
-  backdrop-filter: blur(3px);
+  background-color: rgb(0 0 0 / 80%);
   position: relative;
   z-index: 1;
 }

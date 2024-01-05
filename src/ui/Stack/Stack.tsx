@@ -9,10 +9,12 @@ type Props = {
   overflow?: CSSProperties['overflow']
   direction?: CSSProperties['flexDirection']
   justifyContent?: CSSProperties['justifyContent']
+  style?: { opacity?: string }
 }
 
 export function Stack(props: Props) {
   const {
+    style,
     isWide,
     gap = 0,
     children,
@@ -28,6 +30,7 @@ export function Stack(props: Props) {
         flexDirection: direction,
         width: isWide ? '100%' : 'auto',
         height: isWide ? '100%' : 'auto',
+        ...style,
         ...restProps,
       }}
     >

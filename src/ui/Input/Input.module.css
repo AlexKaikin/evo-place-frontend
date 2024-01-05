@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   padding: var(--spacing);
   border-radius: var(--spacing);
   background-color: var(--gray);

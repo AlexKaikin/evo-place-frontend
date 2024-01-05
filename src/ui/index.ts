@@ -29,3 +29,4 @@ export {
   PopoverClose,
 } from './Popover/Popover'
 export { Rating } from './Rating/Rating'
+export { Widget, WidgetGroup } from './Widget/Widget'

@@ -20,7 +20,9 @@ export function Nav() {
           key={link.title}
           href={link.url}
           className={cn(styles.navLink, {
-            [styles.active]: pathname === link.url,
+            [styles.active]:
+              (pathname.indexOf(link.url) >= 0 && link.url !== '/') ||
+              pathname === link.url,
           })}
         >
           {link.title}
