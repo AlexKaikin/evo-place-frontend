@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
-import '../assets/styles/globals.css'
-import { Header } from './_elements/Header/Header'
+import { Footer, Header, Main } from '@app/_elements'
+import '@assets/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'EVO PLACE',
@@ -18,7 +18,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" data-theme={theme?.value || 'light'}>
       <body>
         <Header />
-        {children}
+        <Main>{children}</Main>
+        <Footer />
       </body>
     </html>
   )

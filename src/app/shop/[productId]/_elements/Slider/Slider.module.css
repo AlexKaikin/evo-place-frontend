@@ -1,0 +1,74 @@
+.slider {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  user-select: none;
+}
+
+.activeImg {
+  position: relative;
+  width: 100%;
+
+  > img {
+    border-radius: calc(var(--spacing) * 2);
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .carouselWrapper {
+    overflow-y: hidden;
+    padding: 5px;
+
+    .carouselImgs {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 80px;
+      position: relative;
+      transition: all ease 0.3s;
+
+      @media only screen and (max-width: 1450px) {
+        width: 40px;
+        gap: 10px;
+      }
+
+      .carouselImg {
+        position: relative;
+        border-radius: calc(var(--spacing));
+        transition: all 0.5s ease 0s;
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+
+        @media only screen and (max-width: 1450px) {
+          width: 40px;
+          height: 40px;
+        }
+
+        > img {
+          object-fit: contain;
+          position: relative !important;
+          height: 100% !important;
+          width: 100% !important;
+        }
+
+        &:hover {
+          box-shadow: 0 0 0 5px var(--primary);
+        }
+
+        &.active {
+          box-shadow: 0 0 0 5px var(--primary);
+        }
+      }
+    }
+  }
+}

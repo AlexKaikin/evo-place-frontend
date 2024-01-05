@@ -1,0 +1,60 @@
+.calc {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 50px;
+
+  .quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    position: relative;
+    margin: 0;
+
+    .quantityTitle {
+      position: absolute;
+      top: -30px;
+      opacity: 0.5;
+    }
+
+    .quantityContent {
+      font-size: 1.5rem;
+      display: flex;
+      transition: all 0.5s ease 0s;
+      height: 44px;
+      width: 140px;
+
+      > button {
+        display: flex;
+        align-items: center;
+      }
+
+      .quantity__number {
+        margin: 0 10px;
+        display: inline-block;
+        width: 25px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.productPrice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin: 0;
+}
+
+.priceTitle {
+  position: absolute;
+  top: -30px;
+  opacity: 0.5;
+}
+
+.priceNumber {
+  font-size: 2rem;
+  line-height: 44px;
+}

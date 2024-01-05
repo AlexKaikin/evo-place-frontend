@@ -20,7 +20,7 @@ export function Search() {
     resolver: zodResolver(schema),
   })
 
-  const handleSubmit = async ({ q }: Search) => {
+  const handleSubmit = ({ q }: Search) => {
     if (q) router.push(`?q=${q}`)
     else router.push(`?`)
   }

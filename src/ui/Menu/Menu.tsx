@@ -1,5 +1,8 @@
+'use client'
+
 /* eslint-disable react/display-name */
 import * as React from 'react'
+import cn from 'classnames'
 import {
   autoUpdate,
   flip,
@@ -26,7 +29,7 @@ import {
   useTypeahead,
 } from '@floating-ui/react'
 import { Icon } from '@ui'
-import './Menu.css'
+import styles from './Menu.module.css'
 
 const MenuContext = React.createContext<{
   getItemProps: (
@@ -49,12 +52,16 @@ interface MenuProps {
   label: any
   nested?: boolean
   children?: React.ReactNode
+  isWide?: boolean
+  alignItems?: 'flexStart' | 'center' | 'flexEnd'
+  color?: 'primary' | 'secondary'
+  action?: () => void
 }
 
 export const MenuComponent = React.forwardRef<
   HTMLButtonElement,
   MenuProps & React.HTMLProps<HTMLButtonElement>
->(({ children, label, ...props }, forwardedRef) => {
+>(({ children, label, color, action, ...props }, forwardedRef) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [hasFocusInside, setHasFocusInside] = React.useState(false)
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
@@ -153,7 +160,9 @@ export const MenuComponent = React.forwardRef<
         data-open={isOpen ? '' : undefined}
         data-nested={isNested ? '' : undefined}
         data-focus-inside={hasFocusInside ? '' : undefined}
-        className={isNested ? 'MenuItem' : 'RootMenu'}
+        className={cn(isNested ? styles.MenuItem : styles.RootMenu, {
+          [styles[color || 'primary']]: color,
+        })}
         {...getReferenceProps(
           parent.getItemProps({
             ...props,
@@ -164,6 +173,7 @@ export const MenuComponent = React.forwardRef<
             },
           })
         )}
+        onClick={action}
       >
         {label}
         {isNested && (
@@ -192,7 +202,7 @@ export const MenuComponent = React.forwardRef<
               >
                 <div
                   ref={refs.setFloating}
-                  className="Menu"
+                  className={cn(styles.Menu)}
                   style={floatingStyles}
                   {...getFloatingProps()}
                 >
@@ -227,7 +237,7 @@ export const MenuItem = React.forwardRef<
       ref={useMergeRefs([item.ref, forwardedRef])}
       type="button"
       role="menuitem"
-      className="MenuItem"
+      className={styles.MenuItem}
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
       {...menu.getItemProps({
