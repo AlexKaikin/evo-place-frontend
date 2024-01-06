@@ -9,6 +9,9 @@
   &[data-open],
   &:hover {
     background: var(--gray);
+    transition-property: background-color, box-shadow, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
   }
 }
 
@@ -37,6 +40,12 @@
   color: var(--dark);
   cursor: pointer;
   padding: calc(var(--spacing)) calc(var(--spacing) * 2);
+
+  &:hover {
+    transition-property: background-color, box-shadow, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
 
   &:focus {
     background: var(--gray);

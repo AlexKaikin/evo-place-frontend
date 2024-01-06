@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { ToastContainer, Slide } from 'react-toastify'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Footer, Header, Main } from '@app/_elements'
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <Main>{children}</Main>
         <Footer />
+        <ToastContainer theme="colored" transition={Slide} />
       </body>
     </html>
   )

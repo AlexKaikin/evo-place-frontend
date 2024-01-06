@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import type { Product, CartItem } from '@/types/shop'
+import { useCartStore } from '@/store/cart'
+import type { Product } from '@/types/shop'
 import { Button, Icon, IconButton, Input, Stack } from '@ui'
-import { getLocalStorage } from '@utils'
 import { BookMarkButton } from '../BookMarkButton/BookMarkButton'
 import { FavoritesButton } from '../FavoritesButton/FavoritesButton'
 import styles from './AddToCart.module.css'
@@ -15,6 +15,7 @@ type Props = {
 export function AddToCart({ product }: Props) {
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
+  const { setCart } = useCartStore()
 
   function increment() {
     setQuantity(prevQuantity => prevQuantity + 1)
@@ -43,28 +44,9 @@ export function AddToCart({ product }: Props) {
     }
   }
 
-  //const addCartRef = useRef<HTMLButtonElement>(null)
-
-  function addToCartClick() {
-    const cartItems: CartItem[] = getLocalStorage('cart')
-    const findProduct = cartItems.find(item => item.id === product.id)
-    const addToCart = {
-      id: product.id,
-      imgUrl: product.imgUrl,
-      title: product.title,
-      price: product.price,
-      quantity: quantity,
-      cost: cost,
-    }
-
-    if (!findProduct) {
-      cartItems.push(addToCart)
-    } else {
-      findProduct.quantity = quantity
-      findProduct.cost = cost
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cartItems))
+  function addToCart() {
+    const { id, imgUrl, title, price } = product
+    setCart({ id, imgUrl, title, price, quantity, cost })
   }
 
   return (
@@ -94,10 +76,7 @@ export function AddToCart({ product }: Props) {
       <Stack direction="row" gap={10} justifyContent="flex-start">
         <BookMarkButton product={product} />
         <FavoritesButton product={product} />
-        <Button
-          endIcon={<Icon name="BsBag" size="17" />}
-          onClick={addToCartClick}
-        >
+        <Button endIcon={<Icon name="BsBag" size="17" />} onClick={addToCart}>
           Add to cart
         </Button>
       </Stack>

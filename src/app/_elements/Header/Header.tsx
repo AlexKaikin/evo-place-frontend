@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
+import { useCartStore } from '@/store/cart'
 import {
   IconButton,
   Stack,
@@ -15,18 +16,23 @@ import {
   PopoverTrigger,
 } from '@ui'
 import styles from './Header.module.css'
-import { Logo, Nav, Search, Theme } from './elements'
+import { Logo, Nav, Search, ShopMenu, Theme } from './elements'
 
 export function Header() {
   const router = useRouter()
   const pathname = usePathname()
   const [path, setPath] = useState(pathname)
   const [showMenu, setShowMenu] = useState(false)
+  const { getCart } = useCartStore()
 
   useEffect(() => {
     setShowMenu(false)
     setPath(pathname)
   }, [path, pathname])
+
+  useEffect(() => {
+    getCart()
+  }, [getCart])
 
   return (
     <header className={styles.header}>
@@ -56,21 +62,7 @@ export function Header() {
           <div className={styles.desktop}>
             <Search />
             <div className={styles.control}>
-              <Stack direction="row" gap={20}>
-                <IconButton
-                  size="1.8rem"
-                  icon="FiBarChart2"
-                  onClick={() => router.push('/shop/compare')}
-                />
-                <IconButton
-                  icon="BsBookmark"
-                  onClick={() => router.push('/shop/favorites')}
-                />
-                <IconButton
-                  icon="BsBag"
-                  onClick={() => router.push('/shop/cart')}
-                />
-              </Stack>
+              <ShopMenu />
               <Stack direction="row" gap={20}>
                 <Theme />
                 <IconButton icon="BsBell" />
