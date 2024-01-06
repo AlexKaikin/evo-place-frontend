@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getCookie, setCookie } from '@/utils'
 import { IconButton } from '@ui'
+import { getCookie, setCookie } from '@utils'
 
 export function Theme() {
   const [theme, setTheme] = useState<string | null>(null)
@@ -27,7 +27,7 @@ export function Theme() {
   }, [])
 
   if (!theme)
-    return <IconButton icon="BsSun" style={{ color: 'transparent' }} />
+    return <IconButton icon="BsMoonFill" style={{ color: 'transparent' }} />
 
   return <IconButton icon={icon} onClick={themeChange} />
 }

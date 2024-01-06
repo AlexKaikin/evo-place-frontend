@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   Popover,
@@ -22,6 +23,25 @@ export const Default: Story = {
     return (
       <Popover>
         <PopoverTrigger>Trigger</PopoverTrigger>
+        <PopoverContent>
+          <PopoverHeading>Heading</PopoverHeading>
+          <PopoverDescription>Description</PopoverDescription>
+          <PopoverClose>Close</PopoverClose>
+        </PopoverContent>
+      </Popover>
+    )
+  },
+}
+
+export const Controlled: Story = {
+  render: function Render() {
+    const [open, setOpen] = useState(false)
+
+    return (
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger onClick={() => setOpen(v => !v)}>
+          Trigger
+        </PopoverTrigger>
         <PopoverContent>
           <PopoverHeading>Heading</PopoverHeading>
           <PopoverDescription>Description</PopoverDescription>
