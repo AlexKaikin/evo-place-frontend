@@ -1,14 +1,10 @@
 import cn from 'classnames'
-import { Metadata } from 'next'
 import { Aside } from '@app/_elements'
 import { productService } from '@services'
 import { Pagination } from '@ui'
 import type { UrlParams } from '@utils'
 import { Card, Filtration, Sorting } from './_elements'
-import { meta } from './page.meta'
 import styles from './page.module.css'
-
-export const metadata: Metadata = meta
 
 async function getProducts(urlParams: UrlParams) {
   const res = await productService.getAll(urlParams)

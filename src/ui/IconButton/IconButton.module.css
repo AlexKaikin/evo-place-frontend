@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
 
   &:disabled {
     opacity: 0.5;
@@ -16,6 +19,7 @@
 
 .primary {
   background-color: var(--primary);
+  color: white;
 }
 
 .secondary {
@@ -24,16 +28,20 @@
 
 .success {
   background-color: var(--success);
+  color: white;
 }
 
 .warning {
   background-color: var(--warning);
+  color: white;
 }
 
 .error {
   background-color: var(--error);
+  color: white;
 }
 
 .info {
   background-color: var(--info);
+  color: white;
 }

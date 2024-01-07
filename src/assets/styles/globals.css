@@ -31,7 +31,7 @@ body {
   font-size: 16px;
   background-color: var(--bg);
   font-family: var(--font-primary);
-  color: var(--dark);
+  color: var(--text);
   font-weight: 700;
 }
 

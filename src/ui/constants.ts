@@ -28,11 +28,5 @@ export const fontVariants = [
   'title-6',
   'subtitle',
   'text',
-  'button-large',
-  'button-medium',
-  'button-small',
-  'caption',
-  'input-label',
-  'input-text',
   'tooltip',
 ] as const

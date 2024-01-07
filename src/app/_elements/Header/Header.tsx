@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
-import { useCartStore } from '@/store/cart'
+import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import {
   IconButton,
   Stack,
@@ -24,6 +24,8 @@ export function Header() {
   const [path, setPath] = useState(pathname)
   const [showMenu, setShowMenu] = useState(false)
   const { getCart } = useCartStore()
+  const { getFavorites } = useFavoritesStore()
+  const { getCompare } = useCompareStore()
 
   useEffect(() => {
     setShowMenu(false)
@@ -32,7 +34,9 @@ export function Header() {
 
   useEffect(() => {
     getCart()
-  }, [getCart])
+    getFavorites()
+    getCompare()
+  }, [getCart, getFavorites, getCompare])
 
   return (
     <header className={styles.header}>

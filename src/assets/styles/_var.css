@@ -21,6 +21,8 @@ html[data-theme='light'] {
   --font-primary: 'Noto Sans', sans-serif;
   --font-secondary: 'Noto Sans', sans-serif;
   --shadow: #e3e3e3;
+  --text: rgba(0, 0, 0, 0.8);
+  --heading: var(--dark);
 }
 
 html[data-theme='dark'] {
@@ -43,4 +45,6 @@ html[data-theme='dark'] {
   --font-primary: 'Noto Sans', sans-serif;
   --font-secondary: 'Noto Sans', sans-serif;
   --shadow: #000000;
+  --text: rgba(255, 255, 255, 0.8);
+  --heading: var(--dark);
 }
