@@ -31,3 +31,4 @@ export {
 export { Rating } from './Rating/Rating'
 export { Widget, WidgetGroup } from './Widget/Widget'
 export { Badge } from './Badge/Badge'
+export { Spoiler } from './Spoiler/Spoiler'

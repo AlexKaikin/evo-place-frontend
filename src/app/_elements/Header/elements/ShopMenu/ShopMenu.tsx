@@ -4,8 +4,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useCartStore } from '@/store/cart'
 import useStore from '@/store/useStore'
+import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import {
   Stack,
   IconButton,
@@ -22,11 +22,13 @@ import styles from './ShopMenu.module.css'
 export function ShopMenu() {
   const router = useRouter()
   const cartStore = useStore(useCartStore, state => state)
+  const favoritesStore = useStore(useFavoritesStore, state => state)
+  const compareStore = useStore(useCompareStore, state => state)
   const [open, setOpen] = useState(false)
 
-  if (!cartStore)
+  if (!cartStore || !favoritesStore || !compareStore)
     return (
-      <Stack direction="row" gap={20}>
+      <Stack direction="row" gap={10}>
         <IconButton size="1.8rem" icon="FiBarChart2" />
         <IconButton icon="BsBookmark" />
         <IconButton icon="BsBag" />
@@ -34,6 +36,8 @@ export function ShopMenu() {
     )
 
   const { cartItems, deleteCartItem, totalCost } = cartStore
+  const { favoritesItems } = favoritesStore
+  const { compareItems } = compareStore
 
   function deleteCartProduct(id: number) {
     if (cartItems.length === 1) setOpen(false)
@@ -41,15 +45,15 @@ export function ShopMenu() {
   }
 
   return (
-    <Stack direction="row" gap={20}>
-      <Badge value={0}>
+    <Stack direction="row" gap={10}>
+      <Badge value={compareItems.length}>
         <IconButton
           size="1.8rem"
           icon="FiBarChart2"
           onClick={() => router.push('/shop/compare')}
         />
       </Badge>
-      <Badge value={0}>
+      <Badge value={favoritesItems.length}>
         <IconButton
           icon="BsBookmark"
           onClick={() => router.push('/shop/favorites')}

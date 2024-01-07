@@ -1,11 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { useCartStore } from '@/store/cart'
 import type { Product } from '@/types/shop'
+import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import { Button, Icon, IconButton, Input, Stack } from '@ui'
-import { BookMarkButton } from '../BookMarkButton/BookMarkButton'
-import { FavoritesButton } from '../FavoritesButton/FavoritesButton'
 import styles from './AddToCart.module.css'
 
 type Props = {
@@ -16,6 +14,10 @@ export function AddToCart({ product }: Props) {
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
   const { setCart } = useCartStore()
+  const { toggleFavorite, favoritesItems } = useFavoritesStore()
+  const { toggleCompare, compareItems } = useCompareStore()
+  const findCompare = compareItems.find(item => item.id === product.id)
+  const findFavorite = favoritesItems.find(item => item.id === product.id)
 
   function increment() {
     setQuantity(prevQuantity => prevQuantity + 1)
@@ -74,8 +76,18 @@ export function AddToCart({ product }: Props) {
         </div>
       </div>
       <Stack direction="row" gap={10} justifyContent="flex-start">
-        <BookMarkButton product={product} />
-        <FavoritesButton product={product} />
+        <IconButton
+          color={findCompare ? 'primary' : 'secondary'}
+          icon="FiBarChart2"
+          size="17"
+          onClick={() => toggleCompare(product)}
+        />
+        <IconButton
+          color={findFavorite ? 'primary' : 'secondary'}
+          icon="BsBookmark"
+          size="17"
+          onClick={() => toggleFavorite(product)}
+        />
         <Button endIcon={<Icon name="BsBag" size="17" />} onClick={addToCart}>
           Add to cart
         </Button>

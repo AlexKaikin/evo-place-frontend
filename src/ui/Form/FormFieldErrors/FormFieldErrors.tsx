@@ -10,7 +10,7 @@ export function FormFieldErrors({ error }: Props) {
   return (
     <Typography
       role="alert"
-      variant="caption"
+      variant="tooltip"
       className={styles.root}
       tag="span"
     >

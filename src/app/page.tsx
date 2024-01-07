@@ -16,16 +16,11 @@ export default function Home() {
           International community
         </Typography>
         <Typography variant="text">
-          Community platform that includes a shop, blog and social network.
-        </Typography>
-        <Typography variant="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Welcome to the EVO community space. Here we are interested in the care
+          of health, beauty and longevity. All users have access to such
+          services as e-shop, blog, social network. Every day we are getting
+          bigger. We&apos;ll be glad to see you in the community, and help you
+          reach your goals.
         </Typography>
         <Stack direction="row" gap={20}>
           <Button onClick={() => router.push('/register')}>Sign Up</Button>

@@ -176,7 +176,7 @@ export const DialogHeading = React.forwardRef<
   }, [id, setLabelId])
 
   return (
-    <h2 {...props} ref={ref} id={id}>
+    <h2 {...props} ref={ref} id={id} className={styles.title}>
       {children}
     </h2>
   )
