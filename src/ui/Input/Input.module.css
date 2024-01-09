@@ -36,6 +36,12 @@
     color: var(--dark);
     opacity: 0.5;
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .left {

@@ -8,7 +8,7 @@ export type Product = {
   volumeMeasurement: string
   currency: string
   price: number
-  quantity: number
+  inStock: number
   category: string
   rating: number
   ratingCount: number

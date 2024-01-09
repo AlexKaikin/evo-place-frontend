@@ -65,7 +65,7 @@
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   margin-bottom: calc(var(--spacing) * 2);
 
   &:last-of-type {
