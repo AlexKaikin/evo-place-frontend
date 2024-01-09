@@ -1,3 +1,3 @@
 <h1>EVO PLACE</h1>
 
-<p>EVO PLACE is a community platform that includes a shop, blog and social network.</p>
+<p>EVO community web application including an online store, blog and social network.</p>

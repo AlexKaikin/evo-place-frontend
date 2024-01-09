@@ -1,0 +1,35 @@
+.popover {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing));
+  background-color: var(--bg);
+  box-shadow:
+    2px 4px 50px var(--shadow),
+    0 0 0 1px var(--shadow);
+  padding: calc(var(--spacing) * 2);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  width: max-content;
+  max-width: calc(100vw - 10px);
+}
+
+.trigger {
+  padding: 5px;
+  border-radius: var(--radius);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close {
+  color: var(--dark);
+  cursor: pointer;
+}

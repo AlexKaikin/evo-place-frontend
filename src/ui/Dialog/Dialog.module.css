@@ -1,0 +1,23 @@
+.overlay {
+  display: grid;
+  place-items: center;
+  background-color: rgb(0 0 0 / 80%);
+  position: relative;
+  z-index: 1;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+  margin: calc(var(--spacing) * 2);
+  background-color: var(--bg);
+  padding: calc(var(--spacing) * 2);
+  border-radius: var(--radius);
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--heading);
+}

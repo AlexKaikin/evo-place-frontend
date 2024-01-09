@@ -1,0 +1,67 @@
+.RootMenu {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius);
+
+  &[data-open],
+  &:hover {
+    background: var(--gray);
+    transition-property: background-color, box-shadow, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+}
+
+.Menu {
+  background: var(--bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow:
+    2px 4px 50px var(--shadow),
+    0 0 0 1px var(--shadow);
+  outline: 0;
+  overflow: hidden;
+}
+
+.MenuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  width: 100%;
+  border: none;
+  min-width: 110px;
+  margin: 0;
+  outline: 0;
+  color: var(--dark);
+  cursor: pointer;
+  padding: calc(var(--spacing)) calc(var(--spacing) * 2);
+
+  &:hover {
+    transition-property: background-color, box-shadow, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+
+  &:focus {
+    background: var(--gray);
+    color: var(--dark);
+  }
+
+  &[data-nested][data-open]:not([data-focus-inside]) {
+    background: var(--gray);
+    color: var(--dark);
+  }
+
+  &[data-focus-inside][data-open] {
+    background: var(--gray);
+  }
+}
+
+.primary {
+  color: var(--primary);
+}

@@ -8,3 +8,25 @@ export const solors = [
   'error',
   'info',
 ] as const
+export const tags = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'div',
+  'p',
+  'span',
+] as const
+export const fontVariants = [
+  'title-1',
+  'title-2',
+  'title-3',
+  'title-4',
+  'title-5',
+  'title-6',
+  'subtitle',
+  'text',
+  'tooltip',
+] as const

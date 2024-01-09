@@ -1,40 +1,40 @@
-import React, { CSSProperties, ReactNode } from 'react'
+import React, { CSSProperties, ComponentProps, ReactNode } from 'react'
 
-type Props = {
+type Props = ComponentProps<'div'> & {
+  gap?: number
   isWide?: boolean
   children: ReactNode
-  gap?: number
-  wrap?: CSSProperties['flexWrap']
-  align?: CSSProperties['alignItems']
+  flexWrap?: CSSProperties['flexWrap']
+  alignItems?: CSSProperties['alignItems']
   overflow?: CSSProperties['overflow']
   direction?: CSSProperties['flexDirection']
-  justify?: CSSProperties['justifyContent']
+  justifyContent?: CSSProperties['justifyContent']
+  style?: { opacity?: string }
 }
 
 export function Stack(props: Props) {
   const {
+    style,
     isWide,
-    children,
     gap = 0,
-    wrap = 'wrap',
-    align = 'center',
-    direction = 'row',
-    justify = 'center',
-    overflow = 'initial',
+    children,
+    direction = 'column',
+    className,
+    ...restProps
   } = props
+
   return (
     <div
       style={{
-        overflow,
         display: 'flex',
-        flexWrap: wrap,
         gap: gap + 'px',
-        alignItems: align,
-        justifyContent: justify,
         flexDirection: direction,
         width: isWide ? '100%' : 'auto',
         height: isWide ? '100%' : 'auto',
+        ...style,
+        ...restProps,
       }}
+      className={className}
     >
       {children}
     </div>

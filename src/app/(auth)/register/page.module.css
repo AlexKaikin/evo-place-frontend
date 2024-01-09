@@ -1,0 +1,3 @@
+.container {
+  padding: calc(var(--spacing) * 2);
+}

@@ -1,14 +1,13 @@
-import type { Preview } from '@storybook/react'
+import React from 'react'
 import '@assets/styles/_var.css'
 import '@assets/styles/globals.css'
-//@ts-ignore
-import { Stack } from '@ui'
-import React from 'react'
+import type { Preview } from '@storybook/react'
+import { Stack } from '../src/ui'
 
 const preview: Preview = {
   parameters: {
     backgrounds: {
-      default: 'dark',
+      default: 'light',
       values: [
         {
           name: 'dark',
@@ -31,7 +30,7 @@ const preview: Preview = {
   decorators: [
     Story => {
       return (
-        <Stack>
+        <Stack alignItems="center" justifyContent="center">
           <Story />
         </Stack>
       )
