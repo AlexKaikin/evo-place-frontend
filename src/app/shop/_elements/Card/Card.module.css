@@ -27,7 +27,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing) * 2);
+  gap: calc(var(--spacing));
   padding: calc(var(--spacing) * 2) 0 0 0;
 }
 
@@ -36,9 +36,22 @@
   align-items: center;
   justify-content: space-between;
   gap: calc(var(--spacing) * 2);
-  opacity: 0.5;
+}
+
+.manufacturer {
+  opacity: 0.8;
+  margin-bottom: '0px';
+  font-weight: 500;
 }
 
 .price {
   flex-grow: 1;
+}
+
+.rating {
+  color: var(--gold);
+}
+
+.reviews {
+  opacity: 0.5;
 }

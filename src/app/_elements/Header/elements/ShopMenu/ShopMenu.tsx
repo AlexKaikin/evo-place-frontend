@@ -81,7 +81,12 @@ export function ShopMenu() {
                   />
                 </div>
                 <div className={styles.info}>
-                  <Link href={`/shop/${product.id}`}>{product.title}</Link>
+                  <Link
+                    href={`/shop/${product.id}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {product.title}
+                  </Link>
                   <div className={styles.cost}>${product.cost}</div>
                   <div className={styles.quantity}>
                     <div className={styles.quantityNumber}>
@@ -100,7 +105,13 @@ export function ShopMenu() {
           <div>
             Cost <span>${totalCost}</span>
           </div>
-          <Button onClick={() => router.push('/shop/cart')} isFullWidth>
+          <Button
+            onClick={() => {
+              router.push('/shop/cart')
+              setOpen(false)
+            }}
+            isFullWidth
+          >
             Go to cart
           </Button>
           <Button color="secondary" onClick={() => setOpen(false)} isFullWidth>

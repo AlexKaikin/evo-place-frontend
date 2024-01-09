@@ -60,7 +60,7 @@ export default function Compare() {
               onClick={() => toggleCompare(product)}
               isFullWidth
             >
-              Исключить
+              Exclude
             </Button>
           </div>
         ))}

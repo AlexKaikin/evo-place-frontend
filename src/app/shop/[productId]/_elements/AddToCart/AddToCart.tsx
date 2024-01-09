@@ -20,6 +20,7 @@ export function AddToCart({ product }: Props) {
   const findFavorite = favoritesItems.find(item => item.id === product.id)
 
   function increment() {
+    if (product.inStock < quantity + 1) return null
     setQuantity(prevQuantity => prevQuantity + 1)
     setCost(prevCost => prevCost + product.price)
   }
@@ -33,7 +34,7 @@ export function AddToCart({ product }: Props) {
 
   function quantityBlur(e: React.FocusEvent<HTMLInputElement>) {
     const number = +e.target.value
-    if (Number.isNaN(number) || number < 1) {
+    if (Number.isNaN(number) || number < 1 || number > product.inStock) {
       setQuantity(1)
       setCost(product.price)
     }
@@ -41,14 +42,19 @@ export function AddToCart({ product }: Props) {
 
   function quantityChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (!Number.isNaN(+e.target.value)) {
-      setQuantity(+e.target.value)
-      setCost(product.price * +e.target.value)
+      if (+e.target.value > product.inStock) {
+        setQuantity(1)
+        setCost(product.price)
+      } else {
+        setQuantity(+e.target.value)
+        setCost(product.price * +e.target.value)
+      }
     }
   }
 
   function addToCart() {
-    const { id, imgUrl, title, price } = product
-    setCart({ id, imgUrl, title, price, quantity, cost })
+    const { id, imgUrl, title, price, inStock } = product
+    setCart({ id, imgUrl, title, price, quantity, cost, inStock })
   }
 
   return (

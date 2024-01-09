@@ -1,6 +1,6 @@
-import React, { CSSProperties, ReactNode } from 'react'
+import React, { CSSProperties, ComponentProps, ReactNode } from 'react'
 
-type Props = {
+type Props = ComponentProps<'div'> & {
   gap?: number
   isWide?: boolean
   children: ReactNode
@@ -19,6 +19,7 @@ export function Stack(props: Props) {
     gap = 0,
     children,
     direction = 'column',
+    className,
     ...restProps
   } = props
 
@@ -33,6 +34,7 @@ export function Stack(props: Props) {
         ...style,
         ...restProps,
       }}
+      className={className}
     >
       {children}
     </div>
