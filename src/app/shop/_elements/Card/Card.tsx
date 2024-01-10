@@ -24,7 +24,7 @@ export function Card({ product }: Props) {
         />
       </div>
       <div className={styles.content}>
-        <Stack>
+        <div className={styles.header}>
           <Typography
             variant="title-6"
             tag="h2"
@@ -35,7 +35,7 @@ export function Card({ product }: Props) {
           <Typography variant="subtitle" className={styles.manufacturer}>
             {manufacturer}
           </Typography>
-        </Stack>
+        </div>
         <div className={styles.info}>
           <div className={styles.price}>${price}</div>
           <Stack

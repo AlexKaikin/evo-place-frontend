@@ -26,7 +26,8 @@ export default async function Shop(urlParams: UrlParams) {
         </div>
         <Pagination totalCount={totalCount} />
       </div>
-      <Aside position="right" width={250}>
+
+      <Aside position="right" width={250} hideInMobile>
         <Sorting />
         <Filtration />
       </Aside>

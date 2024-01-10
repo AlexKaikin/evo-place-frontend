@@ -9,26 +9,8 @@ export function Categories() {
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category')
 
-  const changeCategory = (item: string) => {
-    let queryParams
-
-    if (typeof window !== 'undefined') {
-      queryParams = new URLSearchParams(window.location.search)
-
-      if (queryParams.has('category')) {
-        queryParams.set('category', String(item))
-      } else {
-        queryParams.append('category', String(item))
-      }
-
-      if (item === '') queryParams.delete('category')
-
-      if (queryParams.has('_page')) {
-        queryParams.set('_page', String(1))
-      }
-    }
-    const path = '/shop' + '?' + queryParams?.toString()
-    router.push(path)
+  const changeCategory = (category: string) => {
+    router.push(`/shop?category=${category}`)
     scrollToTop()
   }
 

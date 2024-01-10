@@ -30,7 +30,7 @@ type FilterDto = {
   price_lte: string
 }
 
-export function Filtration() {
+export function Filtration({ action }: { action?: () => void }) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -95,9 +95,10 @@ export function Filtration() {
       }
     }
 
-    const path = window.location.pathname + '?' + queryParams?.toString()
+    const path = '/shop' + '?' + queryParams?.toString()
     router.push(path)
     scrollToTop()
+    action && action()
   }
 
   return (
@@ -106,6 +107,7 @@ export function Filtration() {
         <Widget title="Price">
           <Stack direction="row" alignItems="center" flexWrap="nowrap" gap={10}>
             <FormInput
+              type="number"
               name="price_gte"
               placeholder="0"
               label="from"
@@ -113,6 +115,7 @@ export function Filtration() {
             />
             -
             <FormInput
+              type="number"
               name="price_lte"
               placeholder="10000"
               label="to"
