@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.2.0...v1.3.0) (2024-01-10)
+
+
+### Features
+
+* added mobile menu in shop ([8864501](https://github.com/AlexKaikin/evo-place-frontend/commit/88645014df508b96a82b549d80c7504dff7846e5))
+
 # [1.2.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.1.0...v1.2.0) (2024-01-09)
 
 
