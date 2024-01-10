@@ -23,7 +23,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 40px;
-  padding: 10px 20px;
+  padding: 10px;
   box-shadow: 0 0px 1px var(--dark);
   border-radius: calc(var(--spacing));
 
@@ -112,4 +112,12 @@
 .divider {
   flex-grow: 1;
   border-bottom: 3px dotted var(--gray);
+}
+
+.orderSummer {
+  box-shadow:
+    2px 4px 50px var(--shadow),
+    0 0 0 1px var(--shadow);
+  border-radius: var(--radius);
+  padding: calc(var(--spacing) * 2);
 }

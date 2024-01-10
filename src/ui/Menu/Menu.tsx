@@ -220,12 +220,14 @@ export const MenuComponent = React.forwardRef<
 interface MenuItemProps {
   label: string
   disabled?: boolean
+  action?: () => void
+  color?: 'primary' | 'secondary'
 }
 
 export const MenuItem = React.forwardRef<
   HTMLButtonElement,
   MenuItemProps & React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ label, disabled, ...props }, forwardedRef) => {
+>(({ label, disabled, action, color, ...props }, forwardedRef) => {
   const menu = React.useContext(MenuContext)
   const item = useListItem({ label: disabled ? null : label })
   const tree = useFloatingTree()
@@ -237,11 +239,12 @@ export const MenuItem = React.forwardRef<
       ref={useMergeRefs([item.ref, forwardedRef])}
       type="button"
       role="menuitem"
-      className={styles.MenuItem}
+      className={cn(styles.MenuItem, { [styles[color || 'primary']]: color })}
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
       {...menu.getItemProps({
         onClick(event: React.MouseEvent<HTMLButtonElement>) {
+          action && action()
           props.onClick?.(event)
           tree?.events.emit('click')
         },
