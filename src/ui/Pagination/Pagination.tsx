@@ -3,6 +3,7 @@
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { IconButton } from '@ui'
+import { scrollToTop } from '@utils'
 import styles from './Pagination.module.css'
 
 type Props = { totalCount: string }
@@ -11,7 +12,7 @@ export function Pagination({ totalCount }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentPage = getCurrentPage()
-  const limitItems = 8
+  const limitItems = 10
   const pagesCount = Math.ceil(+totalCount / limitItems)
   const pages: number[] = createPages(pagesCount, currentPage)
   const prevPage = currentPage > 1 ? currentPage - 1 : 1
@@ -59,6 +60,7 @@ export function Pagination({ totalCount }: Props) {
       }
     }
     const path = window.location.pathname + '?' + queryParams?.toString()
+    scrollToTop()
     router.push(path)
   }
 

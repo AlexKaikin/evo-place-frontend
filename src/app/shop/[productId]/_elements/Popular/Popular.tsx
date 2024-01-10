@@ -11,7 +11,7 @@ type Props = {
 export function Popular({ products }: Props) {
   return (
     <Widget title="Popular in this category">
-      <Stack gap={10}>
+      <Stack gap={20} className={styles.pop}>
         {products.splice(0, 5).map(product => (
           <Link
             href={`/shop/${product.id}`}

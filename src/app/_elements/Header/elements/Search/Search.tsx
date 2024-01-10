@@ -21,7 +21,7 @@ export function Search() {
   })
 
   const handleSubmit = ({ q }: Search) => {
-    if (q) router.push(`?q=${q}`)
+    if (q) router.push(`/shop?q=${q}`)
     else router.push(`?`)
   }
 

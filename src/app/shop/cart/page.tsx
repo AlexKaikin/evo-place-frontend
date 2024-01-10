@@ -17,25 +17,10 @@ export default function Cart() {
     changeQuantity,
   } = useCartStore()
 
-  // function quantityBlur(e: React.FocusEvent<HTMLInputElement>) {
-  //   const number = +e.target.value
-  //   if (Number.isNaN(number) || number < 1) {
-  //     setQuantity(1)
-  //     setCost(product.price)
-  //   }
-  // }
-
-  // function quantityChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   if (!Number.isNaN(+e.target.value)) {
-  //     setQuantity(+e.target.value)
-  //     setCost(product.price * +e.target.value)
-  //   }
-  // }
-
   if (!cartItems.length)
     return (
       <div className={styles.container}>
-        <Typography variant="title-6" tag="h1">
+        <Typography variant="title-3" tag="h1">
           Cart
         </Typography>
         <div>Empty</div>
@@ -45,7 +30,7 @@ export default function Cart() {
   return (
     <>
       <div className={styles.container}>
-        <Typography variant="title-6" tag="h1">
+        <Typography variant="title-3" tag="h1">
           Cart
         </Typography>
         <div className={styles.productsContainer}>
@@ -102,7 +87,7 @@ export default function Cart() {
       </div>
       <Aside position="right" width={350}>
         <Widget title="Order Summery">
-          <Stack gap={20}>
+          <Stack gap={20} className={styles.orderSummer}>
             <Stack direction="row" justifyContent="space-between" gap={10}>
               <div>Total products</div> <span className={styles.divider}></span>{' '}
               <div>{cartItems.length}</div>
