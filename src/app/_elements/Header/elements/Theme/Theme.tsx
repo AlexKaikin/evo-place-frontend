@@ -6,7 +6,7 @@ import { getCookie, setCookie } from '@utils'
 
 export function Theme() {
   const [theme, setTheme] = useState<string | null>(null)
-  const icon = theme === 'light' ? 'BsMoonFill' : 'BsSun'
+  const icon = theme === 'light' ? 'BsMoon' : 'BsSun'
 
   function themeChange() {
     if (theme === 'dark') {
@@ -27,7 +27,7 @@ export function Theme() {
   }, [])
 
   if (!theme)
-    return <IconButton icon="BsMoonFill" style={{ color: 'transparent' }} />
+    return <IconButton icon="BsMoon" style={{ color: 'transparent' }} />
 
   return <IconButton icon={icon} onClick={themeChange} />
 }

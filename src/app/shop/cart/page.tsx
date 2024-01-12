@@ -56,14 +56,11 @@ export default function Cart() {
                     />
                     <Input
                       type="number"
-                      // onBlur={quantityBlur}
                       onChange={e =>
                         changeQuantity(product.id, +e.target.value)
                       }
                       value={product.quantity}
                       align="center"
-                      min="1"
-                      max="7"
                     />
                     <IconButton
                       icon="BsPlusLg"

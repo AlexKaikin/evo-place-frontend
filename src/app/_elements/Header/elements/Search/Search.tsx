@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
 import { Form, FormInput } from '@/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
+import styles from './Search.module.css'
 
 type Search = { q: string }
 
@@ -27,7 +28,14 @@ export function Search() {
 
   return (
     <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
-      <FormInput name="q" placeholder="Search..." startIcon="BsSearch" />
+      <div className={styles.search}>
+        <FormInput name="q" placeholder="Search..." startIcon="BsSearch" />
+        <div className={styles.selectContainer}>
+          <select name="shop" className={styles.select}>
+            <option value="shop">in shop</option>
+          </select>
+        </div>
+      </div>
     </Form>
   )
 }
