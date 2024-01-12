@@ -21,29 +21,29 @@ export function Categories() {
           label="Tea"
           alignItems="flexStart"
           isWide
-          action={() => changeCategory('Чай')}
-          color={currentCategory === 'Чай' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Tea')}
+          color={currentCategory === 'Tea' ? 'primary' : 'secondary'}
         />
         <Menu
           label="Coffee"
           alignItems="flexStart"
           isWide
-          action={() => changeCategory('Кофе')}
-          color={currentCategory === 'Кофе' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Coffee')}
+          color={currentCategory === 'Coffee' ? 'primary' : 'secondary'}
         />
         <Menu
           label="Spices"
           alignItems="flexStart"
           isWide
-          action={() => changeCategory('Специи')}
-          color={currentCategory === 'Специи' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Spices')}
+          color={currentCategory === 'Spices' ? 'primary' : 'secondary'}
         />
         <Menu
           label="Seeds"
           alignItems="flexStart"
           isWide
-          action={() => changeCategory('Семена')}
-          color={currentCategory === 'Семена' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Seeds')}
+          color={currentCategory === 'Seeds' ? 'primary' : 'secondary'}
         />
       </Stack>
     </Widget>

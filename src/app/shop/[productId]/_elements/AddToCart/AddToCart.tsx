@@ -32,17 +32,9 @@ export function AddToCart({ product }: Props) {
     }
   }
 
-  function quantityBlur(e: React.FocusEvent<HTMLInputElement>) {
-    const number = +e.target.value
-    if (Number.isNaN(number) || number < 1 || number > product.inStock) {
-      setQuantity(1)
-      setCost(product.price)
-    }
-  }
-
   function quantityChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (!Number.isNaN(+e.target.value)) {
-      if (+e.target.value > product.inStock) {
+      if (+e.target.value > product.inStock || +e.target.value < 1) {
         setQuantity(1)
         setCost(product.price)
       } else {
@@ -65,13 +57,10 @@ export function AddToCart({ product }: Props) {
           <div className={styles.quantityContent}>
             <IconButton icon="BsDashLg" onClick={decriment} />
             <Input
-              type="text"
-              onBlur={quantityBlur}
+              type="number"
               onChange={quantityChange}
               value={quantity}
               align="center"
-              min="1"
-              max="7"
             />
             <IconButton icon="BsPlusLg" onClick={increment} />
           </div>

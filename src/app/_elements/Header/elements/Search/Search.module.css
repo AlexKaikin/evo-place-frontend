@@ -1,0 +1,18 @@
+.search {
+  display: flex;
+  background-color: var(--gray);
+  border-radius: var(--radius);
+  padding: 3px;
+}
+
+.selectContainer {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background-color: var(--bg);
+  border-radius: var(--radius);
+}
+
+.select {
+  color: var(--dark);
+}

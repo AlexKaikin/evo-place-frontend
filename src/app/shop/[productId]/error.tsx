@@ -19,7 +19,7 @@ export default function Error({
         </Typography>
         <Stack direction="row" gap={20}>
           <Button onClick={() => reset()}>Try again</Button>{' '}
-          <Button onClick={() => router.push('/')}>Go to Home oage</Button>
+          <Button onClick={() => router.push('/')}>Go to Home page</Button>
         </Stack>
       </Stack>
     </main>
