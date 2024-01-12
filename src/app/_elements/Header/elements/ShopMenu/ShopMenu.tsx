@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import useStore from '@/store/useStore'
+import { useRouter, usePathname } from 'next/navigation'
 import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import {
   Stack,
@@ -21,10 +20,13 @@ import styles from './ShopMenu.module.css'
 
 export function ShopMenu() {
   const router = useRouter()
-  const cartStore = useStore(useCartStore, state => state)
-  const favoritesStore = useStore(useFavoritesStore, state => state)
-  const compareStore = useStore(useCompareStore, state => state)
+  const pathname = usePathname()
+  const cartStore = useCartStore()
+  const favoritesStore = useFavoritesStore()
+  const compareStore = useCompareStore()
   const [open, setOpen] = useState(false)
+
+  if (pathname.split('/')[1] !== 'shop') return null
 
   if (!cartStore || !favoritesStore || !compareStore)
     return (

@@ -1,14 +1,18 @@
-import Link from 'next/link'
-import { Stack, Typography } from '@/ui'
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { Button, Stack, Typography } from '@ui'
 
 export default function NotFound() {
+  const router = useRouter()
+
   return (
     <main style={{ padding: '20px', flexGrow: 1 }}>
       <Stack gap={20}>
         <Typography variant="title-1" tag="h1">
           Page not found
         </Typography>
-        <Link href="/">Go to Home oage</Link>
+        <Button onClick={() => router.push('/')}>Go to Home page</Button>
       </Stack>
     </main>
   )

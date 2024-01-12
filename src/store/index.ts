@@ -1,3 +1,3 @@
-export { useCartStore } from './cart'
-export { useFavoritesStore } from './favorites'
-export { useCompareStore } from './compare'
+export { useCartStore } from './shop/cart'
+export { useFavoritesStore } from './shop/favorites'
+export { useCompareStore } from './shop/compare'

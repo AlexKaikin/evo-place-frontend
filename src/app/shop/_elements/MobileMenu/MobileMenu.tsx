@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import useStore from '@/store/useStore'
 import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import {
   Menu,
@@ -26,9 +25,9 @@ export function MobileMenu() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category')
-  const cartStore = useStore(useCartStore, state => state)
-  const favoritesStore = useStore(useFavoritesStore, state => state)
-  const compareStore = useStore(useCompareStore, state => state)
+  const cartStore = useCartStore()
+  const favoritesStore = useFavoritesStore()
+  const compareStore = useCompareStore()
   const [open, setOpen] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
 
@@ -102,23 +101,23 @@ export function MobileMenu() {
       <Menu label={<Icon name="BsGrid" />}>
         <MenuItem
           label="Tea"
-          action={() => changeCategory('Чай')}
-          color={currentCategory === 'Чай' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Tea')}
+          color={currentCategory === 'Tea' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Coffee"
-          action={() => changeCategory('Кофе')}
-          color={currentCategory === 'Кофе' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Coffee')}
+          color={currentCategory === 'Coffee' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Spices"
-          action={() => changeCategory('Специи')}
-          color={currentCategory === 'Специи' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Spices')}
+          color={currentCategory === 'Spices' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Seeds"
-          action={() => changeCategory('Семена')}
-          color={currentCategory === 'Семена' ? 'primary' : 'secondary'}
+          action={() => changeCategory('Seeds')}
+          color={currentCategory === 'Seeds' ? 'primary' : 'secondary'}
         />
       </Menu>
       <Menu label={<Icon name="BsSortDown" />}>

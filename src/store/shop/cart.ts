@@ -83,7 +83,7 @@ function handleChangeQuantity(id: number, quantity: number) {
   const cartItems: CartItem[] = getLocalStorage('cart')
   const findProduct = cartItems.find(item => item.id === id)
   if (findProduct) {
-    if (quantity > findProduct.inStock) {
+    if (quantity > findProduct.inStock || quantity < 1) {
       findProduct.quantity = 1
       findProduct.cost = findProduct.price
     } else {
