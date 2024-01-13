@@ -4,13 +4,13 @@ import { useState } from 'react'
 import type { Product } from '@/types/shop'
 import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
 import { Button, Icon, IconButton, Input, Stack } from '@ui'
-import styles from './AddToCart.module.css'
+import styles from './Actions.module.css'
 
 type Props = {
   product: Product
 }
 
-export function AddToCart({ product }: Props) {
+export function Actions({ product }: Props) {
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
   const { setCart } = useCartStore()
