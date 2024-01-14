@@ -3,13 +3,13 @@ import { create } from 'zustand'
 import { Product } from '@/types/shop'
 import { getLocalStorage } from '@utils'
 
-export type CompareStore = {
+export type Compare = {
   compareItems: Product[]
   getCompare: () => void
   toggleCompare: (product: Product) => void
 }
 
-export const useCompareStore = create<CompareStore>()(set => ({
+export const useCompare = create<Compare>()(set => ({
   compareItems: [],
   getCompare: () => set(() => ({ compareItems: getLocalStorage('compare') })),
   toggleCompare: product => {

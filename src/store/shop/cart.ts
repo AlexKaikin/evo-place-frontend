@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { CartItem } from '@/types/shop'
 import { getLocalStorage } from '@utils'
 
-export type CartStore = {
+export type Cart = {
   cartItems: CartItem[]
   totalCost: number
   getCart: () => void
@@ -14,7 +14,7 @@ export type CartStore = {
   deleteCartItem: (id: number) => void
 }
 
-export const useCartStore = create<CartStore>()(set => ({
+export const useCart = create<Cart>()(set => ({
   cartItems: [],
   totalCost: 0,
   getCart: () =>

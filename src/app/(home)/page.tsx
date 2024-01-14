@@ -3,11 +3,13 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import imgUrl from '@assets/img/home/friends-posing-party.jpg'
+import { useAuth } from '@store'
 import { Button, Stack, Typography } from '@ui'
 import styles from './page.module.css'
 
 export default function Home() {
   const router = useRouter()
+  const { user } = useAuth()
 
   return (
     <div className={styles.container}>
@@ -22,12 +24,14 @@ export default function Home() {
           bigger. We&apos;ll be glad to see you in the community, and help you
           reach your goals.
         </Typography>
-        <Stack direction="row" gap={20}>
-          <Button onClick={() => router.push('/register')}>Sign Up</Button>
-          <Button color="secondary" onClick={() => router.push('/login')}>
-            Log In
-          </Button>
-        </Stack>
+        {!user && (
+          <Stack direction="row" gap={20}>
+            <Button onClick={() => router.push('/register')}>Sign Up</Button>
+            <Button color="secondary" onClick={() => router.push('/login')}>
+              Log In
+            </Button>
+          </Stack>
+        )}
       </div>
 
       <div className={styles.imgContainer}>

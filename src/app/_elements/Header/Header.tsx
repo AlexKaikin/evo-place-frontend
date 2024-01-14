@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
-import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
+import { useCart, useFavorites, useCompare, useAuth } from '@store'
 import {
   IconButton,
   Stack,
@@ -23,9 +23,10 @@ export function Header() {
   const pathname = usePathname()
   const [path, setPath] = useState(pathname)
   const [showMenu, setShowMenu] = useState(false)
-  const { getCart } = useCartStore()
-  const { getFavorites } = useFavoritesStore()
-  const { getCompare } = useCompareStore()
+  const { getCart } = useCart()
+  const { getFavorites } = useFavorites()
+  const { getCompare } = useCompare()
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     setShowMenu(false)
@@ -69,35 +70,51 @@ export function Header() {
               <ShopMenu />
               <Stack direction="row" gap={20}>
                 <Theme />
-                <IconButton icon="BsBell" />
+                {user && <IconButton icon="BsBell" />}
               </Stack>
               <Menu label={<Icon name="BsPerson" />}>
-                <MenuItem
-                  label={'Log In'}
-                  onClick={() => router.push('/login')}
-                />
-                <MenuItem
-                  label={'Sign Up'}
-                  onClick={() => router.push('/register')}
-                />
+                {user ? (
+                  <Button isFullWidth color="secondary" onClick={logout}>
+                    Logout
+                  </Button>
+                ) : (
+                  <>
+                    <MenuItem
+                      label={'Log In'}
+                      onClick={() => router.push('/login')}
+                    />
+                    <MenuItem
+                      label={'Sign Up'}
+                      onClick={() => router.push('/register')}
+                    />
+                  </>
+                )}
               </Menu>
             </div>
           </div>
           <div className={styles.mobile}>
             <Stack gap={10}>
-              <Button isFullWidth onClick={() => router.push('/register')}>
-                Sign Up
-              </Button>
-              <Button
-                color="secondary"
-                isFullWidth
-                onClick={() => router.push('/login')}
-              >
-                Log In
-              </Button>
+              {user ? (
+                <Button isFullWidth color="secondary" onClick={logout}>
+                  Logout
+                </Button>
+              ) : (
+                <>
+                  <Button isFullWidth onClick={() => router.push('/register')}>
+                    Sign Up
+                  </Button>
+                  <Button
+                    color="secondary"
+                    isFullWidth
+                    onClick={() => router.push('/login')}
+                  >
+                    Log In
+                  </Button>
+                </>
+              )}
             </Stack>
             <Stack direction="row" justifyContent="center" gap={20}>
-              <IconButton icon="BsBell" />
+              {user && <IconButton icon="BsBell" />}
               <Theme />
             </Stack>
           </div>

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Aside } from '@/app/_elements'
-import { useCartStore } from '@store'
+import { useCart } from '@store'
 import { Button, IconButton, Input, Stack, Typography, Widget } from '@ui'
 import styles from './page.module.css'
 
@@ -15,7 +15,7 @@ export default function Cart() {
     decriment,
     increment,
     changeQuantity,
-  } = useCartStore()
+  } = useCart()
 
   if (!cartItems.length)
     return (

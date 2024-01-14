@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
+import { useCart, useFavorites, useCompare } from '@store'
 import {
   Menu,
   Icon,
@@ -25,9 +25,9 @@ export function MobileMenu() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category')
-  const cartStore = useCartStore()
-  const favoritesStore = useFavoritesStore()
-  const compareStore = useCompareStore()
+  const cartStore = useCart()
+  const favoritesStore = useFavorites()
+  const compareStore = useCompare()
   const [open, setOpen] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
 

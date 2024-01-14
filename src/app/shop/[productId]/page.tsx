@@ -1,4 +1,3 @@
-import 'react-toastify/dist/ReactToastify.css'
 import { notFound } from 'next/navigation'
 import type { Product } from '@/types/shop'
 import { Aside } from '@app/_elements'
