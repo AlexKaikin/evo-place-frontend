@@ -25,15 +25,17 @@ function ForwardRef(props: Props, ref: Ref<HTMLInputElement>) {
   } = props
 
   return (
-    <div className={styles.field}>
-      {label && <label className={styles.label}>{label}</label>}
-      {startIcon && <Icon name={startIcon} />}
-      <input
-        className={cn(styles.input, { [styles[align]]: align })}
-        ref={ref}
-        {...rest}
-      />
-      {endIcon && <Icon name={endIcon} />}
+    <div>
+      <div className={styles.field}>
+        {label && <label className={styles.label}>{label}</label>}
+        {startIcon && <Icon name={startIcon} />}
+        <input
+          className={cn(styles.input, { [styles[align]]: align })}
+          ref={ref}
+          {...rest}
+        />
+        {endIcon && <Icon name={endIcon} />}
+      </div>
       {errorState?.message ? <FormFieldErrors error={errorState} /> : null}
     </div>
   )

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { Product } from '@/types/shop'
-import { useCartStore, useFavoritesStore, useCompareStore } from '@store'
+import { useCart, useFavorites, useCompare } from '@store'
 import { Button, Icon, IconButton, Input, Stack } from '@ui'
 import styles from './Actions.module.css'
 
@@ -13,9 +13,9 @@ type Props = {
 export function Actions({ product }: Props) {
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
-  const { setCart } = useCartStore()
-  const { toggleFavorite, favoritesItems } = useFavoritesStore()
-  const { toggleCompare, compareItems } = useCompareStore()
+  const { setCart } = useCart()
+  const { toggleFavorite, favoritesItems } = useFavorites()
+  const { toggleCompare, compareItems } = useCompare()
   const findCompare = compareItems.find(item => item.id === product.id)
   const findFavorite = favoritesItems.find(item => item.id === product.id)
 

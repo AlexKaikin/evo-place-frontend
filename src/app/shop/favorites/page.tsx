@@ -1,13 +1,13 @@
 'use client'
 
 import cn from 'classnames'
-import { useFavoritesStore } from '@store'
+import { useFavorites } from '@store'
 import { Typography } from '@ui'
 import { Card } from '../_elements'
 import styles from './page.module.css'
 
 export default function Favorites() {
-  const { favoritesItems } = useFavoritesStore()
+  const { favoritesItems } = useFavorites()
 
   if (!favoritesItems.length)
     return (
