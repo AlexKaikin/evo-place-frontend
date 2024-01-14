@@ -3,13 +3,13 @@ import { create } from 'zustand'
 import { Product } from '@/types/shop'
 import { getLocalStorage } from '@utils'
 
-export type FavoritesStore = {
+export type Favorites = {
   favoritesItems: Product[]
   getFavorites: () => void
   toggleFavorite: (product: Product) => void
 }
 
-export const useFavoritesStore = create<FavoritesStore>()(set => ({
+export const useFavorites = create<Favorites>()(set => ({
   favoritesItems: [],
   getFavorites: () =>
     set(() => ({ favoritesItems: getLocalStorage('favorites') })),

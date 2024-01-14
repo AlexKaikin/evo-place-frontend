@@ -1,11 +1,10 @@
-import 'react-toastify/dist/ReactToastify.css'
 import { notFound } from 'next/navigation'
 import type { Product } from '@/types/shop'
 import { Aside } from '@app/_elements'
 import { productService } from '@services'
 import { Rating, Stack, Typography } from '@ui'
 import { UrlParams, getNoun, text } from '@utils'
-import { Slider, AddToCart, Popular } from './_elements'
+import { Slider, Actions, Popular } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
@@ -66,7 +65,7 @@ export default async function Product(urlParams: UrlParams) {
             <div className={styles.quantity}>
               {product.volume} {product.volumeMeasurement}
             </div>
-            <AddToCart product={product} />
+            <Actions product={product} />
           </div>
         </div>
         <div className={styles.description}>

@@ -1,1 +1,2 @@
-export { productService } from './shop/products'
+export { productService } from './products'
+export { authService } from './auth'
