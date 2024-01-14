@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.4.0...v1.4.1) (2024-01-14)
+
+
+### Bug Fixes
+
+* fixed toast ([84216ec](https://github.com/AlexKaikin/evo-place-frontend/commit/84216ec29387935eef894c67fef98cf529ab7918))
+
 # [1.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.3.0...v1.4.0) (2024-01-14)
 
 
