@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useAuth } from '@store'
+import { ToastProvider } from './ToastProvider'
 
-export function Providers({ children }: { children: React.ReactElement }) {
+export function Providers({ children }: { children: ReactNode }) {
   const { getMe } = useAuth()
 
   useEffect(() => {
     getMe()
   }, [getMe])
 
-  return <>{children}</>
+  return <ToastProvider>{children}</ToastProvider>
 }
