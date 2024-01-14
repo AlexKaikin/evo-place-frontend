@@ -1,6 +1,4 @@
 import { ReactNode } from 'react'
-import { ToastContainer, Slide } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Footer, Header, Main } from '@app/_elements'
@@ -19,14 +17,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en" data-theme={theme?.value || 'light'}>
-      <Providers>
-        <body>
+      <body>
+        <Providers>
           <Header />
           <Main>{children}</Main>
           <Footer />
-          <ToastContainer theme="colored" transition={Slide} />
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   )
 }
