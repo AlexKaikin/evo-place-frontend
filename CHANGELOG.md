@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.3.0...v1.4.0) (2024-01-14)
+
+
+### Features
+
+* added auth ([6b41318](https://github.com/AlexKaikin/evo-place-frontend/commit/6b41318a5179f901fd5fa8885b45a7cbf5d7c8be))
+* added logotype ([94efebd](https://github.com/AlexKaikin/evo-place-frontend/commit/94efebd1269f6114a434b20d47bdb09461d1bbf1))
+
 # [1.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.2.0...v1.3.0) (2024-01-10)
 
 
