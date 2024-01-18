@@ -9,11 +9,11 @@ type Props = {
 }
 
 export function Card({ product }: Props) {
-  const { id, title, price, rating, ratingCount, imgUrl, manufacturer } =
+  const { _id, title, price, rating, ratingCount, imgUrl, manufacturer } =
     product
 
   return (
-    <Link href={`/shop/${id}`} className={styles.card}>
+    <Link href={`/shop/${_id}`} className={styles.card}>
       <div className={styles.imgContainer}>
         <Image
           src={imgUrl}
