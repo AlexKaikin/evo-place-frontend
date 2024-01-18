@@ -6,6 +6,7 @@
   padding: calc(var(--spacing) * 2);
   border-radius: var(--radius);
   box-shadow: 0 0 20px var(--shadow);
+  background-color: var(--bg);
 }
 
 .imgContainer {
