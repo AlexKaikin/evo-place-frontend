@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.4.1...v1.5.0) (2024-01-18)
+
+
+### Features
+
+* added reviews for product page ([92b0fa1](https://github.com/AlexKaikin/evo-place-frontend/commit/92b0fa183739c1faedde668d589d7b00cea10949))
+* updated design ([fcbc879](https://github.com/AlexKaikin/evo-place-frontend/commit/fcbc87931ff777cbe2c6c5e5231744329bc2f96b))
+
 ## [1.4.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.4.0...v1.4.1) (2024-01-14)
 
 
