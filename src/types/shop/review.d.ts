@@ -13,4 +13,14 @@ export type Review = {
         title: string
         id: number
       }
+  user: {
+    avatarUrl: string
+    fullName: string
+  }
+}
+
+export type CreateReview = {
+  rating: number
+  body: string
+  product: string
 }

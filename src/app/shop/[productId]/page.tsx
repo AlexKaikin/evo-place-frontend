@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 import type { Product } from '@/types/shop'
 import { Aside } from '@app/_elements'
-import { productService } from '@services'
+import { productService, reviewService } from '@services'
 import { Rating, Stack, Typography } from '@ui'
 import { UrlParams, getNoun, text } from '@utils'
-import { Slider, Actions, Popular } from './_elements'
+import { Slider, Actions, Popular, Reviews } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
@@ -17,7 +17,14 @@ export async function generateMetadata({ params }: UrlParams) {
 }
 
 async function getProduct(productId: string) {
-  const res = await productService.getOne(+productId)
+  const res = await productService.getOne(productId)
+  if (res.status !== 200) return notFound()
+
+  return res.data
+}
+
+async function getReviews(productId: string) {
+  const res = await reviewService.getAll(productId)
   if (res.status !== 200) return notFound()
 
   return res.data
@@ -30,7 +37,9 @@ async function getPopProducts(urlParams: UrlParams) {
 }
 
 export default async function Product(urlParams: UrlParams) {
-  const product = await getProduct(urlParams.params.productId)
+  const productsData = await getProduct(urlParams.params.productId)
+  const reviewsData = await getReviews(urlParams.params.productId)
+  const [product, reviews] = await Promise.all([productsData, reviewsData])
   urlParams.searchParams.category = product.category
   const { products } = await getPopProducts(urlParams)
 
@@ -68,13 +77,16 @@ export default async function Product(urlParams: UrlParams) {
             <Actions product={product} />
           </div>
         </div>
+
         <div className={styles.description}>
+          <Typography variant="title-3">Description</Typography>
           {product.text.split('\n').map((item, i) => (
             <Typography key={i} variant="text" tag="p">
               {item}
             </Typography>
           ))}
         </div>
+        <Reviews reviews={reviews} />
       </Stack>
       <Aside position="right" width={350}>
         <Popular products={products} />

@@ -6,7 +6,7 @@ export const productService = {
   getAll(params: UrlParams) {
     return api.get<Product[]>(`products/?${createUrlParams(params)}`)
   },
-  getOne(id: number) {
+  getOne(id: string) {
     return api.get<Product>(`products/${id}`)
   },
 }
