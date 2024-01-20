@@ -4,7 +4,7 @@ import { Aside } from '@app/_elements'
 import { productService, reviewService } from '@services'
 import { Rating, Stack, Typography } from '@ui'
 import { UrlParams, getNoun, text } from '@utils'
-import { Slider, Actions, Popular, Reviews } from './_elements'
+import { Slider, Actions, Popular, Reviews, Characteristics } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
@@ -86,7 +86,8 @@ export default async function Product(urlParams: UrlParams) {
             </Typography>
           ))}
         </div>
-        <Reviews reviews={reviews} />
+        <Characteristics product={product} />
+        <Reviews productId={product._id} reviews={reviews} />
       </Stack>
       <Aside position="right" width={350}>
         <Popular products={products} />

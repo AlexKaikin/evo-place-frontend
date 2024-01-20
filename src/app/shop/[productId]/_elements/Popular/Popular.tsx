@@ -14,7 +14,7 @@ export function Popular({ products }: Props) {
       <Stack gap={20} className={styles.pop}>
         {products.splice(0, 5).map(product => (
           <Link
-            href={`/shop/${product.id}`}
+            href={`/shop/${product._id}`}
             key={product._id}
             className={styles.card}
           >

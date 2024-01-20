@@ -65,7 +65,7 @@ export function Sorting() {
         <div className={styles.title}>
           Sorting:{' '}
           <Menu label={getSortActive()} color="primary">
-            <MenuItem label="new" onClick={() => changeSortActive('new')} />
+            <MenuItem label={'new'} onClick={() => changeSortActive('new')} />
             <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
             <MenuItem
               label="price asc"

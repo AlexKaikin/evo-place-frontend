@@ -152,6 +152,7 @@ export const MenuComponent = React.forwardRef<
   return (
     <FloatingNode id={nodeId}>
       <button
+        type="button"
         ref={useMergeRefs([refs.setReference, item.ref, forwardedRef])}
         tabIndex={
           !isNested ? undefined : parent.activeIndex === item.index ? 0 : -1
