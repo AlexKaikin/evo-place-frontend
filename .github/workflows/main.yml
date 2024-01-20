@@ -34,6 +34,7 @@ jobs:
       - name: Semantic release
         run: npx semantic-release
   CD:
+    if: github.event.pull_request.merged == true
     needs: CI
     runs-on: ubuntu-latest
     concurrency:

@@ -1,10 +1,10 @@
-import React, { forwardRef, HTMLAttributes, Ref } from 'react'
+import React, { forwardRef, ComponentProps, Ref } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'classnames'
 import { FormFieldErrors } from '@ui'
 import styles from './Checkbox.module.css'
 
-export type CheckboxProps = HTMLAttributes<HTMLInputElement> & {
+export type CheckboxProps = ComponentProps<'input'> & {
   label?: string
   errorState?: FieldError
 }

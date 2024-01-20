@@ -26,7 +26,7 @@ function ForwardRef(props: Props, ref: Ref<HTMLInputElement>) {
 
   return (
     <div>
-      <div className={styles.field}>
+      <div className={cn({ [styles.field]: rest.type !== 'hidden' })}>
         {label && <label className={styles.label}>{label}</label>}
         {startIcon && <Icon name={startIcon} />}
         <input
