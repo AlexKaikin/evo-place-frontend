@@ -3,11 +3,7 @@
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-interface ToastProviderProps {
-  children: React.ReactNode
-}
-
-export function ToastProvider({ children }: ToastProviderProps) {
+export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <>
       {children}

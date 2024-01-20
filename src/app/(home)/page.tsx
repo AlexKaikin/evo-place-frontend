@@ -9,7 +9,7 @@ import styles from './page.module.css'
 
 export default function Home() {
   const router = useRouter()
-  const { user } = useAuth()
+  const { error } = useAuth()
 
   return (
     <div className={styles.container}>
@@ -24,7 +24,7 @@ export default function Home() {
           bigger. We&apos;ll be glad to see you in the community, and help you
           reach your goals.
         </Typography>
-        {!user && (
+        {error === 'unauthorized' && (
           <Stack direction="row" gap={20}>
             <Button onClick={() => router.push('/register')}>Sign Up</Button>
             <Button color="secondary" onClick={() => router.push('/login')}>
