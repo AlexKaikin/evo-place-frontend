@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
@@ -8,11 +9,11 @@ import {
   WidgetGroup,
   Widget,
   Stack,
-  Checkbox,
   Rating,
   Button,
   Form,
   FormInput,
+  FormCheckbox,
 } from '@ui'
 import { scrollToTop } from '@utils'
 
@@ -21,6 +22,7 @@ const schema = z.object({
   manufacturer: z.string(),
   price_gte: z.string(),
   price_lte: z.string(),
+  ratings: z.string(),
 })
 
 type FilterDto = {
@@ -28,26 +30,49 @@ type FilterDto = {
   manufacturer: string
   price_gte: string
   price_lte: string
+  ratings: string
 }
 
 export function Filtration({ action }: { action?: () => void }) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const [ratings, setRatings] = useState<number[]>(
+    searchParams
+      .get('ratings')
+      ?.split(',')
+      .map(item => +item) || []
+  )
 
-  const defaultValues = {
-    q: searchParams.get('q') || '',
-    manufacturer: searchParams.get('manufacturer') || '',
-    price_gte: searchParams.get('price_gte') || '',
-    price_lte: searchParams.get('price_lte') || '',
-    ratings: searchParams.get('ratings') || '',
-  }
+  const defaultValues = useMemo(
+    () => ({
+      q: '',
+      manufacturer: '',
+      price_gte: '',
+      price_lte: '',
+      ratings: '',
+    }),
+    []
+  )
+
+  const currentValues = useMemo(
+    () => ({
+      q: searchParams.get('q') || '',
+      manufacturer: searchParams.get('manufacturer') || '',
+      price_gte: searchParams.get('price_gte') || '',
+      price_lte: searchParams.get('price_lte') || '',
+      ratings: searchParams.get('ratings') || '',
+    }),
+    [searchParams]
+  )
 
   const formMethods = useForm<FilterDto>({
     defaultValues,
     resolver: zodResolver(schema),
   })
+
   const {
     reset,
+    setValue,
     formState: { isDirty },
   } = formMethods
 
@@ -60,6 +85,8 @@ export function Filtration({ action }: { action?: () => void }) {
 
     reset(defaultValues)
 
+    setRatings([])
+
     if (typeof window !== 'undefined') {
       const category = searchParams.get('category') || ''
       const param = category.length ? `?category=${category}` : ''
@@ -69,7 +96,20 @@ export function Filtration({ action }: { action?: () => void }) {
     scrollToTop()
   }
 
+  function handleRating(star: number) {
+    if (ratings.includes(star)) {
+      const value = [...ratings.filter(item => item !== star)]
+      setValue('ratings', value.join(','), { shouldDirty: true })
+      setRatings(value)
+    } else {
+      const value = [...ratings, star]
+      setValue('ratings', value.join(','), { shouldDirty: true })
+      setRatings(value)
+    }
+  }
+
   const handleSubmit = async (data: FilterDto) => {
+    data.ratings = ratings.join(',')
     let queryParams
 
     if (typeof window !== 'undefined') {
@@ -101,6 +141,14 @@ export function Filtration({ action }: { action?: () => void }) {
     action && action()
   }
 
+  useEffect(() => {
+    let key: keyof typeof currentValues
+    for (key in currentValues) {
+      if (currentValues[key] !== defaultValues[key])
+        setValue(key, currentValues[key])
+    }
+  }, [currentValues, defaultValues, setValue])
+
   return (
     <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
       <WidgetGroup title="Filtration" icon="BsFunnel">
@@ -125,26 +173,16 @@ export function Filtration({ action }: { action?: () => void }) {
         </Widget>
         <Widget title="Ratings">
           <Stack gap={15}>
-            <Stack direction="row" alignItems="center" gap={15}>
-              <Checkbox />
-              <Rating value={5} />
-            </Stack>
-            <Stack direction="row" alignItems="center" gap={15}>
-              <Checkbox />
-              <Rating value={4} />
-            </Stack>
-            <Stack direction="row" alignItems="center" gap={15}>
-              <Checkbox />
-              <Rating value={3} />
-            </Stack>
-            <Stack direction="row" alignItems="center" gap={15}>
-              <Checkbox />
-              <Rating value={2} />
-            </Stack>
-            <Stack direction="row" alignItems="center" gap={15}>
-              <Checkbox />
-              <Rating value={1} />
-            </Stack>
+            <FormInput type="hidden" name="ratings" />
+            {[5, 4, 3, 2, 1].map(item => (
+              <Stack key={item} direction="row" alignItems="center" gap={15}>
+                <FormCheckbox
+                  checked={ratings.includes(item)}
+                  onChange={() => handleRating(item)}
+                />
+                <Rating value={item} />
+              </Stack>
+            ))}
           </Stack>
         </Widget>
         <Widget>
