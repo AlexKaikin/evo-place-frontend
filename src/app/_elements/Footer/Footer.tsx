@@ -14,7 +14,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <Dialog>
-          <DialogTrigger>Confidentiality Policy</DialogTrigger>
+          <DialogTrigger variant="text">Confidentiality Policy</DialogTrigger>
           <DialogContent>
             <DialogHeading>Privacy Policy</DialogHeading>
             <DialogDescription style={{ maxWidth: '600px' }}>
@@ -55,7 +55,7 @@ export function Footer() {
         </Dialog>
 
         <Dialog>
-          <DialogTrigger>Use of cookies</DialogTrigger>
+          <DialogTrigger variant="text">Use of cookies</DialogTrigger>
           <DialogContent>
             <DialogHeading>Use of cookies</DialogHeading>
             <DialogDescription style={{ maxWidth: '600px' }}>

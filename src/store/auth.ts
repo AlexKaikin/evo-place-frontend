@@ -14,6 +14,11 @@ export type Auth = {
   getMe: () => void
 }
 
+const status = {
+  authorized: (user: User) => ({ user: user, loading: false, error: null }),
+  unauthorized: { user: null, loading: false, error: 'unauthorized' },
+}
+
 export const useAuth = create<Auth>()(set => ({
   user: null,
   loading: false,
@@ -24,10 +29,10 @@ export const useAuth = create<Auth>()(set => ({
       const { data: resData } = await authService.register(data)
       const { user, accessToken, refreshToken } = resData
       token.setAll(accessToken, refreshToken)
-      set(() => ({ user: user, loading: false }))
+      set(() => status.authorized(user))
       toast.info('Are you registered')
     } catch (error) {
-      set(() => ({ error: 'error', loading: false }))
+      set(() => status.unauthorized)
       toast.info('Something went wrong. Try again!')
     }
   },
@@ -37,16 +42,16 @@ export const useAuth = create<Auth>()(set => ({
       const { data: resData } = await authService.login(data)
       const { user, accessToken, refreshToken } = resData
       token.setAll(accessToken, refreshToken)
-      set(() => ({ user: user, loading: false }))
+      set(() => status.authorized(user))
       toast.info('You are logged in')
     } catch (error) {
       toast.info('Something went wrong. Try again!')
-      set(() => ({ error: 'error', loading: false }))
+      set(() => status.unauthorized)
     }
   },
   logout: () => {
     token.removeAll()
-    set(() => ({ user: null }))
+    set(() => status.unauthorized)
     toast.info('You are logged out of your account')
   },
   getMe: async () => {
@@ -55,9 +60,9 @@ export const useAuth = create<Auth>()(set => ({
       const { data: resData } = await authService.getMe()
       const { user, accessToken, refreshToken } = resData
       token.setAll(accessToken, refreshToken)
-      set(() => ({ user: user, loading: false }))
+      set(() => status.authorized(user))
     } catch (error) {
-      set(() => ({ error: 'error', loading: false }))
+      set(() => status.unauthorized)
     }
   },
 }))

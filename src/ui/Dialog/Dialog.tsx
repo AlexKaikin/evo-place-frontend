@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import cn from 'classnames'
 import {
   useFloating,
   useClick,
@@ -13,12 +14,13 @@ import {
   FloatingOverlay,
   useId,
 } from '@floating-ui/react'
+import { sizes, solors, variants } from '../constants'
 import styles from './Dialog.module.css'
 
 interface DialogOptions {
   initialOpen?: boolean
   open?: boolean
-  onOpenChange?: () => void
+  onOpenChange?: (open: boolean) => void
 }
 
 export function useDialog({
@@ -97,12 +99,31 @@ export function Dialog({
 interface DialogTriggerProps {
   children: React.ReactNode
   asChild?: boolean
+  size?: (typeof sizes)[number]
+  color?: (typeof solors)[number]
+  variant?: (typeof variants)[number]
+  endIcon?: React.ReactNode
+  startIcon?: React.ReactNode
+  isFullWidth?: boolean
 }
 
 export const DialogTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & DialogTriggerProps
->(function DialogTrigger({ children, asChild = false, ...props }, propRef) {
+>(function DialogTrigger(
+  {
+    children,
+    asChild = false,
+    size,
+    color,
+    variant,
+    endIcon,
+    startIcon,
+    isFullWidth,
+    ...props
+  },
+  propRef
+) {
   const context = useDialogContext()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const childrenRef = (children as any).ref
@@ -127,8 +148,16 @@ export const DialogTrigger = React.forwardRef<
       // The user can style the trigger based on the state
       data-state={context.open ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
+      className={cn(styles.btn, {
+        [styles.fullWidth]: isFullWidth,
+        [styles[size || 'medium']]: size,
+        [styles[color || 'primary']]: color,
+        [styles[variant || 'contained']]: variant,
+      })}
     >
+      {startIcon}
       {children}
+      {endIcon}
     </button>
   )
 })
@@ -151,9 +180,8 @@ export const DialogContent = React.forwardRef<
             aria-labelledby={context.labelId}
             aria-describedby={context.descriptionId}
             {...context.getFloatingProps(props)}
-            className={styles.dialog}
           >
-            {props.children}
+            <div className={styles.dialog}>{props.children}</div>
           </div>
         </FloatingFocusManager>
       </FloatingOverlay>
