@@ -8,10 +8,10 @@ export type Cart = {
   totalCost: number
   getCart: () => void
   setCart: (product: CartItem) => void
-  decriment: (id: number) => void
-  increment: (id: number) => void
-  changeQuantity: (id: number, quantity: number) => void
-  deleteCartItem: (id: number) => void
+  decriment: (id: string) => void
+  increment: (id: string) => void
+  changeQuantity: (id: string, quantity: number) => void
+  deleteCartItem: (id: string) => void
 }
 
 export const useCart = create<Cart>()(set => ({
@@ -43,7 +43,7 @@ export const useCart = create<Cart>()(set => ({
 
 function addToCart(product: CartItem) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item.id === product.id)
+  const findProduct = cartItems.find(item => item._id === product._id)
 
   toast.info('Added to cart')
 
@@ -70,18 +70,18 @@ function getTotalCost() {
   )
 }
 
-function deleteItem(id: number) {
+function deleteItem(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item.id === id)
+  const findProduct = cartItems.find(item => item._id === id)
   findProduct && cartItems.splice(cartItems.indexOf(findProduct), 1)
   localStorage.setItem('cart', JSON.stringify(cartItems))
 
   return [...cartItems]
 }
 
-function handleChangeQuantity(id: number, quantity: number) {
+function handleChangeQuantity(id: string, quantity: number) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item.id === id)
+  const findProduct = cartItems.find(item => item._id === id)
   if (findProduct) {
     if (quantity > findProduct.inStock || quantity < 1) {
       findProduct.quantity = 1
@@ -96,9 +96,9 @@ function handleChangeQuantity(id: number, quantity: number) {
   return [...cartItems]
 }
 
-function handleIncrement(id: number) {
+function handleIncrement(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item.id === id)
+  const findProduct = cartItems.find(item => item._id === id)
   if (findProduct && findProduct.quantity < findProduct.inStock) {
     findProduct.quantity = findProduct.quantity + 1
     findProduct.cost = findProduct.cost + findProduct.price
@@ -108,9 +108,9 @@ function handleIncrement(id: number) {
   return [...cartItems]
 }
 
-function handleDecriment(id: number) {
+function handleDecriment(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item.id === id)
+  const findProduct = cartItems.find(item => item._id === id)
   if (findProduct && findProduct.quantity > 1) {
     findProduct.quantity = findProduct.quantity - 1
     findProduct.cost = findProduct.cost - findProduct.price
