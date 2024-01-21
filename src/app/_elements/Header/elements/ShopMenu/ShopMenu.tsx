@@ -41,7 +41,7 @@ export function ShopMenu() {
   const { favoritesItems } = favoritesStore
   const { compareItems } = compareStore
 
-  function deleteCartProduct(id: number) {
+  function deleteCartProduct(id: string) {
     if (cartItems.length === 1) setOpen(false)
     deleteCartItem(id)
   }
@@ -77,7 +77,7 @@ export function ShopMenu() {
           <PopoverHeading>Cart</PopoverHeading>
           <div className={styles.products}>
             {cartItems?.map(product => (
-              <div key={product.id} className={styles.product}>
+              <div key={product._id} className={styles.product}>
                 <div className={styles.imgContainer}>
                   <Image
                     src={product.imgUrl}
@@ -88,7 +88,7 @@ export function ShopMenu() {
                 </div>
                 <div className={styles.info}>
                   <Link
-                    href={`/shop/${product.id}`}
+                    href={`/shop/${product._id}`}
                     onClick={() => setOpen(false)}
                   >
                     {product.title}
@@ -101,7 +101,7 @@ export function ShopMenu() {
                     <IconButton
                       icon="BsTrash"
                       size="18"
-                      onClick={() => deleteCartProduct(product.id)}
+                      onClick={() => deleteCartProduct(product._id)}
                     />
                   </div>
                 </div>
