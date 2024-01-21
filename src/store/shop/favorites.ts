@@ -22,7 +22,7 @@ export const useFavorites = create<Favorites>()(set => ({
 
 function handleToggleFavorite(product: Product) {
   const favoriteItems: Product[] = getLocalStorage('favorites')
-  const findProduct = favoriteItems.find(item => item.id === product.id)
+  const findProduct = favoriteItems.find(item => item._id === product._id)
 
   if (!findProduct) {
     favoriteItems.push(product)

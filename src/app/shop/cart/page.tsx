@@ -36,7 +36,7 @@ export default function Cart() {
         <div className={styles.productsContainer}>
           <div className={styles.products}>
             {cartItems?.map(product => (
-              <div key={product.id} className={styles.product}>
+              <div key={product._id} className={styles.product}>
                 <div className={styles.imgContainer}>
                   <Image
                     fill
@@ -46,25 +46,25 @@ export default function Cart() {
                   />
                 </div>
                 <div className={styles.title}>
-                  <Link href={`/shop/${product.id}`}>{product.title}</Link>
+                  <Link href={`/shop/${product._id}`}>{product.title}</Link>
                 </div>
                 <div className={styles.quantityContainer}>
                   <div className={styles.quantity}>
                     <IconButton
                       icon="BsDashLg"
-                      onClick={() => decriment(product.id)}
+                      onClick={() => decriment(product._id)}
                     />
                     <Input
                       type="number"
                       onChange={e =>
-                        changeQuantity(product.id, +e.target.value)
+                        changeQuantity(product._id, +e.target.value)
                       }
                       value={product.quantity}
                       align="center"
                     />
                     <IconButton
                       icon="BsPlusLg"
-                      onClick={() => increment(product.id)}
+                      onClick={() => increment(product._id)}
                     />
                   </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Cart() {
                     color="error"
                     icon="BsTrash3"
                     size="17"
-                    onClick={() => deleteCartItem(product.id)}
+                    onClick={() => deleteCartItem(product._id)}
                   />
                 </div>
               </div>

@@ -88,6 +88,7 @@
   background-color: transparent;
   box-shadow: 0 0 0 1px transparent;
   color: var(--dark);
+  padding: 0px;
 
   &:hover {
     color: var(--primary);
