@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.0...v1.6.1) (2024-01-21)
+
+
+### Bug Fixes
+
+* fixed product url ([0e4e81b](https://github.com/AlexKaikin/evo-place-frontend/commit/0e4e81bc8594716de07c7c0ffa39efef007a18a8))
+
 # [1.6.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.5.0...v1.6.0) (2024-01-20)
 
 
