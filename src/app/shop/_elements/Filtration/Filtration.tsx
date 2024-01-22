@@ -145,7 +145,7 @@ export function Filtration({ action }: { action?: () => void }) {
     let key: keyof typeof currentValues
     for (key in currentValues) {
       if (currentValues[key] !== defaultValues[key])
-        setValue(key, currentValues[key])
+        setValue(key, currentValues[key], { shouldDirty: true })
     }
   }, [currentValues, defaultValues, setValue])
 
