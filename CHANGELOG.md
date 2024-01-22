@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.1...v1.6.2) (2024-01-22)
+
+
+### Bug Fixes
+
+* fixed filter products ([63dbf00](https://github.com/AlexKaikin/evo-place-frontend/commit/63dbf007185f372ba5654ac8437940b65ec0e9f7))
+
 ## [1.6.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.0...v1.6.1) (2024-01-21)
 
 
