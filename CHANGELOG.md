@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.2...v1.7.0) (2024-01-23)
+
+
+### Features
+
+* added google tag manager ([7fcc9f9](https://github.com/AlexKaikin/evo-place-frontend/commit/7fcc9f9fabb4505ed48a1edc2c5ea358cfd9c86c))
+* updated github workflows ([a0cfa06](https://github.com/AlexKaikin/evo-place-frontend/commit/a0cfa061f4482d40024358a17b021111226ed00a))
+
 ## [1.6.2](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.1...v1.6.2) (2024-01-22)
 
 
