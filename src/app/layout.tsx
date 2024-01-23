@@ -3,7 +3,9 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Footer, Header, Main } from '@app/_elements'
 import '@assets/styles/globals.css'
+import { GTM } from '@configs'
 import { Providers } from '@hocs'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: 'EVO PLACE',
@@ -24,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Footer />
         </Providers>
       </body>
+      {GTM && <GoogleTagManager gtmId={GTM} />}
     </html>
   )
 }
