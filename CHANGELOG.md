@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.1...v2.0.0) (2024-01-25)
+
+
+* Merge pull request #46 from AlexKaikin/feature/204925-upgrade-to-v2 ([2aaaf46](https://github.com/AlexKaikin/evo-place-frontend/commit/2aaaf46d72858c1a567904ce8b3f7441cf54af6e)), closes [#46](https://github.com/AlexKaikin/evo-place-frontend/issues/46)
+
+
+### BREAKING CHANGES
+
+* adding blog
+
 ## [1.8.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.0...v1.8.1) (2024-01-25)
 
 
