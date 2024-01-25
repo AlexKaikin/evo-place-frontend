@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.0...v1.8.1) (2024-01-25)
+
+
+### Performance Improvements
+
+* added blog page ([ae6a8ee](https://github.com/AlexKaikin/evo-place-frontend/commit/ae6a8eedfbc2bbd68cc09d79c5f22e1ece74f148))
+
 # [1.8.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.7.0...v1.8.0) (2024-01-25)
 
 
