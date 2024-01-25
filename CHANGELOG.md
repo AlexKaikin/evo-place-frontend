@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.7.0...v1.8.0) (2024-01-25)
+
+
+### Features
+
+* added form stories ([0edfe4c](https://github.com/AlexKaikin/evo-place-frontend/commit/0edfe4cf279896318c7aa2d40d53b4c628f384ed))
+
 # [1.7.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.2...v1.7.0) (2024-01-23)
 
 
