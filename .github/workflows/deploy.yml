@@ -11,7 +11,7 @@ jobs:
   CD:
     runs-on: ubuntu-latest
     concurrency:
-      group: prod
+      group: main
       cancel-in-progress: true
     steps:
       - name: SSH Command

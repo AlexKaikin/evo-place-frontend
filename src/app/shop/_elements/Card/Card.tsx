@@ -4,11 +4,7 @@ import { Product } from '@/types/shop'
 import { Stack, Icon, Typography } from '@ui'
 import styles from './Card.module.css'
 
-type Props = {
-  product: Product
-}
-
-export function Card({ product }: Props) {
+export function Card({ product }: { product: Product }) {
   const { _id, title, price, rating, ratingCount, imgUrl, manufacturer } =
     product
 

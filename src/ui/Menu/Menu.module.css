@@ -67,3 +67,29 @@
 .primary {
   color: var(--primary);
 }
+
+.category {
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px 20px;
+}
+
+.active {
+  position: relative;
+  background: var(--gray);
+  color: var(--primary);
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    display: block;
+    align-items: center;
+    height: 20px;
+    width: 10px;
+    border-radius: 5px;
+    background-color: var(--primary);
+  }
+}
