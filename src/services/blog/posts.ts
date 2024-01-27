@@ -6,7 +6,7 @@ export const postService = {
   getAll(params: UrlParams) {
     return api.get<Post[]>(`posts/?${createUrlParams(params)}`)
   },
-  getOne(id: number) {
+  getOne(id: string) {
     return api.get<Post>(`posts/${id}`)
   },
 }

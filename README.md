@@ -17,7 +17,7 @@
 | Libraries | Application in the project |
 | :------------- |:-------------|
 | NextJS | platform |
-| @reduxjs/toolkit, react-redux | global state management |
+| zustand | global state management |
 | axios | api requests |
 | react-hook-form | form validation |
 | lodash.debounce | delayed request for data from the server (search for a user to exchange messages on the page of the messenger on the social network) |

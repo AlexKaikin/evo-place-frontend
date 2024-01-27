@@ -1,6 +1,7 @@
 export type UrlParams = {
   params: {
     productId: string
+    postId: string
   }
   searchParams: {
     _page: string
