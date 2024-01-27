@@ -13,8 +13,19 @@ async function getPosts(urlParams: UrlParams) {
   return { posts, totalCount }
 }
 
+async function getPopPosts(urlParams: UrlParams) {
+  const res = await postService.getAll(urlParams)
+  return res.data
+}
+
 export default async function Blog(urlParams: UrlParams) {
-  const { posts, totalCount } = await getPosts(urlParams)
+  const postsData = await getPosts(urlParams)
+  urlParams.searchParams.category = ''
+  const popPostsData = await getPopPosts(urlParams)
+  const [{ posts, totalCount }, popPosts] = await Promise.all([
+    postsData,
+    popPostsData,
+  ])
 
   if (!posts.length)
     return (
@@ -25,7 +36,7 @@ export default async function Blog(urlParams: UrlParams) {
             tag="h2"
             style={{ marginBottom: '0px' }}
           >
-            No products found
+            No posts found
           </Typography>
         </div>
         <Aside position="right" width={250} hideInMobile>
@@ -45,8 +56,8 @@ export default async function Blog(urlParams: UrlParams) {
         <Pagination totalCount={totalCount} />
       </div>
 
-      <Aside position="right" width={350}>
-        <Popular posts={posts} />
+      <Aside position="right" width={400}>
+        <Popular posts={popPosts} />
       </Aside>
     </>
   )

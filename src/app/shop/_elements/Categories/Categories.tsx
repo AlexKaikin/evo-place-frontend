@@ -1,49 +1,52 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, useParams } from 'next/navigation'
 import { Menu, Stack, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 
 export function Categories() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const params = useParams<{ productId?: string }>()
   const currentCategory = searchParams.get('category')
 
-  const changeCategory = (category: string) => {
-    router.push(`/shop?category=${category}`)
+  const changeCategory = (category: string | null) => {
+    category ? router.push(`/shop?category=${category}`) : router.push(`/shop`)
     scrollToTop()
   }
 
   return (
     <Widget title="Categories" icon="BsGrid">
-      <Stack gap={10}>
+      <Stack gap={5}>
+        <Menu
+          label="All"
+          variant="category"
+          action={() => changeCategory(null)}
+          active={currentCategory === null && !params?.productId ? true : false}
+        />
         <Menu
           label="Tea"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Tea')}
-          color={currentCategory === 'Tea' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Tea' ? true : false}
         />
         <Menu
           label="Coffee"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Coffee')}
-          color={currentCategory === 'Coffee' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Coffee' ? true : false}
         />
         <Menu
           label="Spices"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Spices')}
-          color={currentCategory === 'Spices' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Spices' ? true : false}
         />
         <Menu
           label="Seeds"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Seeds')}
-          color={currentCategory === 'Seeds' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Seeds' ? true : false}
         />
       </Stack>
     </Widget>

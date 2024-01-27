@@ -1,16 +1,17 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, useParams } from 'next/navigation'
 import { Menu, Stack, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 
 export function Categories() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const params = useParams<{ postId?: string }>()
   const currentCategory = searchParams.get('category')
 
-  const changeCategory = (category: string) => {
-    router.push(`/blog?category=${category}`)
+  const changeCategory = (category: string | null) => {
+    category ? router.push(`/blog?category=${category}`) : router.push(`/blog`)
     scrollToTop()
   }
 
@@ -18,25 +19,28 @@ export function Categories() {
     <Widget title="Categories" icon="BsGrid">
       <Stack gap={10}>
         <Menu
+          label="All"
+          variant="category"
+          action={() => changeCategory(null)}
+          active={currentCategory === null && !params?.postId ? true : false}
+        />
+        <Menu
           label="Reviews"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Reviews')}
-          color={currentCategory === 'Reviews' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Reviews' ? true : false}
         />
         <Menu
           label="Traditions"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Traditions')}
-          color={currentCategory === 'Traditions' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Traditions' ? true : false}
         />
         <Menu
           label="Instructions"
-          alignItems="flexStart"
-          isWide
+          variant="category"
           action={() => changeCategory('Instructions')}
-          color={currentCategory === 'Instructions' ? 'primary' : 'secondary'}
+          active={currentCategory === 'Instructions' ? true : false}
         />
       </Stack>
     </Widget>
