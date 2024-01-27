@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.0.0...v2.1.0) (2024-01-27)
+
+
+### Features
+
+* added post page ([a1100a8](https://github.com/AlexKaikin/evo-place-frontend/commit/a1100a815e101276e86e7996b777cab3312a9801))
+
 # [2.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.1...v2.0.0) (2024-01-25)
 
 
