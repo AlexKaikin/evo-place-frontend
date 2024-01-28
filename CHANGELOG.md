@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.1.0...v2.2.0) (2024-01-28)
+
+
+### Features
+
+* added mobile menu for blog ([12e3c99](https://github.com/AlexKaikin/evo-place-frontend/commit/12e3c998e4a8b5a844a38d75dbe9eff1bb550f25))
+
 # [2.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.0.0...v2.1.0) (2024-01-27)
 
 
