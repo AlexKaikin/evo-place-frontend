@@ -80,6 +80,7 @@ export function Comments({
             </div>
           </div>
         ))}
+        {!comments.length ? <>No comments. Write first!</> : null}
       </div>
     </div>
   )

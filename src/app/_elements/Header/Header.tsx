@@ -3,7 +3,13 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
-import { useCart, useFavorites, useCompare, useAuth } from '@store'
+import {
+  useCart,
+  useFavoriteProducts,
+  useCompare,
+  useAuth,
+  useFavoritePosts,
+} from '@store'
 import {
   IconButton,
   Stack,
@@ -16,7 +22,7 @@ import {
   PopoverTrigger,
 } from '@ui'
 import styles from './Header.module.css'
-import { Logo, Nav, Search, ShopMenu, Theme } from './elements'
+import { BlogMenu, Logo, Nav, Search, ShopMenu, Theme } from './elements'
 
 export function Header() {
   const router = useRouter()
@@ -24,9 +30,10 @@ export function Header() {
   const [path, setPath] = useState(pathname)
   const [showMenu, setShowMenu] = useState(false)
   const { getCart } = useCart()
-  const { getFavorites } = useFavorites()
+  const { getFavoriteProducts } = useFavoriteProducts()
   const { getCompare } = useCompare()
   const { user, logout } = useAuth()
+  const { getFavoritePosts } = useFavoritePosts()
 
   useEffect(() => {
     setShowMenu(false)
@@ -35,9 +42,10 @@ export function Header() {
 
   useEffect(() => {
     getCart()
-    getFavorites()
+    getFavoriteProducts()
     getCompare()
-  }, [getCart, getFavorites, getCompare])
+    getFavoritePosts()
+  }, [getCart, getFavoriteProducts, getCompare, getFavoritePosts])
 
   return (
     <header className={styles.header}>
@@ -68,6 +76,7 @@ export function Header() {
             <Search />
             <div className={styles.control}>
               <ShopMenu />
+              <BlogMenu />
               <Stack direction="row" gap={20}>
                 <Theme />
                 {user && <IconButton icon="BsBell" />}
