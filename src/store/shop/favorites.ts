@@ -5,13 +5,13 @@ import { getLocalStorage } from '@utils'
 
 export type Favorites = {
   favoritesItems: Product[]
-  getFavorites: () => void
+  getFavoriteProducts: () => void
   toggleFavorite: (product: Product) => void
 }
 
-export const useFavorites = create<Favorites>()(set => ({
+export const useFavoriteProducts = create<Favorites>()(set => ({
   favoritesItems: [],
-  getFavorites: () =>
+  getFavoriteProducts: () =>
     set(() => ({ favoritesItems: getLocalStorage('favorites') })),
   toggleFavorite: product => {
     set(() => ({

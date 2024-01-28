@@ -1,0 +1,38 @@
+.products {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.product {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.imgContainer {
+  width: 80px;
+
+  > img {
+    border-radius: var(--radius);
+  }
+}
+
+.info {
+  width: 160px;
+}
+
+.cost {
+  font-weight: 300;
+}
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantityNumber {
+  font-weight: 300;
+}

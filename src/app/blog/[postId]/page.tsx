@@ -6,7 +6,7 @@ import { Aside } from '@app/_elements'
 import { postService, commentService } from '@services'
 import { Icon, Stack, Typography } from '@ui'
 import { UrlParams, text } from '@utils'
-import { Comments, Popular } from './_elements'
+import { Comments, Popular, Favorite } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
@@ -53,19 +53,24 @@ export default async function Product(urlParams: UrlParams) {
           <Typography variant="title-1" tag="h1">
             {post.title}
           </Typography>
-          <div className={styles.meta}>
+          <Stack direction="row" gap={20}>
+            <div className={styles.meta}>
+              <Stack direction="row" alignItems="center" gap={5}>
+                <Icon name="BsFolder2Open" size="16" /> {post.category}
+              </Stack>
+              <Stack direction="row" alignItems="center" gap={5}>
+                <Icon name="BsEye" size="16" /> {post.viewsCount}
+              </Stack>
+              <Stack direction="row" alignItems="center" gap={5}>
+                <Icon name="BsClock" size="16" />{' '}
+                {dayjs(post.created).format('H:m, DD.MM.YYYY')}
+              </Stack>
+            </div>
             <Stack direction="row" alignItems="center" gap={5}>
-              <Icon name="BsFolder2Open" size="16" /> {post.category}
+              <Favorite post={post} />
             </Stack>
-            <Stack direction="row" alignItems="center" gap={5}>
-              <Icon name="BsEye" size="16" /> {post.viewsCount}
-            </Stack>
-            <Stack direction="row" alignItems="center" gap={5}>
-              <Icon name="BsClock" size="16" />{' '}
-              {dayjs(post.created).format('H:m, DD.MM.YYYY')}
-            </Stack>
-          </div>
-          {post.imgUrl && (
+          </Stack>
+          {post.imgUrl ? (
             <div className={styles.imgContainer}>
               <Image
                 fill
@@ -74,7 +79,7 @@ export default async function Product(urlParams: UrlParams) {
                 alt={post.title}
               />
             </div>
-          )}
+          ) : null}
           <div>
             {post.text.split('\n').map((item, i) => (
               <Typography key={i} variant="text" tag="p">

@@ -55,4 +55,8 @@
   flex-wrap: wrap;
   gap: 20px;
   opacity: 0.5;
+
+  @media only screen and (max-width: 576px) {
+    gap: 10px;
+  }
 }

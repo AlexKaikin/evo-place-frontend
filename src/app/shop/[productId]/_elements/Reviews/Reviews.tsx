@@ -51,38 +51,45 @@ export function Reviews({
           </DialogContent>
         </Dialog>
       </Stack>
-      <div>
-        {reviews.map(review => (
-          <div key={review.id} className={styles.review}>
-            <div className={styles.user}>
-              <div className={styles.avatar}>
-                <Image
-                  src={
-                    review.user.avatarUrl ? review.user.avatarUrl : defautAvatar
-                  }
-                  width={70}
-                  height={70}
-                  alt="avatar"
-                />
-              </div>
-            </div>
-            <div className={styles.body}>
-              <div className={styles.header}>
-                <div className={styles.name}>{review.user.fullName}, </div>
-                <div className={styles.date}>
-                  {dayjs(new Date()).format('H:m, DD.MM.YYYY')}
-                </div>
-              </div>
-              <Rating value={review.rating} />
-              {review.body.split('\n').map((item, i) => (
-                <Typography key={i} variant="text" tag="p">
-                  {item}
-                </Typography>
-              ))}
+      <ReviewsList reviews={reviews} />
+    </div>
+  )
+}
+
+function ReviewsList({ reviews }: { reviews: Review[] }) {
+  return (
+    <div>
+      {reviews.map(review => (
+        <div key={review.id} className={styles.review}>
+          <div className={styles.user}>
+            <div className={styles.avatar}>
+              <Image
+                src={
+                  review.user.avatarUrl ? review.user.avatarUrl : defautAvatar
+                }
+                width={70}
+                height={70}
+                alt="avatar"
+              />
             </div>
           </div>
-        ))}
-      </div>
+          <div className={styles.body}>
+            <div className={styles.header}>
+              <div className={styles.name}>{review.user.fullName}, </div>
+              <div className={styles.date}>
+                {dayjs(new Date()).format('H:m, DD.MM.YYYY')}
+              </div>
+            </div>
+            <Rating value={review.rating} />
+            {review.body.split('\n').map((item, i) => (
+              <Typography key={i} variant="text" tag="p">
+                {item}
+              </Typography>
+            ))}
+          </div>
+        </div>
+      ))}
+      {!reviews.length ? <>No reviews. Write first!</> : null}
     </div>
   )
 }
