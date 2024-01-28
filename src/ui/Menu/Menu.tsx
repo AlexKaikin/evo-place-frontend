@@ -58,6 +58,7 @@ interface MenuProps {
   action?: () => void
   variant?: 'category'
   active?: boolean
+  noHoverBg?: boolean
 }
 
 export const MenuComponent = React.forwardRef<
@@ -65,7 +66,7 @@ export const MenuComponent = React.forwardRef<
   MenuProps & React.HTMLProps<HTMLButtonElement>
 >(
   (
-    { children, label, color, variant, active, action, ...props },
+    { children, label, color, noHoverBg, variant, active, action, ...props },
     forwardedRef
   ) => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -173,6 +174,7 @@ export const MenuComponent = React.forwardRef<
             [styles[color || 'primary']]: color,
             [styles.category]: variant === 'category',
             [styles.active]: active,
+            [styles.noHoverBg]: noHoverBg,
           })}
           {...getReferenceProps(
             parent.getItemProps({

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useCart, useFavorites, useCompare } from '@store'
+import { useRouter, useSearchParams, useParams } from 'next/navigation'
+import { useCart, useFavoriteProducts, useCompare } from '@store'
 import {
   Menu,
   Icon,
@@ -24,9 +24,10 @@ import styles from './MobileMenu.module.css'
 export function MobileMenu() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const params = useParams<{ productId?: string }>()
   const currentCategory = searchParams.get('category')
   const cartStore = useCart()
-  const favoritesStore = useFavorites()
+  const favoritesStore = useFavoriteProducts()
   const compareStore = useCompare()
   const [open, setOpen] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
@@ -47,8 +48,8 @@ export function MobileMenu() {
   const { favoritesItems } = favoritesStore
   const { compareItems } = compareStore
 
-  const changeCategory = (category: string) => {
-    router.push(`/shop?category=${category}`)
+  const changeCategory = (category: string | null) => {
+    category ? router.push(`/shop?category=${category}`) : router.push(`/shop`)
     scrollToTop()
   }
 
@@ -99,6 +100,15 @@ export function MobileMenu() {
   return (
     <div className={styles.mobileMenu}>
       <Menu label={<Icon name="BsGrid" />}>
+        <MenuItem
+          label="All"
+          action={() => changeCategory(null)}
+          color={
+            currentCategory === null && !params?.productId
+              ? 'primary'
+              : 'secondary'
+          }
+        />
         <MenuItem
           label="Tea"
           action={() => changeCategory('Tea')}

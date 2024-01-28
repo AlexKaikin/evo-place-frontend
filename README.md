@@ -19,12 +19,16 @@
 | NextJS | platform |
 | zustand | global state management |
 | axios | api requests |
-| react-hook-form | form validation |
+| react-hook-form | working with forms |
+| zod | data validation |
+| dayjs | working with forms |
+| storybook | UI development, testing, and documentation |
 | lodash.debounce | delayed request for data from the server (search for a user to exchange messages on the page of the messenger on the social network) |
 | react-intersection-observer | endless loading of data from the server (implemented in a social network) |
 | socket.io-client | social network chats |
 | classnames | style management |
 | prettier | general code style settings for collaborative development |
+| jest | unit tests |
 
 <br />
 
