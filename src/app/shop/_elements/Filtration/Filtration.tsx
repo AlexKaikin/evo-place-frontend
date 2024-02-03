@@ -172,10 +172,10 @@ export function Filtration({ action }: { action?: () => void }) {
           </Stack>
         </Widget>
         <Widget title="Ratings">
-          <Stack gap={15}>
+          <Stack>
             <FormInput type="hidden" name="ratings" />
             {[5, 4, 3, 2, 1].map(item => (
-              <Stack key={item} direction="row" alignItems="center" gap={15}>
+              <Stack key={item} direction="row" alignItems="center" gap={20}>
                 <FormCheckbox
                   checked={ratings.includes(item)}
                   onChange={() => handleRating(item)}

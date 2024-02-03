@@ -81,11 +81,26 @@ export function Header() {
                 <Theme />
                 {user && <IconButton icon="BsBell" />}
               </Stack>
-              <Menu label={<Icon name="BsPerson" />}>
+              <Menu label={<Icon name="BsPersonCircle" />}>
                 {user ? (
-                  <Button isFullWidth color="secondary" onClick={logout}>
-                    Logout
-                  </Button>
+                  <>
+                    <div className={styles.account}>
+                      {user.fullName}
+                      <span>{user.email}</span>
+                    </div>
+                    <MenuItem
+                      label={'Account'}
+                      icon={<Icon name="BsPerson" />}
+                      minWidth={150}
+                      onClick={() => router.push('/account')}
+                    />
+                    <MenuItem
+                      label={'Logout'}
+                      icon={<Icon name="BsBoxArrowRight" />}
+                      minWidth={150}
+                      onClick={logout}
+                    />
+                  </>
                 ) : (
                   <>
                     <MenuItem
@@ -104,9 +119,18 @@ export function Header() {
           <div className={styles.mobile}>
             <Stack gap={10}>
               {user ? (
-                <Button isFullWidth color="secondary" onClick={logout}>
-                  Logout
-                </Button>
+                <>
+                  <Button
+                    isFullWidth
+                    color="secondary"
+                    onClick={() => router.push('/account')}
+                  >
+                    Account
+                  </Button>
+                  <Button isFullWidth color="secondary" onClick={logout}>
+                    Logout
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button isFullWidth onClick={() => router.push('/register')}>
