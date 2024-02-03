@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import 'react-toastify/dist/ReactToastify.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Footer, Header, Main } from '@app/_elements'

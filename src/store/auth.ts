@@ -12,11 +12,13 @@ export type Auth = {
   login: (data: Login) => void
   logout: () => void
   getMe: () => void
+  update: (data: User) => void
 }
 
 const status = {
   authorized: (user: User) => ({ user: user, loading: false, error: null }),
   unauthorized: { user: null, loading: false, error: 'unauthorized' },
+  error: { loading: false, error: 'error' },
 }
 
 export const useAuth = create<Auth>()(set => ({
@@ -30,7 +32,7 @@ export const useAuth = create<Auth>()(set => ({
       const { user, accessToken, refreshToken } = resData
       token.setAll(accessToken, refreshToken)
       set(() => status.authorized(user))
-      toast.info('Are you registered')
+      toast.info('You are registered')
     } catch (error) {
       set(() => status.unauthorized)
       toast.info('Something went wrong. Try again!')
@@ -63,6 +65,17 @@ export const useAuth = create<Auth>()(set => ({
       set(() => status.authorized(user))
     } catch (error) {
       set(() => status.unauthorized)
+    }
+  },
+  update: async data => {
+    try {
+      set(() => ({ loading: true }))
+      const { data: user } = await authService.update(data)
+      set(() => status.authorized(user))
+      toast.info('Profile updated')
+    } catch (error) {
+      set(() => status.error)
+      toast.info('Something went wrong. Try again!')
     }
   },
 }))

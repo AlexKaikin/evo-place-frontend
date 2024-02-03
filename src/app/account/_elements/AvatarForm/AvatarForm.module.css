@@ -1,0 +1,41 @@
+.avatar {
+  flex: 0 0 200px;
+
+  &:hover {
+    .avatarChange {
+      display: flex;
+      gap: 10px;
+
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+
+      > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0px #d1d1d1;
+      }
+    }
+  }
+}
+
+.imgContainer {
+  position: relative;
+  width: 100%;
+
+  > img {
+    border-radius: calc(var(--spacing));
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
+}
+
+.avatarChange {
+  display: none;
+}

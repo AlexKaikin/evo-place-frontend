@@ -31,7 +31,7 @@
 
 .MenuItem {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   background: none;
   width: 100%;
