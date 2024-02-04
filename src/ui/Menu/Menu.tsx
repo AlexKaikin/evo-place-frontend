@@ -272,7 +272,7 @@ export const MenuItem = React.forwardRef<
             menu.setHasFocusInside(true)
           },
         })}
-        style={{ width: minWidth ? `${minWidth}px` : 'auto' }}
+        style={{ width: minWidth ? `${minWidth}px` : '100%' }}
       >
         {icon} {label}
       </button>

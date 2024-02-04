@@ -3,49 +3,36 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
-import {
-  useCart,
-  useFavoriteProducts,
-  useCompare,
-  useAuth,
-  useFavoritePosts,
-} from '@store'
+import { useAuth } from '@store'
 import {
   IconButton,
   Stack,
   Icon,
-  MenuItem,
-  Menu,
   Button,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@ui'
 import styles from './Header.module.css'
-import { BlogMenu, Logo, Nav, Search, ShopMenu, Theme } from './elements'
+import {
+  Account,
+  BlogMenu,
+  Logo,
+  Nav,
+  Search,
+  ShopMenu,
+  Theme,
+} from './elements'
 
 export function Header() {
   const router = useRouter()
   const pathname = usePathname()
-  const [path, setPath] = useState(pathname)
   const [showMenu, setShowMenu] = useState(false)
-  const { getCart } = useCart()
-  const { getFavoriteProducts } = useFavoriteProducts()
-  const { getCompare } = useCompare()
   const { user, logout } = useAuth()
-  const { getFavoritePosts } = useFavoritePosts()
 
   useEffect(() => {
     setShowMenu(false)
-    setPath(pathname)
-  }, [path, pathname])
-
-  useEffect(() => {
-    getCart()
-    getFavoriteProducts()
-    getCompare()
-    getFavoritePosts()
-  }, [getCart, getFavoriteProducts, getCompare, getFavoritePosts])
+  }, [pathname])
 
   return (
     <header className={styles.header}>
@@ -81,39 +68,7 @@ export function Header() {
                 <Theme />
                 {user && <IconButton icon="BsBell" />}
               </Stack>
-              <Menu label={<Icon name="BsPersonCircle" />}>
-                {user ? (
-                  <>
-                    <div className={styles.account}>
-                      {user.fullName}
-                      <span>{user.email}</span>
-                    </div>
-                    <MenuItem
-                      label={'Account'}
-                      icon={<Icon name="BsPerson" />}
-                      minWidth={150}
-                      onClick={() => router.push('/account')}
-                    />
-                    <MenuItem
-                      label={'Logout'}
-                      icon={<Icon name="BsBoxArrowRight" />}
-                      minWidth={150}
-                      onClick={logout}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <MenuItem
-                      label={'Log In'}
-                      onClick={() => router.push('/login')}
-                    />
-                    <MenuItem
-                      label={'Sign Up'}
-                      onClick={() => router.push('/register')}
-                    />
-                  </>
-                )}
-              </Menu>
+              <Account />
             </div>
           </div>
           <div className={styles.mobile}>
