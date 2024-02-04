@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { Metadata } from 'next'
 import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
+import { AutorizedGuard } from '@hocs'
 import { Categories } from './_elements'
 
 export const metadata: Metadata = {
@@ -20,11 +21,11 @@ export const metadata: Metadata = {
 
 export default function AccountLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <AutorizedGuard>
       <Aside>
         <Categories />
       </Aside>
       {children}
-    </>
+    </AutorizedGuard>
   )
 }
