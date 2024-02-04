@@ -1,0 +1,11 @@
+.account {
+  display: flex;
+  flex-direction: column;
+
+  padding: calc(var(--spacing)) calc(var(--spacing) * 2);
+
+  > span {
+    font-weight: 300;
+    font-size: 14px;
+  }
+}

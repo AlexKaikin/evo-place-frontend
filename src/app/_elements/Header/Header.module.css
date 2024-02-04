@@ -46,7 +46,7 @@
     display: none;
 
     &.show {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       z-index: 2;
@@ -95,17 +95,5 @@
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 2);
-  }
-}
-
-.account {
-  display: flex;
-  flex-direction: column;
-
-  padding: calc(var(--spacing)) calc(var(--spacing) * 2);
-
-  > span {
-    font-weight: 300;
-    font-size: 14px;
   }
 }
