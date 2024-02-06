@@ -6,13 +6,11 @@ export type Review = {
   published: string
   created: string
   updated: string
-  product:
-    | string
-    | {
-        _id: string
-        title: string
-        id: number
-      }
+  product: {
+    _id: string
+    title: string
+    id: number
+  }
   user: {
     avatarUrl: string
     fullName: string

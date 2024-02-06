@@ -19,8 +19,7 @@ export const authService = {
   update(values: User) {
     return api.patch<User>(`users`, values, options.json)
   },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  uploadUserAvatar(formData: any) {
+  uploadUserAvatar(formData: FormData) {
     return api.post('/upload', formData, options.multipart)
   },
 }

@@ -14,7 +14,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: var(--bg);
         padding: 5px;
         border-radius: 10px;
         box-shadow: 0 0 10px 0px #d1d1d1;
@@ -41,6 +41,7 @@
 }
 
 .loader {
+  flex: 0 0 200px;
   display: flex;
   align-items: center;
   justify-content: center;
