@@ -21,7 +21,7 @@
 | axios | api requests |
 | react-hook-form | working with forms |
 | zod | data validation |
-| dayjs | working with forms |
+| dayjs | date processing |
 | storybook | UI development, testing, and documentation |
 | lodash.debounce | delayed request for data from the server (search for a user to exchange messages on the page of the messenger on the social network) |
 | react-intersection-observer | endless loading of data from the server (implemented in a social network) |
@@ -50,6 +50,7 @@
     <li>Infinite scroll (social media posts)</li>
 </ul></td><td valign="top"><ul>
     <li>Bonus program</li>
+    <li>Referral program</li>
 </ul></td></tr>
 </table>
 
