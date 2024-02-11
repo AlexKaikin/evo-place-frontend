@@ -2,7 +2,6 @@
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  padding: calc(var(--spacing) * 2);
 }
 
 .container {
@@ -10,4 +9,6 @@
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing) * 2);
+  overflow: auto;
+  padding: calc(var(--spacing) * 2);
 }

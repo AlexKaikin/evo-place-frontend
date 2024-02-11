@@ -1,0 +1,18 @@
+.mobileMenu {
+  display: none;
+
+  @media only screen and (max-width: 1100px) {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: calc(var(--spacing) * 2);
+    background-color: var(--bg);
+    padding: calc(var(--spacing));
+    box-shadow:
+      2px 4px 50px var(--shadow),
+      0 0 0 1px var(--shadow);
+  }
+}

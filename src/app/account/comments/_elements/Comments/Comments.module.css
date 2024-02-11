@@ -4,6 +4,8 @@
   flex-direction: column;
   margin-bottom: 20px;
   padding: 3px;
+  width: 100%;
+  min-width: 900px;
 }
 
 .header {
