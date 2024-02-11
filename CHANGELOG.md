@@ -1,3 +1,106 @@
+# [2.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.2.0...v2.3.0) (2024-02-11)
+
+
+### Features
+
+* added auth guard ([d018803](https://github.com/AlexKaikin/evo-place-frontend/commit/d0188031612366c85066c70a9ec53310a3a04ab4))
+* added comment page to account ([c34efbc](https://github.com/AlexKaikin/evo-place-frontend/commit/c34efbc6fd74ea9345639af101c311302b18d201))
+* added mobile menu for account ([2d8b5d9](https://github.com/AlexKaikin/evo-place-frontend/commit/2d8b5d95d8a8ccc9f1baee5222d9bda002986da5))
+* added orders page for account ([f877ed2](https://github.com/AlexKaikin/evo-place-frontend/commit/f877ed2ee68de517af5c6fb2d7e17b31f1c6d31f))
+* added profile page ([2e231af](https://github.com/AlexKaikin/evo-place-frontend/commit/2e231af2eae5ffff3d6ed87fcca8be7a3b73d135))
+* added reviews page to account ([f103a23](https://github.com/AlexKaikin/evo-place-frontend/commit/f103a233d9e4299280073ebe586384890c215dd6))
+
+# [2.2.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.1.0...v2.2.0) (2024-01-28)
+
+
+### Features
+
+* added mobile menu for blog ([12e3c99](https://github.com/AlexKaikin/evo-place-frontend/commit/12e3c998e4a8b5a844a38d75dbe9eff1bb550f25))
+
+# [2.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.0.0...v2.1.0) (2024-01-27)
+
+
+### Features
+
+* added post page ([a1100a8](https://github.com/AlexKaikin/evo-place-frontend/commit/a1100a815e101276e86e7996b777cab3312a9801))
+
+# [2.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.1...v2.0.0) (2024-01-25)
+
+
+* Merge pull request #46 from AlexKaikin/feature/204925-upgrade-to-v2 ([2aaaf46](https://github.com/AlexKaikin/evo-place-frontend/commit/2aaaf46d72858c1a567904ce8b3f7441cf54af6e)), closes [#46](https://github.com/AlexKaikin/evo-place-frontend/issues/46)
+
+
+### BREAKING CHANGES
+
+* adding blog
+
+## [1.8.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.8.0...v1.8.1) (2024-01-25)
+
+
+### Performance Improvements
+
+* added blog page ([ae6a8ee](https://github.com/AlexKaikin/evo-place-frontend/commit/ae6a8eedfbc2bbd68cc09d79c5f22e1ece74f148))
+
+# [1.8.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.7.0...v1.8.0) (2024-01-25)
+
+
+### Features
+
+* added form stories ([0edfe4c](https://github.com/AlexKaikin/evo-place-frontend/commit/0edfe4cf279896318c7aa2d40d53b4c628f384ed))
+
+# [1.7.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.2...v1.7.0) (2024-01-23)
+
+
+### Features
+
+* added google tag manager ([7fcc9f9](https://github.com/AlexKaikin/evo-place-frontend/commit/7fcc9f9fabb4505ed48a1edc2c5ea358cfd9c86c))
+* updated github workflows ([a0cfa06](https://github.com/AlexKaikin/evo-place-frontend/commit/a0cfa061f4482d40024358a17b021111226ed00a))
+
+## [1.6.2](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.1...v1.6.2) (2024-01-22)
+
+
+### Bug Fixes
+
+* fixed filter products ([63dbf00](https://github.com/AlexKaikin/evo-place-frontend/commit/63dbf007185f372ba5654ac8437940b65ec0e9f7))
+
+## [1.6.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.6.0...v1.6.1) (2024-01-21)
+
+
+### Bug Fixes
+
+* fixed product url ([0e4e81b](https://github.com/AlexKaikin/evo-place-frontend/commit/0e4e81bc8594716de07c7c0ffa39efef007a18a8))
+
+# [1.6.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.5.0...v1.6.0) (2024-01-20)
+
+
+### Features
+
+* added filtering products by rating ([6dfbc7b](https://github.com/AlexKaikin/evo-place-frontend/commit/6dfbc7b6cf6fedbb8480ccf966f8f43281677f50))
+* added form for reviews ([a61cdba](https://github.com/AlexKaikin/evo-place-frontend/commit/a61cdba29343c0a5608b977d96b2dcb383dce34c))
+
+# [1.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.4.1...v1.5.0) (2024-01-18)
+
+
+### Features
+
+* added reviews for product page ([92b0fa1](https://github.com/AlexKaikin/evo-place-frontend/commit/92b0fa183739c1faedde668d589d7b00cea10949))
+* updated design ([fcbc879](https://github.com/AlexKaikin/evo-place-frontend/commit/fcbc87931ff777cbe2c6c5e5231744329bc2f96b))
+
+## [1.4.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.4.0...v1.4.1) (2024-01-14)
+
+
+### Bug Fixes
+
+* fixed toast ([84216ec](https://github.com/AlexKaikin/evo-place-frontend/commit/84216ec29387935eef894c67fef98cf529ab7918))
+
+# [1.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.3.0...v1.4.0) (2024-01-14)
+
+
+### Features
+
+* added auth ([6b41318](https://github.com/AlexKaikin/evo-place-frontend/commit/6b41318a5179f901fd5fa8885b45a7cbf5d7c8be))
+* added logotype ([94efebd](https://github.com/AlexKaikin/evo-place-frontend/commit/94efebd1269f6114a434b20d47bdb09461d1bbf1))
+
 # [1.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v1.2.0...v1.3.0) (2024-01-10)
 
 
