@@ -62,7 +62,6 @@
 
 .text {
   background-color: transparent;
-  box-shadow: 0 0 0 1px transparent;
   color: var(--dark);
 
   &:hover {
@@ -73,13 +72,12 @@
 
 .outlined {
   background-color: transparent;
-  box-shadow: 0 0 0 2px white;
+  box-shadow: 0 0 0 2px var(--dark);
   color: var(--dark);
 
   &:hover {
-    color: var(--dark);
-    background-color: var(--primary);
-    box-shadow: 0 0 0 2px var(--primary);
+    color: white;
+    background-color: var(--dark);
   }
 }
 

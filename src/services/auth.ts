@@ -1,4 +1,4 @@
-import type { Login, Register, UserResponse } from '@/types/auth'
+import type { Login, Register, UserResponse, User } from '@/types/auth'
 import { api, options } from '@configs'
 import { token } from '@utils'
 
@@ -15,5 +15,11 @@ export const authService = {
       { refreshToken: token.getRefresh() },
       options.json
     )
+  },
+  update(values: User) {
+    return api.patch<User>(`users`, values, options.json)
+  },
+  uploadUserAvatar(formData: FormData) {
+    return api.post('/upload', formData, options.multipart)
   },
 }

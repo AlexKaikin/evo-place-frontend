@@ -1,6 +1,8 @@
 .root {
   display: flex;
   flex-direction: column;
+  height: 40px;
+  justify-content: center;
 }
 
 .container {

@@ -52,7 +52,6 @@ interface MenuProps {
   label: any
   nested?: boolean
   children?: React.ReactNode
-  isWide?: boolean
   alignItems?: 'flexStart' | 'center' | 'flexEnd'
   color?: 'primary' | 'secondary'
   action?: () => void
@@ -236,42 +235,50 @@ interface MenuItemProps {
   disabled?: boolean
   action?: () => void
   color?: 'primary' | 'secondary'
+  icon?: React.ReactNode
+  minWidth?: number
 }
 
 export const MenuItem = React.forwardRef<
   HTMLButtonElement,
   MenuItemProps & React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ label, disabled, action, color, ...props }, forwardedRef) => {
-  const menu = React.useContext(MenuContext)
-  const item = useListItem({ label: disabled ? null : label })
-  const tree = useFloatingTree()
-  const isActive = item.index === menu.activeIndex
+>(
+  (
+    { label, disabled, icon, minWidth, action, color, ...props },
+    forwardedRef
+  ) => {
+    const menu = React.useContext(MenuContext)
+    const item = useListItem({ label: disabled ? null : label })
+    const tree = useFloatingTree()
+    const isActive = item.index === menu.activeIndex
 
-  return (
-    <button
-      {...props}
-      ref={useMergeRefs([item.ref, forwardedRef])}
-      type="button"
-      role="menuitem"
-      className={cn(styles.MenuItem, { [styles[color || 'primary']]: color })}
-      tabIndex={isActive ? 0 : -1}
-      disabled={disabled}
-      {...menu.getItemProps({
-        onClick(event: React.MouseEvent<HTMLButtonElement>) {
-          action && action()
-          props.onClick?.(event)
-          tree?.events.emit('click')
-        },
-        onFocus(event: React.FocusEvent<HTMLButtonElement>) {
-          props.onFocus?.(event)
-          menu.setHasFocusInside(true)
-        },
-      })}
-    >
-      {label}
-    </button>
-  )
-})
+    return (
+      <button
+        {...props}
+        ref={useMergeRefs([item.ref, forwardedRef])}
+        type="button"
+        role="menuitem"
+        className={cn(styles.MenuItem, { [styles[color || 'primary']]: color })}
+        tabIndex={isActive ? 0 : -1}
+        disabled={disabled}
+        {...menu.getItemProps({
+          onClick(event: React.MouseEvent<HTMLButtonElement>) {
+            action && action()
+            props.onClick?.(event)
+            tree?.events.emit('click')
+          },
+          onFocus(event: React.FocusEvent<HTMLButtonElement>) {
+            props.onFocus?.(event)
+            menu.setHasFocusInside(true)
+          },
+        })}
+        style={{ width: minWidth ? `${minWidth}px` : '100%' }}
+      >
+        {icon} {label}
+      </button>
+    )
+  }
+)
 
 export const Menu = React.forwardRef<
   HTMLButtonElement,
