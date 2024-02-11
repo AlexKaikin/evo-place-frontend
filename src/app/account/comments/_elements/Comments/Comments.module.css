@@ -34,7 +34,7 @@
   flex-direction: column;
   gap: calc(var(--spacing) * 2);
   width: 100%;
-  max-width: 500px;
+  max-width: 900px;
 }
 
 .link {
