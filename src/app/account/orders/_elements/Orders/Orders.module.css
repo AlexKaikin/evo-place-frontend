@@ -1,4 +1,4 @@
-.reviews {
+.orders {
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -16,7 +16,7 @@
   padding: 0 calc(var(--spacing) * 2);
 }
 
-.review {
+.order {
   display: grid;
   grid-auto-columns: 8fr;
   grid-template-columns: 4fr 2fr 2fr;
@@ -27,16 +27,4 @@
   box-shadow: 0 0px 20px var(--shadow);
   border-radius: calc(var(--spacing));
   background-color: var(--bg);
-}
-
-.detail {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing) * 2);
-  width: 100%;
-  max-width: 900px;
-}
-
-.link {
-  color: var(--primary);
 }
