@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.2.0...v2.3.0) (2024-02-11)
+
+
+### Features
+
+* added auth guard ([d018803](https://github.com/AlexKaikin/evo-place-frontend/commit/d0188031612366c85066c70a9ec53310a3a04ab4))
+* added comment page to account ([c34efbc](https://github.com/AlexKaikin/evo-place-frontend/commit/c34efbc6fd74ea9345639af101c311302b18d201))
+* added mobile menu for account ([2d8b5d9](https://github.com/AlexKaikin/evo-place-frontend/commit/2d8b5d95d8a8ccc9f1baee5222d9bda002986da5))
+* added orders page for account ([f877ed2](https://github.com/AlexKaikin/evo-place-frontend/commit/f877ed2ee68de517af5c6fb2d7e17b31f1c6d31f))
+* added profile page ([2e231af](https://github.com/AlexKaikin/evo-place-frontend/commit/2e231af2eae5ffff3d6ed87fcca8be7a3b73d135))
+* added reviews page to account ([f103a23](https://github.com/AlexKaikin/evo-place-frontend/commit/f103a233d9e4299280073ebe586384890c215dd6))
+
 # [2.2.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.1.0...v2.2.0) (2024-01-28)
 
 
