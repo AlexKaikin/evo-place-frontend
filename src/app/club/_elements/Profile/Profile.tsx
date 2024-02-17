@@ -4,6 +4,7 @@ import Image from 'next/image'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth } from '@store'
 import { Icon } from '@ui'
+import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
 export function Profile() {
@@ -57,7 +58,7 @@ export function Profile() {
             </div>
           </div>
         )}
-        {/* <Subscribers myProfile={user} /> */}
+        <Subscriptions user={user} />
       </div>
     </div>
   )
