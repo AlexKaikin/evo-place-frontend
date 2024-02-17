@@ -43,8 +43,7 @@ export default function Compare() {
               <Rating value={product.rating} />{' '}
               <span>
                 ({product.ratingCount}{' '}
-                {getNoun(product.ratingCount, ['review', 'reviews', 'reviews'])}
-                )
+                {getNoun(product.ratingCount, ['review', 'reviews'])})
               </span>
             </div>
             <div>Country: {product.property.country || '-'}</div>

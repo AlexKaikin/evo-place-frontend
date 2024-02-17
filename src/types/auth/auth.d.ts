@@ -18,9 +18,9 @@ export type User = {
   location: string
   private: boolean
   avatarUrl: string
-  subscribers: SubscriptionsUserType[]
-  subscriptionsUser: SubscriptionsUserType[]
-  subscriptionsGroup: SubscriptionsGroupType[]
+  subscribers: SubscriptionsUser[]
+  subscriptionsUser: SubscriptionsUser[]
+  subscriptionsGroup: SubscriptionsGroup[]
   email: string
   role: string
   createdAt: string
@@ -29,14 +29,14 @@ export type User = {
   token?: string
 }
 
-type SubscriptionsUserType = {
+type SubscriptionsUser = {
   _id: string
   id: number
   fullName: string
   avatarUrl: string
 }
 
-type SubscriptionsGroupType = {
+type SubscriptionsGroup = {
   _id: string
   id: number
   title: string
