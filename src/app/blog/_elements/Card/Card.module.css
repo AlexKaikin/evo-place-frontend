@@ -7,6 +7,18 @@
   border-radius: var(--radius);
   box-shadow: 0 0 20px var(--shadow);
   background-color: var(--bg);
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .imgContainer {

@@ -13,6 +13,7 @@ import {
   FloatingFocusManager,
   FloatingOverlay,
   useId,
+  useTransitionStyles,
 } from '@floating-ui/react'
 import { sizes, solors, variants } from '../constants'
 import styles from './Dialog.module.css'
@@ -169,6 +170,11 @@ export const DialogContent = React.forwardRef<
   const { context: floatingContext, ...context } = useDialogContext()
   const ref = useMergeRefs([context.refs.setFloating, propRef])
 
+  const { isMounted, styles: fade } = useTransitionStyles(floatingContext, {
+    duration: 500,
+    initial: { opacity: 0, transform: 'scale(0.9)' },
+  })
+
   if (!floatingContext.open) return null
 
   return (
@@ -181,7 +187,11 @@ export const DialogContent = React.forwardRef<
             aria-describedby={context.descriptionId}
             {...context.getFloatingProps(props)}
           >
-            <div className={styles.dialog}>{props.children}</div>
+            {isMounted && (
+              <div className={styles.dialog} style={{ ...fade }}>
+                {props.children}
+              </div>
+            )}
           </div>
         </FloatingFocusManager>
       </FloatingOverlay>

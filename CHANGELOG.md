@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.3.0...v2.3.1) (2024-02-11)
+
+
+### Bug Fixes
+
+* fixed toastify ([a36cd16](https://github.com/AlexKaikin/evo-place-frontend/commit/a36cd1668b1a61aef3e13e7eaa31fb77736ed7ec))
+
 # [2.3.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.2.0...v2.3.0) (2024-02-11)
 
 

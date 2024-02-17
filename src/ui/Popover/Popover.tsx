@@ -16,6 +16,7 @@ import {
   FloatingPortal,
   FloatingFocusManager,
   useId,
+  useTransitionStyles,
 } from '@floating-ui/react'
 import styles from './Popover.module.css'
 
@@ -167,6 +168,11 @@ export const PopoverContent = React.forwardRef<
   const { context: floatingContext, ...context } = usePopoverContext()
   const ref = useMergeRefs([context.refs.setFloating, propRef])
 
+  const { isMounted, styles: fade } = useTransitionStyles(floatingContext, {
+    duration: 500,
+    initial: { opacity: 0, transform: 'scale(0.9)' },
+  })
+
   if (!floatingContext.open) return null
 
   return (
@@ -178,9 +184,12 @@ export const PopoverContent = React.forwardRef<
           aria-labelledby={context.labelId}
           aria-describedby={context.descriptionId}
           {...context.getFloatingProps(props)}
-          className={styles.popover}
         >
-          {props.children}
+          {isMounted && (
+            <div className={styles.popover} style={{ ...fade }}>
+              {props.children}
+            </div>
+          )}
         </div>
       </FloatingFocusManager>
     </FloatingPortal>
