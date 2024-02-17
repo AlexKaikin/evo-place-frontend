@@ -62,12 +62,7 @@ export default async function Product(urlParams: UrlParams) {
                 <Rating value={product.rating} />{' '}
                 <span>
                   ({product.ratingCount}{' '}
-                  {getNoun(product.ratingCount, [
-                    'review',
-                    'reviews',
-                    'reviews',
-                  ])}
-                  )
+                  {getNoun(product.ratingCount, ['review', 'reviews'])})
                 </span>
               </div>
             )}
