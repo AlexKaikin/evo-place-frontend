@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
 import { AutorizedGuard } from '@hocs'
+import { Categories } from './_elements'
 
 export const metadata: Metadata = {
   title: 'Club | EVO PLACE',
@@ -21,7 +22,9 @@ export const metadata: Metadata = {
 export default function ClubLayout({ children }: { children: ReactNode }) {
   return (
     <AutorizedGuard>
-      <Aside>Categories</Aside>
+      <Aside>
+        <Categories />
+      </Aside>
       {children}
     </AutorizedGuard>
   )

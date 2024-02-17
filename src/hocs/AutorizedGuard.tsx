@@ -13,7 +13,7 @@ export function AutorizedGuard({ children }: { children: ReactNode }) {
   if (!user)
     return (
       <Stack alignItems="center" justifyContent="center" isWide>
-        <Spinner width={100} height={100} />
+        <Spinner color="var(--primary)" width={100} height={100} />
       </Stack>
     )
 

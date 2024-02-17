@@ -14,8 +14,8 @@ type Post = {
 
 const schema = z.object({
   body: z
-    .string({ required_error: 'Enter your review' })
-    .min(1, { message: 'Enter your review' }),
+    .string({ required_error: 'Enter your comment' })
+    .min(1, { message: 'Enter your comment' }),
   post: z.string(),
 })
 

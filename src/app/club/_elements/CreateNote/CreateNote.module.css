@@ -1,19 +1,15 @@
-.search {
+.field {
   display: flex;
+  flex-direction: column;
   background-color: var(--gray);
   border-radius: var(--radius);
   gap: var(--spacing);
-  padding: calc(var(--spacing) / 2);
+  padding: var(--spacing);
 }
 
-.selectContainer {
+.control {
   display: flex;
-  align-items: center;
-  padding: 0 var(--spacing);
+  justify-content: flex-end;
   background-color: var(--bg);
   border-radius: var(--radius);
-}
-
-.select {
-  color: var(--dark);
 }

@@ -1,0 +1,5 @@
+export { Categories } from './Categories/Categories'
+export { Recommendations } from './Recommendations/Recommendations'
+export { Profile } from './Profile/Profile'
+export { CreateNote } from './CreateNote/CreateNote'
+export { Notes } from './Notes/Notes'

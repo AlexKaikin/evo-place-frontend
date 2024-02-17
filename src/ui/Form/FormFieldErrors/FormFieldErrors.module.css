@@ -1,6 +1,19 @@
 .root {
-  margin-top: calc(var(--spacing) * 0.5);
-  padding-left: var(--spacing);
+  margin-top: calc(var(--spacing) / 4);
   color: var(--error);
   font-weight: 400;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

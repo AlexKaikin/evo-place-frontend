@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef, Ref, ComponentProps } from 'react'
+import { forwardRef, Ref, ComponentProps, useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'classnames'
 import { FormFieldErrors } from '@ui'
@@ -13,12 +13,19 @@ type Props = ComponentProps<'textarea'> & {
 
 function ForwardRef(props: Props, ref: Ref<HTMLTextAreaElement>) {
   const { errorState, label, ...rest } = props
+  const [focus, setFocus] = useState(false)
 
   return (
-    <div>
-      <div className={styles.field}>
+    <div className={styles.wrapper}>
+      <div className={cn(styles.field, { [styles.focus]: focus })}>
         {label && <label className={styles.label}>{label}</label>}
-        <textarea className={cn(styles.textarea)} ref={ref} {...rest} />
+        <textarea
+          className={cn(styles.textarea)}
+          ref={ref}
+          onFocus={() => setFocus(true)}
+          {...rest}
+          onBlur={() => setFocus(false)}
+        />
       </div>
       {errorState?.message ? <FormFieldErrors error={errorState} /> : null}
     </div>
