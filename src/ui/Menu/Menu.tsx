@@ -26,6 +26,7 @@ import {
   useListNavigation,
   useMergeRefs,
   useRole,
+  useTransitionStyles,
   useTypeahead,
 } from '@floating-ui/react'
 import { Icon } from '@ui'
@@ -58,6 +59,7 @@ interface MenuProps {
   variant?: 'category'
   active?: boolean
   noHoverBg?: boolean
+  icon?: React.ReactNode
 }
 
 export const MenuComponent = React.forwardRef<
@@ -65,7 +67,17 @@ export const MenuComponent = React.forwardRef<
   MenuProps & React.HTMLProps<HTMLButtonElement>
 >(
   (
-    { children, label, color, noHoverBg, variant, active, action, ...props },
+    {
+      children,
+      label,
+      color,
+      icon,
+      noHoverBg,
+      variant,
+      active,
+      action,
+      ...props
+    },
     forwardedRef
   ) => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -97,6 +109,11 @@ export const MenuComponent = React.forwardRef<
         shift(),
       ],
       whileElementsMounted: autoUpdate,
+    })
+
+    const { isMounted, styles: fade } = useTransitionStyles(context, {
+      duration: 500,
+      initial: { opacity: 0, transform: 'scale(0.9)' },
     })
 
     const hover = useHover(context, {
@@ -187,7 +204,7 @@ export const MenuComponent = React.forwardRef<
           )}
           onClick={action}
         >
-          {label}
+          {icon} {label}
           {isNested && (
             <span aria-hidden style={{ marginLeft: 10, fontSize: 10 }}>
               <Icon name="BsPlus" />
@@ -214,11 +231,14 @@ export const MenuComponent = React.forwardRef<
                 >
                   <div
                     ref={refs.setFloating}
-                    className={cn(styles.Menu)}
-                    style={floatingStyles}
+                    style={{ ...floatingStyles, zIndex: '2' }}
                     {...getFloatingProps()}
                   >
-                    {children}
+                    {isMounted && (
+                      <div className={cn(styles.Menu)} style={{ ...fade }}>
+                        {children}
+                      </div>
+                    )}
                   </div>
                 </FloatingFocusManager>
               </FloatingPortal>

@@ -16,6 +16,8 @@
 .imgContainer {
   position: relative;
   width: 100%;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 
   > img {
     border-radius: calc(var(--spacing) * 2);
@@ -23,6 +25,16 @@
     width: 100% !important;
     position: relative !important;
     height: unset !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

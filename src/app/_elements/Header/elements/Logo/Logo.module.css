@@ -1,7 +1,7 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing);
+  /* gap: var(--spacing); */
   font-size: 1.8rem;
   font-family: var(--font-secondary);
   font-weight: 300;
@@ -14,8 +14,8 @@
 }
 
 .logoSvg {
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   fill: var(--dark);
   animation: rotate 100s infinite linear;
 
