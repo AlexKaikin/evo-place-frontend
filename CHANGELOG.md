@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.3.1...v2.4.0) (2024-02-17)
+
+
+### Features
+
+* added subscriptions to club ([dade5d9](https://github.com/AlexKaikin/evo-place-frontend/commit/dade5d9e0957750c32bc63a118e7c3ca1020fb09))
+
 ## [2.3.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.3.0...v2.3.1) (2024-02-11)
 
 
