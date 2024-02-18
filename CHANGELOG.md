@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.4.0...v2.4.1) (2024-02-18)
+
+
+### Performance Improvements
+
+* added profile settings to club ([3f0790d](https://github.com/AlexKaikin/evo-place-frontend/commit/3f0790d102a3ffb8e31f3605993669f5c4508d60))
+
 # [2.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.3.1...v2.4.0) (2024-02-17)
 
 
