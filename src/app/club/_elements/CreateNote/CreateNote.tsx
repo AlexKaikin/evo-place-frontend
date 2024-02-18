@@ -40,7 +40,7 @@ export function CreateNote() {
   return (
     <Form id="noteForm" formMethods={formMethods} onSubmit={handleSubmit}>
       <div className={styles.field}>
-        <FormTextarea name="text" color="red" placeholder="New note" />
+        <FormTextarea name="text" color="red" placeholder="New note..." />
         <div className={styles.control}>
           <IconButton icon="BsSend" type="submit" />
         </div>

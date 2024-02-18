@@ -1,6 +1,10 @@
 .column {
   display: flex;
   gap: calc(var(--spacing) * 2);
+
+  @media only screen and (max-width: 576px) {
+    flex-direction: column;
+  }
 }
 
 .userInfo {

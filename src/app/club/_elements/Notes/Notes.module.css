@@ -13,11 +13,13 @@
   position: relative;
 }
 
+.card {
+  display: flex;
+  gap: calc(var(--spacing) * 2);
+  width: 100%;
+}
+
 .control {
-  display: block;
-  position: absolute;
-  right: 10px;
-  top: 10px;
   opacity: 0.5;
 }
 
