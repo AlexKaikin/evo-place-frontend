@@ -4,11 +4,12 @@ import Image from 'next/image'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth } from '@store'
 import { Icon } from '@ui'
+import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
 export function Profile() {
-  const { user } = useAuth()
+  const { user, update } = useAuth()
 
   if (!user) {
     return null
@@ -27,16 +28,18 @@ export function Profile() {
       <div className={styles.userInfo}>
         <div className={styles.infoHeader}>
           <div className={styles.nicname}>{user.fullName}</div>
-          {/* <MyPageSettings /> */}
+          <Settings user={user} handleUpdate={update} />
         </div>
-        <div className={styles.item}>
-          <span>About</span>
-          <div>
-            {user.about.split('\n').map((item: string, i: number) => (
-              <p key={i}>{item}</p>
-            ))}
+        {user.about.length && (
+          <div className={styles.item}>
+            <span>About</span>
+            <div>
+              {user.about.split('\n').map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         {user.interests.length && (
           <div className={styles.item}>
             <span>Interests</span>

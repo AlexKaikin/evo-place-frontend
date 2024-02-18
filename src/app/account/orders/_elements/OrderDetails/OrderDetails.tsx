@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Order } from '@/types/shop'
-import { Typography } from '@/ui'
+import type { Order } from '@/types/shop'
+import { Typography } from '@ui'
 import styles from './OrderDetails.module.css'
 
 export function OrderDetails({ order }: { order: Order }) {
