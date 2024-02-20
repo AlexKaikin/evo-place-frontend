@@ -72,7 +72,11 @@ export function Settings({ user, handleUpdate }: Props) {
 
   return (
     <>
-      <IconButton icon="BsGear" onClick={() => setOpen(true)} />
+      <IconButton
+        style={{ opacity: '.5' }}
+        icon="BsPencilSquare"
+        onClick={() => setOpen(true)}
+      />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent style={{ width: '100%', maxWidth: '700px' }}>
           <Form

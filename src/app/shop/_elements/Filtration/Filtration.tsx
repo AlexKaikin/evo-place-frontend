@@ -20,8 +20,20 @@ import { scrollToTop } from '@utils'
 const schema = z.object({
   q: z.string(),
   manufacturer: z.string(),
-  price_gte: z.string(),
-  price_lte: z.string(),
+  price_gte: z.string().refine(
+    val => {
+      if (val.length) return +val > 0
+      return true
+    },
+    { message: 'min 1' }
+  ),
+  price_lte: z.string().refine(
+    val => {
+      if (val.length) return +val < 10000
+      return true
+    },
+    { message: 'max 10000' }
+  ),
   ratings: z.string(),
 })
 
@@ -153,7 +165,12 @@ export function Filtration({ action }: { action?: () => void }) {
     <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
       <WidgetGroup title="Filtration" icon="BsFunnel">
         <Widget title="Price">
-          <Stack direction="row" alignItems="center" flexWrap="nowrap" gap={10}>
+          <Stack
+            direction="row"
+            alignItems="baseline"
+            flexWrap="nowrap"
+            gap={10}
+          >
             <FormInput
               type="number"
               name="price_gte"
