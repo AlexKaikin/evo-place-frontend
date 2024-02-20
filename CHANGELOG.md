@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.4.1...v2.5.0) (2024-02-20)
+
+
+### Features
+
+* shop filter improvement ([8ae4345](https://github.com/AlexKaikin/evo-place-frontend/commit/8ae43453f9e12f5e45edcfbee18e5d8d6de1859a))
+
 ## [2.4.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.4.0...v2.4.1) (2024-02-18)
 
 
