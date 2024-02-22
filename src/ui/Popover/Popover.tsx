@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import cn from 'classnames'
 import {
   useFloating,
   autoUpdate,
@@ -123,12 +124,16 @@ export function Popover({
 interface PopoverTriggerProps {
   children: React.ReactNode
   asChild?: boolean
+  variant?: 'icon' | 'button'
 }
 
 export const PopoverTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & PopoverTriggerProps
->(function PopoverTrigger({ children, asChild = false, ...props }, propRef) {
+>(function PopoverTrigger(
+  { children, variant = 'icon', asChild = false, ...props },
+  propRef
+) {
   const context = usePopoverContext()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const childrenRef = (children as any).ref
@@ -154,7 +159,9 @@ export const PopoverTrigger = React.forwardRef<
       // The user can style the trigger based on the state
       data-state={context.open ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
-      className={styles.trigger}
+      className={cn(styles.trigger, {
+        [styles['button']]: variant === 'button',
+      })}
     >
       {children}
     </button>
