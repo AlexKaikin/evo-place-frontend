@@ -24,6 +24,11 @@
   cursor: pointer;
 }
 
+.button {
+  width: auto;
+  height: auto;
+}
+
 .footer {
   display: flex;
   justify-content: flex-end;

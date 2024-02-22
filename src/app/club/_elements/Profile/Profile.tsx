@@ -43,14 +43,7 @@ export function Profile() {
         {user.interests.length && (
           <div className={styles.item}>
             <span>Interests</span>
-            <div>
-              {user.interests.map(item => (
-                <div key={item}>
-                  <span>#</span>
-                  {item}
-                </div>
-              ))}
-            </div>
+            <div>{user.interests.join(', ')}</div>
           </div>
         )}
         {user.location.length && (
