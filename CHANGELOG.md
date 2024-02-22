@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.5.0...v3.0.0) (2024-02-22)
+
+
+* Merge pull request #69 from AlexKaikin/feature/220224-improvement-profile-to-club ([0717ee1](https://github.com/AlexKaikin/evo-place-frontend/commit/0717ee1dc59f7700ada7235078b5ed40c3d325d2)), closes [#69](https://github.com/AlexKaikin/evo-place-frontend/issues/69)
+
+
+### BREAKING CHANGES
+
+* Improvement user profile in club
+
 # [2.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.4.1...v2.5.0) (2024-02-20)
 
 
