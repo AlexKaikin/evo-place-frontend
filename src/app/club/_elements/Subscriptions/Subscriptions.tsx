@@ -1,96 +1,98 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { SubscriptionsGroup, SubscriptionsUser, User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
-import { useOnClickOutside } from '@hooks'
+import { Popover, PopoverContent, PopoverTrigger } from '@ui'
 import { getNoun } from '@utils'
 import styles from './Subscriptions.module.css'
 
 export function Subscriptions({ user }: { user: User }) {
   const { subscribers, subscriptionsUser, subscriptionsGroup } = user
-  const subscriptionsUserRef = useRef<HTMLDivElement>(null)
-  const subscriptionsGroupRef = useRef<HTMLDivElement>(null)
-  const subscribersRef = useRef<HTMLDivElement>(null)
-  const [showSubscribers, setShowSubscribers] = useState<boolean>(false)
-  const [showSubscriptionsUser, setShowSubscriptionsUser] =
-    useState<boolean>(false)
-  const [showSubscriptionsGroup, setShowSubscriptionsGroup] =
-    useState<boolean>(false)
-
-  useOnClickOutside(subscriptionsUserRef, () => setShowSubscriptionsUser(false))
-  useOnClickOutside(subscriptionsGroupRef, () =>
-    setShowSubscriptionsGroup(false)
-  )
-  useOnClickOutside(subscribersRef, () => setShowSubscribers(false))
-
-  function showSubscriptionsUserChange() {
-    if (showSubscriptionsUser) setShowSubscriptionsUser(false)
-    else setShowSubscriptionsUser(true)
-  }
-
-  function showSubscriptionsGroupChange() {
-    if (showSubscriptionsGroup) setShowSubscriptionsGroup(false)
-    else setShowSubscriptionsGroup(true)
-  }
-
-  function showSubscribersChange() {
-    if (showSubscribers) setShowSubscribers(false)
-    else setShowSubscribers(true)
-  }
+  const [showSubscriptions, setShowSubscriptions] = useState(false)
+  const [showSubscribers, setShowSubscribers] = useState(false)
+  const [showGroups, setShowGroups] = useState(false)
 
   return (
     <div className={styles.subscriptions}>
       {subscribers.length && (
-        <div
-          ref={subscribersRef}
-          onClick={showSubscribersChange}
-          className={styles.item}
-        >
-          <span>{subscribers.length}</span>{' '}
-          {getNoun(subscribers.length, ['subscriber', 'subscribers'])}
-          {showSubscribers && <SubscriptionsUser users={subscribers} />}
-        </div>
+        <Popover open={showSubscribers} onOpenChange={setShowSubscribers}>
+          <PopoverTrigger
+            variant="button"
+            onClick={() => setShowSubscribers(v => !v)}
+          >
+            <span>{subscribers.length}</span>{' '}
+            {getNoun(subscribers.length, ['subscriber', 'subscribers'])}
+          </PopoverTrigger>
+          <PopoverContent>
+            <SubscriptionsUser
+              users={subscribers}
+              handleClose={() => setShowSubscribers(false)}
+            />
+          </PopoverContent>
+        </Popover>
       )}
 
       {subscriptionsUser.length && (
-        <div
-          ref={subscriptionsUserRef}
-          onClick={showSubscriptionsUserChange}
-          className={styles.item}
-        >
-          <span>{subscriptionsUser.length}</span>{' '}
-          {getNoun(subscriptionsUser.length, ['subscription', 'subscriptions'])}
-          {showSubscriptionsUser && (
-            <SubscriptionsUser users={subscriptionsUser} />
-          )}
-        </div>
+        <Popover open={showSubscriptions} onOpenChange={setShowSubscriptions}>
+          <PopoverTrigger
+            variant="button"
+            onClick={() => setShowSubscriptions(v => !v)}
+          >
+            <span>{subscriptionsUser.length}</span>{' '}
+            {getNoun(subscriptionsUser.length, [
+              'subscription',
+              'subscriptions',
+            ])}
+          </PopoverTrigger>
+          <PopoverContent>
+            <SubscriptionsUser
+              users={subscriptionsUser}
+              handleClose={() => setShowSubscriptions(false)}
+            />
+          </PopoverContent>
+        </Popover>
       )}
 
       {subscriptionsGroup.length && (
-        <div
-          ref={subscriptionsGroupRef}
-          onClick={showSubscriptionsGroupChange}
-          className={styles.item}
-        >
-          <span>{subscriptionsGroup.length}</span>{' '}
-          {getNoun(subscriptionsGroup.length, ['group', 'groups'])}
-          {showSubscriptionsGroup && (
-            <SubscriptionsGroup groups={subscriptionsGroup} />
-          )}
-        </div>
+        <Popover open={showGroups} onOpenChange={setShowGroups}>
+          <PopoverTrigger
+            variant="button"
+            onClick={() => setShowGroups(v => !v)}
+          >
+            <span>{subscriptionsGroup.length}</span>{' '}
+            {getNoun(subscriptionsGroup.length, ['group', 'groups'])}
+          </PopoverTrigger>
+          <PopoverContent>
+            <SubscriptionsGroup
+              groups={subscriptionsGroup}
+              handleClose={() => setShowGroups(false)}
+            />
+          </PopoverContent>
+        </Popover>
       )}
     </div>
   )
 }
 
-function SubscriptionsUser({ users }: { users: SubscriptionsUser[] }) {
+function SubscriptionsUser({
+  users,
+  handleClose,
+}: {
+  users: SubscriptionsUser[]
+  handleClose: () => void
+}) {
   return (
     <div className={styles.users}>
       {users.map(({ _id, avatarUrl, fullName }) => (
-        <Link href={`/club/users/${_id}`} className={styles.user} key={_id}>
+        <Link
+          href={`/club/users/${_id}`}
+          onClick={handleClose}
+          className={styles.user}
+          key={_id}
+        >
           <div className={styles.avatar}>
             <Image
               fill
@@ -106,11 +108,22 @@ function SubscriptionsUser({ users }: { users: SubscriptionsUser[] }) {
   )
 }
 
-function SubscriptionsGroup({ groups }: { groups: SubscriptionsGroup[] }) {
+function SubscriptionsGroup({
+  groups,
+  handleClose,
+}: {
+  groups: SubscriptionsGroup[]
+  handleClose: () => void
+}) {
   return (
     <div className={styles.groups}>
       {groups.map(({ _id, avatarUrl, title }) => (
-        <Link href={`/club/groups/${_id}`} className={styles.group} key={_id}>
+        <Link
+          href={`/club/groups/${_id}`}
+          onClick={handleClose}
+          className={styles.group}
+          key={_id}
+        >
           <div className={styles.avatar}>
             <Image
               fill
