@@ -5,4 +5,5 @@ export type {
   UserResponse,
   SubscriptionsGroup,
   SubscriptionsUser,
+  Pagination,
 } from './auth'

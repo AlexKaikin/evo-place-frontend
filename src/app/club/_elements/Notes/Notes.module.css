@@ -38,6 +38,8 @@
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 
   > img {
     border-radius: 50%;
@@ -45,6 +47,16 @@
     height: 100%;
     object-fit: cover;
     object-position: top;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

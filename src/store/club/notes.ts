@@ -39,7 +39,7 @@ export const useNotes = create<Notes>()((set, get) => ({
   },
   getNotesUser: async id => {
     try {
-      set(() => ({ loading: true }))
+      set(() => ({ loading: true, notes: [] }))
       const res = await noteService.getAll(id, 'user', paginationDefault)
       const notes = res.data
       const pagination = {

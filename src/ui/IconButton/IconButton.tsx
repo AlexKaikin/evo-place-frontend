@@ -17,9 +17,9 @@ function ForwardRef(props: Props, ref: Ref<HTMLButtonElement>) {
 
   return (
     <button
-      {...rest}
       ref={ref}
       className={cn(styles.btn, { [styles[color || 'primary']]: color })}
+      {...rest}
     >
       <Icon name={icon} size={size} />
     </button>

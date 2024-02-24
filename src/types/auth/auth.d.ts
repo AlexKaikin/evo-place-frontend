@@ -1,14 +1,3 @@
-export type Register = {
-  fullName: string
-  email: string
-  password: string
-}
-
-export type Login = {
-  email: string
-  password: string
-}
-
 export type User = {
   _id: string
   id: number
@@ -25,6 +14,7 @@ export type User = {
   role: string
   createdAt: string
   updatedAt: string
+  password: string
   __v: number
   token?: string
 }
@@ -43,8 +33,19 @@ type SubscriptionsGroup = {
   avatarUrl: string
 }
 
+export type Register = Pick<User, 'fullName' | 'email' | 'password'>
+
+export type Login = Pick<User, 'email' | 'password'>
+
 export type UserResponse = {
   accessToken: string
   refreshToken: string
   user: User
+}
+
+export type Pagination = {
+  pagesCount: number
+  totalItems: number
+  limitItems: number
+  currentPage: number
 }
