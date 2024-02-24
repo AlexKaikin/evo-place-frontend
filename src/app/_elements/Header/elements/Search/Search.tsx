@@ -42,19 +42,32 @@ export function Search() {
   return (
     <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
       <div className={styles.search}>
-        <FormInput name="q" placeholder="Search..." startIcon="BsSearch" />
-        <div className={styles.selectContainer}>
-          <Menu
-            label={
-              <>
-                in {searchPath} <Icon name="BsCaretDown" size="16" />
-              </>
-            }
-            noHoverBg
-          >
-            <MenuItem label={'in shop'} onClick={() => setSearchPath('shop')} />
-            <MenuItem label={'in blog'} onClick={() => setSearchPath('blog')} />
-          </Menu>
+        <FormInput
+          name="q"
+          placeholder="Search..."
+          startIcon="BsSearch"
+          className={styles.input}
+        />
+        <div className={styles.actions}>
+          <div className={styles.selectContainer}>
+            <Menu
+              label={
+                <>
+                  in {searchPath} <Icon name="BsCaretDown" size="16" />
+                </>
+              }
+              noHoverBg
+            >
+              <MenuItem
+                label={'in shop'}
+                onClick={() => setSearchPath('shop')}
+              />
+              <MenuItem
+                label={'in blog'}
+                onClick={() => setSearchPath('blog')}
+              />
+            </Menu>
+          </div>
         </div>
       </div>
     </Form>

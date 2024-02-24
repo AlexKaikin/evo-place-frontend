@@ -17,7 +17,7 @@ export function Subscriptions({ user }: { user: User }) {
 
   return (
     <div className={styles.subscriptions}>
-      {subscribers.length && (
+      {subscribers.length ? (
         <Popover open={showSubscribers} onOpenChange={setShowSubscribers}>
           <PopoverTrigger
             variant="button"
@@ -33,9 +33,9 @@ export function Subscriptions({ user }: { user: User }) {
             />
           </PopoverContent>
         </Popover>
-      )}
+      ) : null}
 
-      {subscriptionsUser.length && (
+      {subscriptionsUser.length ? (
         <Popover open={showSubscriptions} onOpenChange={setShowSubscriptions}>
           <PopoverTrigger
             variant="button"
@@ -54,9 +54,9 @@ export function Subscriptions({ user }: { user: User }) {
             />
           </PopoverContent>
         </Popover>
-      )}
+      ) : null}
 
-      {subscriptionsGroup.length && (
+      {subscriptionsGroup.length ? (
         <Popover open={showGroups} onOpenChange={setShowGroups}>
           <PopoverTrigger
             variant="button"
@@ -72,7 +72,7 @@ export function Subscriptions({ user }: { user: User }) {
             />
           </PopoverContent>
         </Popover>
-      )}
+      ) : null}
     </div>
   )
 }
