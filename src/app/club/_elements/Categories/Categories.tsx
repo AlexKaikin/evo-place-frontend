@@ -36,7 +36,7 @@ export function Categories() {
           icon={<Icon name="BsPeople" />}
           label="Users"
           variant="category"
-          //action={() => router.push(`/club/users`)}
+          action={() => router.push(`/club/users`)}
           active={currentCategory === 'users' ? true : false}
         />
         <Menu

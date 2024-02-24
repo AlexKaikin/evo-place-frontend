@@ -4,14 +4,20 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import dayjs from 'dayjs'
 import Image from 'next/image'
+import { User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth, useNotes } from '@store'
 import { IconButton, Typography } from '@ui'
 import styles from './Notes.module.css'
 
-export function Notes() {
+type Props = {
+  user?: User
+}
+
+export function Notes({ user: userProp }: Props) {
+  const [user, setUser] = useState<User | null>(null)
   const [mounted, setMounted] = useState(false)
-  const { user } = useAuth()
+  const { user: currentUser } = useAuth()
   const {
     notes,
     pagination,
@@ -23,6 +29,14 @@ export function Notes() {
   } = useNotes()
 
   const { ref, inView } = useInView({ threshold: 0 })
+
+  useEffect(() => {
+    if (userProp) {
+      setUser(userProp)
+    } else {
+      setUser(currentUser)
+    }
+  }, [currentUser, userProp])
 
   useEffect(() => {
     if (
@@ -37,8 +51,10 @@ export function Notes() {
   })
 
   useEffect(() => {
-    !mounted && getNotesUser(user!._id)
-    setMounted(true)
+    if (!mounted && user) {
+      getNotesUser(user._id)
+      setMounted(true)
+    }
   }, [getNotesUser, notes, mounted, user])
 
   return (
@@ -62,14 +78,16 @@ export function Notes() {
               </div>
               <div className={styles.time}>
                 <Typography variant="tooltip">
-                  {dayjs(created).format('H:m, DD.MM.YYYY')}
+                  {dayjs(created).format('H:mm, DD.MM.YYYY')}
                 </Typography>
               </div>
             </div>
           </div>
-          <div className={styles.control}>
-            <IconButton icon="BsTrash3" onClick={() => deleteNote(_id)} />
-          </div>
+          {!userProp && (
+            <div className={styles.control}>
+              <IconButton icon="BsTrash3" onClick={() => deleteNote(_id)} />
+            </div>
+          )}
         </div>
       ))}
       <div ref={ref} className={styles.more}></div>

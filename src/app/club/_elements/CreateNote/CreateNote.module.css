@@ -1,15 +1,15 @@
 .field {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray);
   border-radius: var(--radius);
   gap: var(--spacing);
   padding: var(--spacing);
+  background-color: var(--gray);
 }
 
 .control {
   display: flex;
   justify-content: flex-end;
-  background-color: var(--bg);
+  background-color: var(--gray);
   border-radius: var(--radius);
 }

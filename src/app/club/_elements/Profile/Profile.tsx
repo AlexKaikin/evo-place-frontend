@@ -1,6 +1,8 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth } from '@store'
 import { Icon } from '@ui'
@@ -8,8 +10,21 @@ import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
-export function Profile() {
-  const { user, update } = useAuth()
+type Props = {
+  user?: User
+}
+
+export function Profile({ user: userProp }: Props) {
+  const [user, setUser] = useState<User | null>(null)
+  const { user: currentUser, update } = useAuth()
+
+  useEffect(() => {
+    if (userProp) {
+      setUser(userProp)
+    } else {
+      setUser(currentUser)
+    }
+  }, [currentUser, userProp])
 
   if (!user) {
     return null
@@ -28,9 +43,9 @@ export function Profile() {
       <div className={styles.userInfo}>
         <div className={styles.infoHeader}>
           <div className={styles.nicname}>{user.fullName}</div>
-          <Settings user={user} handleUpdate={update} />
+          {!userProp && <Settings user={user} handleUpdate={update} />}
         </div>
-        {user.about.length && (
+        {user.about.length ? (
           <div className={styles.item}>
             <span>About</span>
             <div>
@@ -39,21 +54,21 @@ export function Profile() {
               ))}
             </div>
           </div>
-        )}
-        {user.interests.length && (
+        ) : null}
+        {user.interests.length ? (
           <div className={styles.item}>
             <span>Interests</span>
             <div>{user.interests.join(', ')}</div>
           </div>
-        )}
-        {user.location.length && (
+        ) : null}
+        {user.location.length ? (
           <div className={styles.item}>
             <span>Location</span>
             <div>
               <Icon name="BsGeoAlt" /> {user.location}
             </div>
           </div>
-        )}
+        ) : null}
         <Subscriptions user={user} />
       </div>
     </div>
