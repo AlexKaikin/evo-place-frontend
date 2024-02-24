@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.0.0...v3.1.0) (2024-02-24)
+
+
+### Features
+
+* Add users page in club ([7a8940b](https://github.com/AlexKaikin/evo-place-frontend/commit/7a8940bebe299a772179117c3542ecd8da0651ef))
+
 # [3.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.5.0...v3.0.0) (2024-02-22)
 
 
