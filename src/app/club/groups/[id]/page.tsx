@@ -1,21 +1,22 @@
 import { notFound } from 'next/navigation'
 import { Aside } from '@/app/_elements'
-import { recommendationService, userService } from '@services'
+import { recommendationService, groupService } from '@services'
 import { UrlParams, text } from '@utils'
-import { Notes, Profile, Recommendations } from '../../_elements'
+import { Recommendations } from '../../_elements'
+import { Profile } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
-  const user = await getUser(params!.id!)
+  const group = await getGroup(params!.id!)
 
   return {
-    title: user.fullName + ` |  EVO PLACE`,
-    description: text.getMetaDescription(user.about),
+    title: group.title + ` |  EVO PLACE`,
+    description: text.getMetaDescription(group.about),
   }
 }
 
-async function getUser(id: string) {
-  const res = await userService.getOne(id)
+async function getGroup(id: string) {
+  const res = await groupService.getOne(id)
   if (res.status !== 200) return notFound()
 
   return res.data
@@ -28,15 +29,16 @@ async function getRecommendations() {
 }
 
 export default async function Page(urlParams: UrlParams) {
-  const user = await getUser(urlParams.params!.id!)
+  const group = await getGroup(urlParams.params!.id!)
   const { recommendations } = await getRecommendations()
 
   return (
     <>
       <div className={styles.page}>
         <div className={styles.content}>
-          <Profile user={user} />
-          <Notes user={user} />
+          <Profile group={group} />
+
+          {/* <Notes user={group} /> */}
         </div>
       </div>
       <Aside position="right" width={300}>

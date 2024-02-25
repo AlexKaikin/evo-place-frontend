@@ -29,7 +29,7 @@ export function Categories() {
           icon={<Icon name="BsFlag" />}
           label="Groups"
           variant="category"
-          //action={() => router.push(`/club/groups`)}
+          action={() => router.push(`/club/groups`)}
           active={currentCategory === 'groups' ? true : false}
         />
         <Menu

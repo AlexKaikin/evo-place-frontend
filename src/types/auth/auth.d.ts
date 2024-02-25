@@ -46,6 +46,6 @@ export type UserResponse = {
 export type Pagination = {
   pagesCount: number
   totalItems: number
-  limitItems: number
-  currentPage: number
+  _limit: number
+  _page: number
 }

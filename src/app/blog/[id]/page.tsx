@@ -10,7 +10,7 @@ import { Comments, Popular, Favorite } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
-  const post: Post = await getPost(params.postId)
+  const post: Post = await getPost(params!.id!)
 
   return {
     title: post.title + ` |  EVO PLACE`,
@@ -36,8 +36,8 @@ async function getPopPosts(urlParams: UrlParams) {
 }
 
 export default async function Product(urlParams: UrlParams) {
-  const postsData = await getPost(urlParams.params.postId)
-  const commentsData = await getComments(urlParams.params.postId)
+  const postsData = await getPost(urlParams.params!.id!)
+  const commentsData = await getComments(urlParams.params!.id!)
   //   urlParams.searchParams.category = post.category
   const popPostsData = await getPopPosts(urlParams)
   const [post, comments, popPosts] = await Promise.all([

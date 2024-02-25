@@ -1,0 +1,54 @@
+.subscriptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing) * 2);
+}
+
+.item {
+  cursor: pointer;
+}
+
+.avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+
+  > img {
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    width: 100% !important;
+    position: relative !important;
+  }
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+  max-height: 250px;
+  overflow: auto;
+  padding-right: calc(var(--spacing) * 3);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing));
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+  max-height: 250px;
+  overflow: auto;
+  padding-right: calc(var(--spacing) * 3);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing));
+}

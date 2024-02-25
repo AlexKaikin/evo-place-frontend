@@ -1,11 +1,10 @@
-import { Note, Pagination, CreateNote } from '@/types/club'
+import { Note, CreateNote } from '@/types/club'
 import { api, options } from '@configs'
+import { UrlParams, createUrlParams } from '@utils'
 
 export const noteService = {
-  getAll(user_Id: string, by: string, pagination: Pagination) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-    return api.get<Note[]>(`notes/${user_Id}/?by=${by}&${$pagination}`)
+  getAll(userId: string, params: UrlParams) {
+    return api.get<Note[]>(`notes/${userId}/${createUrlParams(params)}`)
   },
   getOne(id: number) {
     return api.get<Note>(`notes/${id}`)
