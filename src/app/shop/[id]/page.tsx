@@ -8,7 +8,7 @@ import { Slider, Actions, Popular, Reviews, Characteristics } from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
-  const product: Product = await getProduct(params.productId)
+  const product: Product = await getProduct(params!.id!)
 
   return {
     title: product.title + ` |  EVO PLACE`,
@@ -37,8 +37,8 @@ async function getPopProducts(urlParams: UrlParams) {
 }
 
 export default async function Product(urlParams: UrlParams) {
-  const productsData = await getProduct(urlParams.params.productId)
-  const reviewsData = await getReviews(urlParams.params.productId)
+  const productsData = await getProduct(urlParams.params!.id!)
+  const reviewsData = await getReviews(urlParams.params!.id!)
   const [product, reviews] = await Promise.all([productsData, reviewsData])
   urlParams.searchParams.category = product.category
   const { products } = await getPopProducts(urlParams)

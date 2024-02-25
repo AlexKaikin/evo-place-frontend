@@ -1,13 +1,13 @@
 export type UrlParams = {
-  params: {
-    productId: string
-    postId: string
-    id: string
+  params?: {
+    id?: string
   }
   searchParams: {
-    _page: string
-    _limit: string
-    category: string
+    _page?: string
+    _limit?: string
+    category?: string
+    q?: string
+    by?: string
   }
 }
 

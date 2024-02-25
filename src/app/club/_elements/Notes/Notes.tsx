@@ -20,34 +20,23 @@ export function Notes({ user: userProp }: Props) {
   const { user: currentUser } = useAuth()
   const {
     notes,
-    pagination,
+    pagination: { _page, pagesCount },
     getNotesUser,
     getNotesUserMore,
     deleteNote,
-    setNotesPage,
     loading,
   } = useNotes()
 
   const { ref, inView } = useInView({ threshold: 0 })
 
   useEffect(() => {
-    if (userProp) {
-      setUser(userProp)
-    } else {
-      setUser(currentUser)
-    }
+    if (userProp) setUser(userProp)
+    else setUser(currentUser)
   }, [currentUser, userProp])
 
   useEffect(() => {
-    if (
-      mounted &&
-      !loading &&
-      inView &&
-      pagination.currentPage < pagination.pagesCount
-    ) {
-      setNotesPage(pagination.currentPage + 1)
+    if (mounted && !loading && inView && _page < pagesCount)
       getNotesUserMore(user!._id)
-    }
   })
 
   useEffect(() => {

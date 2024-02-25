@@ -1,18 +1,17 @@
 import { toast } from 'react-toastify'
 import { AxiosResponse } from 'axios'
 import { create } from 'zustand'
-import type { User, Pagination } from '@/types/auth'
-import { userService } from '@services'
+import type { Group, Pagination } from '@/types/club'
+import { groupService } from '@services'
 
-export type Users = {
-  users: User[]
-  filter: { name: string }
+export type Groups = {
+  groups: Group[]
+  filter: { title: string }
   pagination: Pagination
   loading: boolean
-  getUsers: () => void
-  getUsersMore: () => void
-  setUsersPage: (number: number) => void
-  setFilter: (name: string) => void
+  getGroups: () => void
+  getGroupsMore: () => void
+  setFilter: (title: string) => void
 }
 
 const paginationDefault = {
@@ -22,64 +21,62 @@ const paginationDefault = {
   _page: 1,
 }
 
-export const useUsers = create<Users>()((set, get) => ({
-  users: [],
-  filter: { name: '' },
+export const useGroups = create<Groups>()((set, get) => ({
+  groups: [],
+  filter: { title: '' },
   pagination: paginationDefault,
   loading: false,
-  getUsers: async () => {
+  getGroups: async () => {
     try {
-      set(() => ({ loading: true, users: [] }))
-      const res = await userService.getAll(getUrlParams(get, {}))
-      const users = res.data
-      const halper = new userHalper(res, get)
+      set(() => ({ loading: true, groups: [] }))
+      const res = await groupService.getAll(getUrlParams(get, {}))
+      const groups = res.data
+      const halper = new groupHalper(res, get)
       const pagination = halper.getPagination()
-      set(() => ({ users, pagination, loading: false }))
+      set(() => ({ groups, pagination, loading: false }))
     } catch (error) {
       set(() => ({ loading: false }))
       toast.info('Something went wrong. Try again!')
     }
   },
-  getUsersMore: async () => {
+  getGroupsMore: async () => {
     try {
       set(() => ({
         loading: true,
         pagination: { ...get().pagination, _page: get().pagination._page + 1 },
       }))
-      const res = await userService.getAll(getUrlParams(get))
-      const halper = new userHalper(res, get, {})
+      const res = await groupService.getAll(getUrlParams(get))
+      const halper = new groupHalper(res, get, {})
       const pagination = halper.getPagination()
-      const users = get().users
-      users.push(...res.data)
-      set(() => ({ users, pagination, loading: false }))
+      const groups = get().groups
+      groups.push(...res.data)
+      set(() => ({ groups, pagination, loading: false }))
     } catch (error) {
       set(() => ({ loading: false }))
       toast.info('Something went wrong. Try again!')
     }
   },
-  setUsersPage: number =>
-    set(() => ({ pagination: { ...get().pagination, _page: number } })),
-  setFilter: name => set(() => ({ filter: { name } })),
+  setFilter: title => set(() => ({ filter: { title } })),
 }))
 
-function getUrlParams(get: () => Users, pagi?: object) {
+function getUrlParams(get: () => Groups, pagi?: object) {
   const pagination = pagi ? paginationDefault : get().pagination
 
   return {
     searchParams: {
       _limit: String(pagination._limit),
       _page: String(pagination._page),
-      q: get().filter.name,
+      q: get().filter.title,
     },
   }
 }
 
-export class userHalper {
-  res: AxiosResponse<User[]>
-  get: () => Users
+export class groupHalper {
+  res: AxiosResponse<Group[]>
+  get: () => Groups
   pagination: Pagination
 
-  constructor(res: AxiosResponse<User[]>, get: () => Users, more?: object) {
+  constructor(res: AxiosResponse<Group[]>, get: () => Groups, more?: object) {
     this.res = res
     this.get = get
     this.pagination = more ? get().pagination : paginationDefault

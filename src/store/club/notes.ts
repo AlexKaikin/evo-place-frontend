@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify'
+import { AxiosResponse } from 'axios'
 import { create } from 'zustand'
 import { noteService } from '@/services'
 import type { CreateNote, Note, Pagination } from '@/types/club'
@@ -17,8 +18,8 @@ export type Notes = {
 const paginationDefault = {
   pagesCount: 0,
   totalItems: 0,
-  limitItems: 8,
-  currentPage: 1,
+  _limit: 8,
+  _page: 1,
 }
 
 export const useNotes = create<Notes>()((set, get) => ({
@@ -40,15 +41,10 @@ export const useNotes = create<Notes>()((set, get) => ({
   getNotesUser: async id => {
     try {
       set(() => ({ loading: true, notes: [] }))
-      const res = await noteService.getAll(id, 'user', paginationDefault)
+      const res = await noteService.getAll(id, getUrlParams(get, {}))
       const notes = res.data
-      const pagination = {
-        ...paginationDefault,
-        totalItems: +res.headers['x-total-count'],
-        pagesCount: Math.ceil(
-          +res.headers['x-total-count'] / get().pagination.limitItems
-        ),
-      }
+      const halper = new noteHalper(res, get)
+      const pagination = halper.getPagination()
       set(() => ({ notes, pagination, loading: false }))
     } catch (error) {
       set(() => ({ loading: false }))
@@ -57,18 +53,15 @@ export const useNotes = create<Notes>()((set, get) => ({
   },
   getNotesUserMore: async id => {
     try {
-      set(() => ({ loading: true }))
-      const res = await noteService.getAll(id, 'user', get().pagination)
+      set(() => ({
+        loading: true,
+        pagination: { ...get().pagination, _page: get().pagination._page + 1 },
+      }))
+      const res = await noteService.getAll(id, getUrlParams(get))
+      const halper = new noteHalper(res, get, {})
+      const pagination = halper.getPagination()
       const notes = get().notes
       notes.push(...res.data)
-      const pagination = {
-        ...get().pagination,
-        totalItems: +res.headers['x-total-count'],
-        pagesCount: Math.ceil(
-          +res.headers['x-total-count'] / get().pagination.limitItems
-        ),
-      }
-
       set(() => ({ notes, pagination, loading: false }))
     } catch (error) {
       set(() => ({ loading: false }))
@@ -85,5 +78,39 @@ export const useNotes = create<Notes>()((set, get) => ({
     }
   },
   setNotesPage: number =>
-    set(() => ({ pagination: { ...get().pagination, currentPage: number } })),
+    set(() => ({ pagination: { ...get().pagination, _page: number } })),
 }))
+
+function getUrlParams(get: () => Notes, pagi?: object) {
+  const pagination = pagi ? paginationDefault : get().pagination
+
+  return {
+    searchParams: {
+      _limit: String(pagination._limit),
+      _page: String(pagination._page),
+      by: 'user',
+    },
+  }
+}
+
+export class noteHalper {
+  res: AxiosResponse<Note[]>
+  get: () => Notes
+  pagination: Pagination
+
+  constructor(res: AxiosResponse<Note[]>, get: () => Notes, more?: object) {
+    this.res = res
+    this.get = get
+    this.pagination = more ? get().pagination : paginationDefault
+  }
+
+  getPagination() {
+    return {
+      ...this.pagination,
+      totalItems: +this.res.headers['x-total-count'],
+      pagesCount: Math.ceil(
+        +this.res.headers['x-total-count'] / this.get().pagination._limit
+      ),
+    }
+  }
+}
