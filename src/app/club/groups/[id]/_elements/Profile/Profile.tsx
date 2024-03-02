@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import { Group } from '@/types/club'
-import defaultAvatar from '@assets/img/user/defaultAvatar.png'
+import defaultAvatar from '@assets/img/user/users.jpg'
+import { useAuth, useGroups } from '@store'
 import { Icon } from '@ui'
-//import { Settings } from '../Settings/Settings'
+import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
@@ -14,6 +15,9 @@ type Props = {
 
 export function Profile({ group }: Props) {
   const { avatarUrl, title, about, location } = group
+  const { update, deleteGroup } = useGroups()
+  const { user } = useAuth()
+  const isAuthor = user?._id === group.creator
 
   return (
     <div className={styles.column}>
@@ -25,10 +29,16 @@ export function Profile({ group }: Props) {
           alt="avatar"
         />
       </div>
-      <div className={styles.userInfo}>
+      <div className={styles.info}>
         <div className={styles.infoHeader}>
-          <div className={styles.nicname}>{title}</div>
-          {/* {!userProp && <Settings user={user} handleUpdate={update} />} */}
+          <div className={styles.title}>{title}</div>
+          {isAuthor ? (
+            <Settings
+              group={group}
+              handleUpdate={update}
+              handleDelete={deleteGroup}
+            />
+          ) : null}
         </div>
         {about.length ? (
           <div className={styles.item}>

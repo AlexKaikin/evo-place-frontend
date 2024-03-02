@@ -20,6 +20,7 @@ export type Note = {
     _id: string
     title: string
     avatarUrl: string | null
+    creator: string
   }
   created?: string
 }

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Aside } from '@/app/_elements'
 import { recommendationService, groupService } from '@services'
 import { UrlParams, text } from '@utils'
-import { Recommendations } from '../../_elements'
+import { CreateNote, Notes, Recommendations } from '../../_elements'
 import { Profile } from './_elements'
 import styles from './page.module.css'
 
@@ -37,8 +37,8 @@ export default async function Page(urlParams: UrlParams) {
       <div className={styles.page}>
         <div className={styles.content}>
           <Profile group={group} />
-
-          {/* <Notes user={group} /> */}
+          <CreateNote by={group} />
+          <Notes group={group} />
         </div>
       </div>
       <Aside position="right" width={300}>

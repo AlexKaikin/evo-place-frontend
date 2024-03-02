@@ -25,7 +25,6 @@ import { selectFile, validateFileSize } from '@utils'
 import styles from './Settings.module.css'
 
 const schema = z.object({
-  id: z.number(),
   location: z.string(),
   about: z.string(),
   interests: z.coerce
@@ -68,15 +67,13 @@ export function Settings({ user, handleUpdate }: Props) {
     }
   }
 
-  const handleSubmit = (data: User) => handleUpdate(data)
+  const handleSubmit = (data: User) => handleUpdate({ ...data, id: user.id })
 
   return (
     <>
-      <IconButton
-        style={{ opacity: '.5' }}
-        icon="BsPencilSquare"
-        onClick={() => setOpen(true)}
-      />
+      <Button size="small" variant="text" onClick={() => setOpen(true)}>
+        Edit
+      </Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent style={{ width: '100%', maxWidth: '700px' }}>
           <Form

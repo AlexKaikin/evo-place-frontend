@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Aside } from '@/app/_elements'
 import { recommendationService, userService } from '@services'
 import { UrlParams, text } from '@utils'
-import { Notes, Profile, Recommendations } from '../../_elements'
+import { Profile, Notes, Recommendations } from '../../_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {

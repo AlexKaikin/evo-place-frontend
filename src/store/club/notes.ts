@@ -8,9 +8,9 @@ export type Notes = {
   notes: Note[]
   pagination: Pagination
   loading: boolean
-  createNotesUser: (data: CreateNote) => void
-  getNotesUser: (id: string) => void
-  getNotesUserMore: (id: string) => void
+  createNote: (data: CreateNote) => void
+  getNotes: (id: string, by: string) => void
+  getNotesMore: (id: string, by: string) => void
   deleteNote: (id: string) => void
   setNotesPage: (number: number) => void
 }
@@ -26,7 +26,7 @@ export const useNotes = create<Notes>()((set, get) => ({
   notes: [],
   pagination: paginationDefault,
   loading: false,
-  createNotesUser: async data => {
+  createNote: async data => {
     try {
       set(() => ({ loading: true }))
       const { data: created } = await noteService.create(data)
@@ -38,10 +38,10 @@ export const useNotes = create<Notes>()((set, get) => ({
       toast.info('Something went wrong. Try again!')
     }
   },
-  getNotesUser: async id => {
+  getNotes: async (id, by) => {
     try {
       set(() => ({ loading: true, notes: [] }))
-      const res = await noteService.getAll(id, getUrlParams(get, {}))
+      const res = await noteService.getAll(id, getUrlParams(by, get, {}))
       const notes = res.data
       const halper = new noteHalper(res, get)
       const pagination = halper.getPagination()
@@ -51,13 +51,13 @@ export const useNotes = create<Notes>()((set, get) => ({
       toast.info('Something went wrong. Try again!')
     }
   },
-  getNotesUserMore: async id => {
+  getNotesMore: async (id, by) => {
     try {
       set(() => ({
         loading: true,
         pagination: { ...get().pagination, _page: get().pagination._page + 1 },
       }))
-      const res = await noteService.getAll(id, getUrlParams(get))
+      const res = await noteService.getAll(id, getUrlParams(by, get))
       const halper = new noteHalper(res, get, {})
       const pagination = halper.getPagination()
       const notes = get().notes
@@ -81,14 +81,14 @@ export const useNotes = create<Notes>()((set, get) => ({
     set(() => ({ pagination: { ...get().pagination, _page: number } })),
 }))
 
-function getUrlParams(get: () => Notes, pagi?: object) {
+function getUrlParams(by: string, get: () => Notes, pagi?: object) {
   const pagination = pagi ? paginationDefault : get().pagination
 
   return {
     searchParams: {
       _limit: String(pagination._limit),
       _page: String(pagination._page),
-      by: 'user',
+      by,
     },
   }
 }

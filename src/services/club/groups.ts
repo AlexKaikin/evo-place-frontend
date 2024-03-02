@@ -9,14 +9,14 @@ export const groupService = {
   getOne(id: string) {
     return api.get<Group>(`groups/${id}`)
   },
-  uploadGroupImg(formData: FormData) {
+  uploadImg(formData: FormData) {
     return api.post('/upload', formData, options.multipart)
   },
   create(data: Group) {
     return api.post<Group>(`groups/`, data, options.json)
   },
   update(data: Group) {
-    return api.patch<Group>(`groups/${data._id}`, data, options.json)
+    return api.patch<Group>(`groups/${data.id}`, data, options.json)
   },
   delete(id: string) {
     return api.delete<Group>(`groups/${id}`)
