@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import Link from 'next/link'
-import defaultAvatar from '@assets/img/user/defaultAvatar.png'
+import defaultAvatar from '@assets/img/user/users.jpg'
 import { useGroups } from '@store'
 import styles from './Groups.module.css'
 

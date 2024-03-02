@@ -1,15 +1,29 @@
 .field {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: var(--radius);
   gap: var(--spacing);
-  padding: var(--spacing);
-  background-color: var(--gray);
 }
 
 .control {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   display: flex;
   justify-content: flex-end;
   background-color: var(--gray);
   border-radius: var(--radius);
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

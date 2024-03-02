@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from 'react-toastify'
 import { AxiosResponse } from 'axios'
 import { create } from 'zustand'
@@ -12,6 +13,9 @@ export type Groups = {
   getGroups: () => void
   getGroupsMore: () => void
   setFilter: (title: string) => void
+  create: (data: Group) => Promise<AxiosResponse<Group, any> | undefined>
+  update: (data: Group) => Promise<Group | undefined>
+  deleteGroup: (id: string) => Promise<Group | undefined>
 }
 
 const paginationDefault = {
@@ -57,6 +61,31 @@ export const useGroups = create<Groups>()((set, get) => ({
     }
   },
   setFilter: title => set(() => ({ filter: { title } })),
+  create: async data => {
+    try {
+      const res = await groupService.create(data)
+      return res
+    } catch (error) {
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  update: async data => {
+    try {
+      const res = await groupService.update(data)
+      toast.info('Profile updated')
+      return res.data
+    } catch (error) {
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  deleteGroup: async id => {
+    try {
+      const res = await groupService.delete(id)
+      return res.data
+    } catch (error) {
+      toast.info('Something went wrong. Try again!')
+    }
+  },
 }))
 
 function getUrlParams(get: () => Groups, pagi?: object) {

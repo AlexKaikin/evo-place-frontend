@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
+import { Stack } from '@/ui'
 import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
 import { recommendationService } from '@services'
 import { Recommendations } from '../_elements'
-import { Groups, Search } from './_elements'
+import { CreateGroup, Groups, Search } from './_elements'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -33,7 +34,10 @@ export default async function Page() {
     <>
       <div className={styles.page}>
         <div className={styles.content}>
-          <Search />
+          <Stack direction="row" gap={20} alignItems="center" flexWrap="wrap">
+            <Search />
+            <CreateGroup />
+          </Stack>
           <Groups />
         </div>
       </div>

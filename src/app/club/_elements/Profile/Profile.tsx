@@ -2,33 +2,32 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { User } from '@/types/auth'
+import { useRouter } from 'next/navigation'
+import type { User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth } from '@store'
-import { Icon } from '@ui'
+import { Button, Icon } from '@ui'
 import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
-type Props = {
-  user?: User
-}
+type Props = { user?: User }
 
 export function Profile({ user: userProp }: Props) {
+  const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
   const { user: currentUser, update } = useAuth()
+  const isFollow = user?.subscriptionsUser.find(
+    item => item.id === currentUser?.id
+  )
 
   useEffect(() => {
-    if (userProp) {
-      setUser(userProp)
-    } else {
-      setUser(currentUser)
-    }
+    if (userProp) setUser(userProp)
+    else setUser(currentUser)
   }, [currentUser, userProp])
 
-  if (!user) {
-    return null
-  }
+  if (!user) return null
+  if (userProp && userProp._id === currentUser?._id) router.push('/club')
 
   return (
     <div className={styles.column}>
@@ -70,6 +69,13 @@ export function Profile({ user: userProp }: Props) {
           </div>
         ) : null}
         <Subscriptions user={user} />
+        {userProp ? (
+          isFollow ? (
+            <Button variant="outlined">Unsubscribe</Button>
+          ) : (
+            <Button>Subscribe</Button>
+          )
+        ) : null}
       </div>
     </div>
   )

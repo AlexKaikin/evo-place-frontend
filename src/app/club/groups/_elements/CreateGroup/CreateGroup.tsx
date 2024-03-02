@@ -10,47 +10,50 @@ import type { Group } from '@/types/club'
 import defaulAvatarUrl from '@assets/img/user/users.jpg'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { groupService } from '@services'
+import { useGroups } from '@store'
 import {
+  Button,
   Dialog,
   DialogContent,
-  IconButton,
   Form,
-  FormInput,
   FormCheckbox,
-  Button,
+  FormInput,
   FormTextarea,
-  Stack,
+  IconButton,
   Spinner,
+  Stack,
 } from '@ui'
 import { selectFile, validateFileSize } from '@utils'
-import styles from './Settings.module.css'
+import styles from './CreateGroup.module.css'
 
 const schema = z.object({
   title: z
     .string({ required_error: 'Enter title' })
     .min(1, { message: 'Enter title' }),
-  location: z.string(),
-  about: z.string(),
+  location: z.string().optional(),
+  about: z.string().optional(),
+  avatarUrl: z.string().optional(),
 })
 
-type Props = {
-  group: Group
-  handleUpdate: (data: Group) => Promise<Group | undefined>
-  handleDelete: (id: string) => Promise<Group | undefined>
+const defaultValues = {
+  title: '',
+  location: '',
+  about: '',
+  avatarUrl: '',
 }
 
-export function Settings({ group, handleUpdate, handleDelete }: Props) {
-  const [open, setOpen] = useState(false)
-  const [imgUrl, setImgUrl] = useState(
-    group.avatarUrl?.length ? group.avatarUrl : defaulAvatarUrl
-  )
+export function CreateGroup() {
   const router = useRouter()
+  const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { create } = useGroups()
   const formMethods = useForm<Group>({
-    defaultValues: group,
+    defaultValues,
     shouldUnregister: true,
     resolver: zodResolver(schema),
   })
+
+  const { setValue, getValues } = formMethods
 
   async function handleChangeFile() {
     try {
@@ -65,12 +68,7 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
 
       if (data.url) {
         setLoading(false)
-        const res = await handleUpdate({ ...group, avatarUrl: data.url })
-
-        if (res) {
-          router.refresh()
-          setImgUrl(data.url)
-        }
+        setValue('avatarUrl', data.url)
       }
     } catch (err) {
       setLoading(false)
@@ -78,37 +76,14 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
     }
   }
 
-  async function handleDeleteImg() {
-    const res = await handleUpdate({ ...group, avatarUrl: '' })
-
-    if (res) {
-      router.refresh()
-      setImgUrl(defaulAvatarUrl)
-    }
-  }
-
-  async function handleDeleteGroup() {
-    const res = await handleDelete(String(group.id))
-
-    if (res) {
-      router.push('/club/groups/')
-    }
-  }
-
   const handleSubmit = async (data: Group) => {
-    const res = await handleUpdate({ ...data, id: group.id })
-
-    if (res) {
-      setOpen(false)
-      router.refresh()
-    }
+    const res = await create(data)
+    router.push('/club/groups/' + res?.data._id)
   }
 
   return (
     <>
-      <Button size="small" variant="text" onClick={() => setOpen(true)}>
-        Edit
-      </Button>
+      <Button onClick={() => setOpen(true)}>Create</Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent style={{ width: '100%', maxWidth: '700px' }}>
           <Form
@@ -122,7 +97,11 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
                   <Image
                     fill
                     sizes="(max-width: 1800px) 50vw"
-                    src={imgUrl}
+                    src={
+                      getValues('avatarUrl')?.length
+                        ? (getValues('avatarUrl') as string)
+                        : defaulAvatarUrl
+                    }
                     alt="avatar"
                   />
                   {loading && (
@@ -139,7 +118,7 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
                     <IconButton
                       type="button"
                       icon="BsTrash3"
-                      onClick={handleDeleteImg}
+                      onClick={() => setValue('avatarUrl', '')}
                     />
                   </div>
                 </div>
@@ -149,17 +128,9 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
                 <FormTextarea name="about" label="About" />
                 <FormInput name="location" label="Location" />
                 <FormCheckbox name="private" label="Hidden group" />
-                <Stack direction="row" gap={20}>
-                  <Button type="submit">Update</Button>
+                <Stack direction="row" gap={20} justifyContent="space-between">
+                  <Button type="submit">Create</Button>
                   <Button
-                    variant="outlined"
-                    type="button"
-                    onClick={handleDeleteGroup}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    variant="text"
                     color="secondary"
                     type="button"
                     onClick={() => setOpen(false)}

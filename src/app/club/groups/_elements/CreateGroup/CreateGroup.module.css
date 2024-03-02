@@ -1,0 +1,80 @@
+.form {
+  display: flex;
+  gap: calc(var(--spacing) * 2);
+
+  @media only screen and (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+.avatar {
+  flex: 0 0 200px;
+
+  &:hover {
+    .avatarChange {
+      display: flex;
+      gap: 10px;
+
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+
+      > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg);
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0px #d1d1d1;
+      }
+    }
+  }
+}
+
+.imgContainer {
+  position: relative;
+  width: 100%;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+
+  > img {
+    border-radius: calc(var(--spacing));
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.avatarChange {
+  display: none;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 4);
+  padding: calc(var(--spacing) * 2);
+  width: 100%;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 100%;
+}
