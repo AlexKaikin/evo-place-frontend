@@ -42,7 +42,6 @@ export function Settings({ user, handleUpdate }: Props) {
   const [loading, setLoading] = useState(false)
   const formMethods = useForm<User & { interests: string }>({
     defaultValues: { ...user, interests: user.interests.join(', ') },
-    shouldUnregister: true,
     resolver: zodResolver(schema),
   })
 

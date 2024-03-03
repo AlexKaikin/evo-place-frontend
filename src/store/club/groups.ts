@@ -4,18 +4,23 @@ import { AxiosResponse } from 'axios'
 import { create } from 'zustand'
 import type { Group, Pagination } from '@/types/club'
 import { groupService } from '@services'
+import { useAuth } from '..'
 
 export type Groups = {
   groups: Group[]
+  group: Group | null
   filter: { title: string }
   pagination: Pagination
   loading: boolean
   getGroups: () => void
+  setGroup: (data: Group) => void
   getGroupsMore: () => void
   setFilter: (title: string) => void
   create: (data: Group) => Promise<AxiosResponse<Group, any> | undefined>
   update: (data: Group) => Promise<Group | undefined>
   deleteGroup: (id: string) => Promise<Group | undefined>
+  follow: (group: Group) => Promise<object | undefined>
+  unFollow: (group: Group) => Promise<object | undefined>
 }
 
 const paginationDefault = {
@@ -27,6 +32,7 @@ const paginationDefault = {
 
 export const useGroups = create<Groups>()((set, get) => ({
   groups: [],
+  group: null,
   filter: { title: '' },
   pagination: paginationDefault,
   loading: false,
@@ -72,6 +78,7 @@ export const useGroups = create<Groups>()((set, get) => ({
   update: async data => {
     try {
       const res = await groupService.update(data)
+      set(() => ({ group: res.data }))
       toast.info('Profile updated')
       return res.data
     } catch (error) {
@@ -85,6 +92,51 @@ export const useGroups = create<Groups>()((set, get) => ({
     } catch (error) {
       toast.info('Something went wrong. Try again!')
     }
+  },
+  follow: async group => {
+    set(() => ({ loading: true }))
+    try {
+      const res = await groupService.follow(group._id)
+      const { setUser, user: currentUser } = useAuth.getState()
+
+      const subscriptionsGroup = [...currentUser!.subscriptionsGroup]
+      subscriptionsGroup.push(group as any)
+      setUser({ ...currentUser!, subscriptionsGroup })
+
+      group.subscribers.push(currentUser!)
+      set(() => ({ loading: false, group }))
+
+      return res.data
+    } catch (error) {
+      set(() => ({ loading: false }))
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  unFollow: async group => {
+    set(() => ({ loading: true }))
+    try {
+      const res = await groupService.unFollow(group._id)
+
+      const { setUser, user: currentUser } = useAuth.getState()
+
+      const subscriptionsGroup = currentUser!.subscriptionsGroup.filter(
+        el => el._id !== group._id
+      )
+      setUser({ ...currentUser!, subscriptionsGroup })
+
+      group.subscribers = group.subscribers.filter(
+        el => el._id !== currentUser!._id
+      )
+      set(() => ({ loading: false, group }))
+
+      return res.data
+    } catch (error) {
+      set(() => ({ loading: false }))
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  setGroup: async group => {
+    set(() => ({ group }))
   },
 }))
 

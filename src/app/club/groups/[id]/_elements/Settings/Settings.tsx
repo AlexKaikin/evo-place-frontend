@@ -41,14 +41,10 @@ type Props = {
 
 export function Settings({ group, handleUpdate, handleDelete }: Props) {
   const [open, setOpen] = useState(false)
-  const [imgUrl, setImgUrl] = useState(
-    group.avatarUrl?.length ? group.avatarUrl : defaulAvatarUrl
-  )
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const formMethods = useForm<Group>({
     defaultValues: group,
-    shouldUnregister: true,
     resolver: zodResolver(schema),
   })
 
@@ -65,12 +61,7 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
 
       if (data.url) {
         setLoading(false)
-        const res = await handleUpdate({ ...group, avatarUrl: data.url })
-
-        if (res) {
-          router.refresh()
-          setImgUrl(data.url)
-        }
+        handleUpdate({ ...group, avatarUrl: data.url })
       }
     } catch (err) {
       setLoading(false)
@@ -78,30 +69,18 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
     }
   }
 
-  async function handleDeleteImg() {
-    const res = await handleUpdate({ ...group, avatarUrl: '' })
-
-    if (res) {
-      router.refresh()
-      setImgUrl(defaulAvatarUrl)
-    }
+  function handleDeleteImg() {
+    handleUpdate({ ...group, avatarUrl: '' })
   }
 
   async function handleDeleteGroup() {
     const res = await handleDelete(String(group.id))
-
-    if (res) {
-      router.push('/club/groups/')
-    }
+    if (res) router.push('/club/groups/')
   }
 
   const handleSubmit = async (data: Group) => {
     const res = await handleUpdate({ ...data, id: group.id })
-
-    if (res) {
-      setOpen(false)
-      router.refresh()
-    }
+    if (res) setOpen(false)
   }
 
   return (
@@ -122,7 +101,11 @@ export function Settings({ group, handleUpdate, handleDelete }: Props) {
                   <Image
                     fill
                     sizes="(max-width: 1800px) 50vw"
-                    src={imgUrl}
+                    src={
+                      group.avatarUrl?.length
+                        ? group.avatarUrl
+                        : defaulAvatarUrl
+                    }
                     alt="avatar"
                   />
                   {loading && (

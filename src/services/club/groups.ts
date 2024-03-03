@@ -22,9 +22,9 @@ export const groupService = {
     return api.delete<Group>(`groups/${id}`)
   },
   follow(_id: string) {
-    return api.patch<string>(`groups/follow/${_id}`)
+    return api.patch<{ user_id: string }>(`groups/follow/${_id}`)
   },
   unFollow(_id: string) {
-    return api.patch<string>(`groups/unfollow/${_id}`)
+    return api.patch<{ user_id: string }>(`groups/unfollow/${_id}`)
   },
 }
