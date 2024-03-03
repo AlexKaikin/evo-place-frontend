@@ -1,10 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { Group } from '@/types/club'
 import defaultAvatar from '@assets/img/user/users.jpg'
 import { useAuth, useGroups } from '@store'
-import { Icon } from '@ui'
+import { Button, Icon } from '@ui'
 import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
@@ -13,10 +14,19 @@ type Props = {
   group: Group
 }
 
-export function Profile({ group }: Props) {
-  const { avatarUrl, title, about, location } = group
-  const { update, deleteGroup } = useGroups()
+export function Profile({ group: groupProp }: Props) {
+  const { group, setGroup, update, deleteGroup, unFollow, follow, loading } =
+    useGroups()
   const { user } = useAuth()
+
+  useEffect(() => {
+    setGroup(groupProp)
+  }, [groupProp, setGroup])
+
+  if (!group) return null
+
+  const { avatarUrl, title, about, location } = group
+  const isFollow = group.subscribers.find(el => el._id === user?._id)
   const isAuthor = user?._id === group.creator
 
   return (
@@ -60,6 +70,19 @@ export function Profile({ group }: Props) {
           </div>
         ) : null}
         <Subscriptions group={group} />
+        {isFollow ? (
+          <Button
+            variant="outlined"
+            onClick={() => unFollow(group)}
+            disabled={loading}
+          >
+            Unsubscribe
+          </Button>
+        ) : (
+          <Button onClick={() => follow(group)} disabled={loading}>
+            Subscribe
+          </Button>
+        )}
       </div>
     </div>
   )

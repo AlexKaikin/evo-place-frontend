@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from 'react-toastify'
 import { create } from 'zustand'
-import type { Login, Register, User } from '@/types/auth'
+import type { Login, Register, User, UserResponse } from '@/types/auth'
 import { authService } from '@services'
 import { token } from '@utils'
 
@@ -11,8 +12,9 @@ export type Auth = {
   register: (data: Register) => void
   login: (data: Login) => void
   logout: () => void
-  getMe: () => void
+  getMe: () => Promise<UserResponse | undefined>
   update: (data: User) => void
+  setUser: (user: User) => void
 }
 
 const status = {
@@ -63,6 +65,7 @@ export const useAuth = create<Auth>()(set => ({
       const { user, accessToken, refreshToken } = resData
       token.setAll(accessToken, refreshToken)
       set(() => status.authorized(user))
+      return resData
     } catch (error) {
       set(() => status.unauthorized)
     }
@@ -77,5 +80,8 @@ export const useAuth = create<Auth>()(set => ({
       set(() => status.error)
       toast.info('Something went wrong. Try again!')
     }
+  },
+  setUser: async data => {
+    set(() => ({ user: data }))
   },
 }))

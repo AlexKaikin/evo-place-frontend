@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type { User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
-import { useAuth } from '@store'
+import { useAuth, useUsers } from '@store'
 import { Button, Icon } from '@ui'
 import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
@@ -15,16 +15,14 @@ type Props = { user?: User }
 
 export function Profile({ user: userProp }: Props) {
   const router = useRouter()
-  const [user, setUser] = useState<User | null>(null)
   const { user: currentUser, update } = useAuth()
-  const isFollow = user?.subscriptionsUser.find(
-    item => item.id === currentUser?.id
-  )
+  const { user, setUser, follow, unFollow, loading } = useUsers()
+  const isFollow = userProp?.subscribers.find(el => el._id === currentUser?._id)
 
   useEffect(() => {
     if (userProp) setUser(userProp)
-    else setUser(currentUser)
-  }, [currentUser, userProp])
+    else setUser(currentUser!)
+  }, [currentUser, setUser, userProp])
 
   if (!user) return null
   if (userProp && userProp._id === currentUser?._id) router.push('/club')
@@ -71,9 +69,17 @@ export function Profile({ user: userProp }: Props) {
         <Subscriptions user={user} />
         {userProp ? (
           isFollow ? (
-            <Button variant="outlined">Unsubscribe</Button>
+            <Button
+              variant="outlined"
+              onClick={() => unFollow(user!)}
+              disabled={loading}
+            >
+              Unsubscribe
+            </Button>
           ) : (
-            <Button>Subscribe</Button>
+            <Button onClick={() => follow(user!)} disabled={loading}>
+              Subscribe
+            </Button>
           )
         ) : null}
       </div>

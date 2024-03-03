@@ -9,10 +9,10 @@ export const userService = {
   getOne(id: string) {
     return api.get<User>(`users/${id}`)
   },
-  followUser(_id: string) {
-    return api.patch<string>(`users/follow/${_id}`)
+  follow(_id: string) {
+    return api.patch<{ user_id: string }>(`users/follow/${_id}`)
   },
-  unFollowUser(_id: string) {
-    return api.patch<string>(`users/unfollow/${_id}`)
+  unFollow(_id: string) {
+    return api.patch<{ user_id: string }>(`users/unfollow/${_id}`)
   },
 }
