@@ -3,7 +3,7 @@
   gap: calc(var(--spacing) * 2);
 }
 
-.userInfo {
+.info {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   gap: calc(var(--spacing));
-  align-items: center;
 }
 
 .avatar {
@@ -50,7 +49,7 @@
   }
 }
 
-.nicname {
+.title {
   color: var(--dark);
   font-size: 2rem;
 }

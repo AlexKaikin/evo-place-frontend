@@ -4,46 +4,56 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { z } from 'zod'
-import type { User } from '@/types/auth'
-import defaulAvatarUrl from '@assets/img/user/defaultAvatar.png'
+import type { Group } from '@/types/club'
+import defaulAvatarUrl from '@assets/img/user/users.jpg'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { authService } from '@services'
+import { groupService } from '@services'
+import { useGroups } from '@store'
 import {
+  Button,
   Dialog,
   DialogContent,
-  IconButton,
   Form,
-  FormInput,
   FormCheckbox,
-  Button,
+  FormInput,
   FormTextarea,
-  Stack,
+  IconButton,
   Spinner,
+  Stack,
 } from '@ui'
 import { selectFile, validateFileSize } from '@utils'
-import styles from './Settings.module.css'
+import styles from './CreateGroup.module.css'
 
 const schema = z.object({
-  location: z.string(),
-  about: z.string(),
-  interests: z.coerce
-    .string()
-    .transform(value => value.split(',').map(item => item.trim())),
+  title: z
+    .string({ required_error: 'Enter title' })
+    .min(1, { message: 'Enter title' }),
+  location: z.string().optional(),
+  about: z.string().optional(),
+  avatarUrl: z.string().optional(),
 })
 
-type Props = {
-  user: User
-  handleUpdate: (data: User) => void
+const defaultValues = {
+  title: '',
+  location: '',
+  about: '',
+  avatarUrl: '',
 }
 
-export function Settings({ user, handleUpdate }: Props) {
+export function CreateGroup() {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const formMethods = useForm<User & { interests: string }>({
-    defaultValues: { ...user, interests: user.interests.join(', ') },
+  const { create } = useGroups()
+  const formMethods = useForm<Group>({
+    defaultValues,
+    shouldUnregister: true,
     resolver: zodResolver(schema),
   })
+
+  const { setValue, getValues } = formMethods
 
   async function handleChangeFile() {
     try {
@@ -54,11 +64,11 @@ export function Settings({ user, handleUpdate }: Props) {
       setLoading(true)
       const formData = new FormData()
       formData.append('image', file)
-      const { data } = await authService.uploadUserAvatar(formData)
+      const { data } = await groupService.uploadImg(formData)
 
       if (data.url) {
         setLoading(false)
-        handleUpdate({ ...user, avatarUrl: data.url })
+        setValue('avatarUrl', data.url)
       }
     } catch (err) {
       setLoading(false)
@@ -66,17 +76,18 @@ export function Settings({ user, handleUpdate }: Props) {
     }
   }
 
-  const handleSubmit = (data: User) => handleUpdate({ ...data, id: user.id })
+  const handleSubmit = async (data: Group) => {
+    const res = await create(data)
+    router.push('/club/groups/' + res?.data._id)
+  }
 
   return (
     <>
-      <Button size="small" variant="text" onClick={() => setOpen(true)}>
-        Edit
-      </Button>
+      <Button onClick={() => setOpen(true)}>Create</Button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent style={{ width: '100%', maxWidth: '700px' }}>
           <Form
-            className="userForm"
+            className="groupForm"
             formMethods={formMethods}
             onSubmit={handleSubmit}
           >
@@ -87,7 +98,9 @@ export function Settings({ user, handleUpdate }: Props) {
                     fill
                     sizes="(max-width: 1800px) 50vw"
                     src={
-                      user.avatarUrl.length ? user.avatarUrl : defaulAvatarUrl
+                      getValues('avatarUrl')?.length
+                        ? (getValues('avatarUrl') as string)
+                        : defaulAvatarUrl
                     }
                     alt="avatar"
                   />
@@ -105,22 +118,18 @@ export function Settings({ user, handleUpdate }: Props) {
                     <IconButton
                       type="button"
                       icon="BsTrash3"
-                      onClick={() => handleUpdate({ ...user, avatarUrl: '' })}
+                      onClick={() => setValue('avatarUrl', '')}
                     />
                   </div>
                 </div>
               </div>
               <div className={styles.fields}>
-                <FormInput name="fullName" label="Nickname" readOnly />
+                <FormInput name="title" label="Title" />
                 <FormTextarea name="about" label="About" />
-                <FormInput
-                  name="interests"
-                  label="Interests (separated by commas)"
-                />
                 <FormInput name="location" label="Location" />
-                <FormCheckbox name="private" label="Hidden profile" />
+                <FormCheckbox name="private" label="Hidden group" />
                 <Stack direction="row" gap={20} justifyContent="space-between">
-                  <Button type="submit">Update</Button>
+                  <Button type="submit">Create</Button>
                   <Button
                     color="secondary"
                     type="button"

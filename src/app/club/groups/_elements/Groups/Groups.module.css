@@ -1,4 +1,4 @@
-.users {
+.groups {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: calc(var(--spacing) * 2);
@@ -22,7 +22,7 @@
   }
 }
 
-.user {
+.group {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,7 +58,7 @@
   }
 }
 
-.name {
+.title {
   margin-bottom: var(--spacing);
 }
 

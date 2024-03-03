@@ -4,38 +4,38 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import Link from 'next/link'
-import defaultAvatar from '@assets/img/user/defaultAvatar.png'
-import { useUsers } from '@store'
-import styles from './Users.module.css'
+import defaultAvatar from '@assets/img/user/users.jpg'
+import { useGroups } from '@store'
+import styles from './Groups.module.css'
 
-export function Users() {
+export function Groups() {
   const [mounted, setMounted] = useState(false)
   const {
-    users,
-    getUsers,
-    getUsersMore,
+    groups,
+    getGroups,
+    getGroupsMore,
     pagination: { _page, pagesCount },
     loading,
-  } = useUsers()
+  } = useGroups()
   const { ref, inView } = useInView({ threshold: 0 })
 
   useEffect(() => {
     if (!mounted) {
-      getUsers()
+      getGroups()
       setMounted(true)
     }
-  }, [getUsers, mounted])
+  }, [getGroups, mounted])
 
   useEffect(() => {
-    if (mounted && !loading && inView && _page < pagesCount) getUsersMore()
+    if (mounted && !loading && inView && _page < pagesCount) getGroupsMore()
   })
 
-  if (!users.length && !loading) return <>User not found</>
+  if (!groups.length && !loading) return <>Group not found</>
 
   return (
-    <div className={styles.users}>
-      {users.map(({ _id, fullName, avatarUrl }) => (
-        <Link href={`/club/users/${_id}`} key={_id} className={styles.user}>
+    <div className={styles.groups}>
+      {groups.map(({ _id, avatarUrl, title }) => (
+        <Link href={`/club/groups/${_id}`} key={_id} className={styles.group}>
           <div className={styles.imgContainer}>
             <Image
               fill
@@ -43,7 +43,7 @@ export function Users() {
               alt="avatar"
             />
           </div>
-          <div className={styles.name}>{fullName}</div>
+          <div className={styles.title}>{title}</div>
         </Link>
       ))}
       <div ref={ref} className={styles.more}></div>

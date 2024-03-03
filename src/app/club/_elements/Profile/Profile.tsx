@@ -1,34 +1,31 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
-import { User } from '@/types/auth'
+import { useRouter } from 'next/navigation'
+import type { User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
-import { useAuth } from '@store'
-import { Icon } from '@ui'
+import { useAuth, useUsers } from '@store'
+import { Button, Icon } from '@ui'
 import { Settings } from '../Settings/Settings'
 import { Subscriptions } from '../Subscriptions/Subscriptions'
 import styles from './Profile.module.css'
 
-type Props = {
-  user?: User
-}
+type Props = { user?: User }
 
 export function Profile({ user: userProp }: Props) {
-  const [user, setUser] = useState<User | null>(null)
+  const router = useRouter()
   const { user: currentUser, update } = useAuth()
+  const { user, setUser, follow, unFollow, loading } = useUsers()
+  const isFollow = userProp?.subscribers.find(el => el._id === currentUser?._id)
 
   useEffect(() => {
-    if (userProp) {
-      setUser(userProp)
-    } else {
-      setUser(currentUser)
-    }
-  }, [currentUser, userProp])
+    if (userProp) setUser(userProp)
+    else setUser(currentUser!)
+  }, [currentUser, setUser, userProp])
 
-  if (!user) {
-    return null
-  }
+  if (!user) return null
+  if (userProp && userProp._id === currentUser?._id) router.push('/club')
 
   return (
     <div className={styles.column}>
@@ -70,6 +67,21 @@ export function Profile({ user: userProp }: Props) {
           </div>
         ) : null}
         <Subscriptions user={user} />
+        {userProp ? (
+          isFollow ? (
+            <Button
+              variant="outlined"
+              onClick={() => unFollow(user!)}
+              disabled={loading}
+            >
+              Unsubscribe
+            </Button>
+          ) : (
+            <Button onClick={() => follow(user!)} disabled={loading}>
+              Subscribe
+            </Button>
+          )
+        ) : null}
       </div>
     </div>
   )

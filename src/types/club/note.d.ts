@@ -20,6 +20,7 @@ export type Note = {
     _id: string
     title: string
     avatarUrl: string | null
+    creator: string
   }
   created?: string
 }
@@ -39,6 +40,6 @@ export type CreateNote = {
 export type Pagination = {
   pagesCount: number
   totalItems: number
-  limitItems: number
-  currentPage: number
+  _limit: number
+  _page: number
 }

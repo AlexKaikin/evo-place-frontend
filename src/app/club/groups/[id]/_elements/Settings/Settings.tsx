@@ -4,11 +4,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { z } from 'zod'
-import type { User } from '@/types/auth'
-import defaulAvatarUrl from '@assets/img/user/defaultAvatar.png'
+import type { Group } from '@/types/club'
+import defaulAvatarUrl from '@assets/img/user/users.jpg'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { authService } from '@services'
+import { groupService } from '@services'
 import {
   Dialog,
   DialogContent,
@@ -25,23 +26,25 @@ import { selectFile, validateFileSize } from '@utils'
 import styles from './Settings.module.css'
 
 const schema = z.object({
+  title: z
+    .string({ required_error: 'Enter title' })
+    .min(1, { message: 'Enter title' }),
   location: z.string(),
   about: z.string(),
-  interests: z.coerce
-    .string()
-    .transform(value => value.split(',').map(item => item.trim())),
 })
 
 type Props = {
-  user: User
-  handleUpdate: (data: User) => void
+  group: Group
+  handleUpdate: (data: Group) => Promise<Group | undefined>
+  handleDelete: (id: string) => Promise<Group | undefined>
 }
 
-export function Settings({ user, handleUpdate }: Props) {
+export function Settings({ group, handleUpdate, handleDelete }: Props) {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const formMethods = useForm<User & { interests: string }>({
-    defaultValues: { ...user, interests: user.interests.join(', ') },
+  const formMethods = useForm<Group>({
+    defaultValues: group,
     resolver: zodResolver(schema),
   })
 
@@ -54,11 +57,11 @@ export function Settings({ user, handleUpdate }: Props) {
       setLoading(true)
       const formData = new FormData()
       formData.append('image', file)
-      const { data } = await authService.uploadUserAvatar(formData)
+      const { data } = await groupService.uploadImg(formData)
 
       if (data.url) {
         setLoading(false)
-        handleUpdate({ ...user, avatarUrl: data.url })
+        handleUpdate({ ...group, avatarUrl: data.url })
       }
     } catch (err) {
       setLoading(false)
@@ -66,7 +69,19 @@ export function Settings({ user, handleUpdate }: Props) {
     }
   }
 
-  const handleSubmit = (data: User) => handleUpdate({ ...data, id: user.id })
+  function handleDeleteImg() {
+    handleUpdate({ ...group, avatarUrl: '' })
+  }
+
+  async function handleDeleteGroup() {
+    const res = await handleDelete(String(group.id))
+    if (res) router.push('/club/groups/')
+  }
+
+  const handleSubmit = async (data: Group) => {
+    const res = await handleUpdate({ ...data, id: group.id })
+    if (res) setOpen(false)
+  }
 
   return (
     <>
@@ -76,7 +91,7 @@ export function Settings({ user, handleUpdate }: Props) {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent style={{ width: '100%', maxWidth: '700px' }}>
           <Form
-            className="userForm"
+            className="groupForm"
             formMethods={formMethods}
             onSubmit={handleSubmit}
           >
@@ -87,7 +102,9 @@ export function Settings({ user, handleUpdate }: Props) {
                     fill
                     sizes="(max-width: 1800px) 50vw"
                     src={
-                      user.avatarUrl.length ? user.avatarUrl : defaulAvatarUrl
+                      group.avatarUrl?.length
+                        ? group.avatarUrl
+                        : defaulAvatarUrl
                     }
                     alt="avatar"
                   />
@@ -105,23 +122,27 @@ export function Settings({ user, handleUpdate }: Props) {
                     <IconButton
                       type="button"
                       icon="BsTrash3"
-                      onClick={() => handleUpdate({ ...user, avatarUrl: '' })}
+                      onClick={handleDeleteImg}
                     />
                   </div>
                 </div>
               </div>
               <div className={styles.fields}>
-                <FormInput name="fullName" label="Nickname" readOnly />
+                <FormInput name="title" label="Title" />
                 <FormTextarea name="about" label="About" />
-                <FormInput
-                  name="interests"
-                  label="Interests (separated by commas)"
-                />
                 <FormInput name="location" label="Location" />
-                <FormCheckbox name="private" label="Hidden profile" />
-                <Stack direction="row" gap={20} justifyContent="space-between">
+                <FormCheckbox name="private" label="Hidden group" />
+                <Stack direction="row" gap={20}>
                   <Button type="submit">Update</Button>
                   <Button
+                    variant="outlined"
+                    type="button"
+                    onClick={handleDeleteGroup}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    variant="text"
                     color="secondary"
                     type="button"
                     onClick={() => setOpen(false)}

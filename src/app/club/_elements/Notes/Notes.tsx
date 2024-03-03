@@ -2,94 +2,54 @@
 
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import dayjs from 'dayjs'
-import Image from 'next/image'
+import { NoteList } from '@/app/club/_elements'
 import { User } from '@/types/auth'
-import defaultAvatar from '@assets/img/user/defaultAvatar.png'
+import { Group } from '@/types/club'
 import { useAuth, useNotes } from '@store'
-import { IconButton, Typography } from '@ui'
 import styles from './Notes.module.css'
 
 type Props = {
   user?: User
+  group?: Group
 }
 
-export function Notes({ user: userProp }: Props) {
-  const [user, setUser] = useState<User | null>(null)
+export function Notes({ user: userProp, group: groupProp }: Props) {
+  const [author, setAuthor] = useState<User | Group | null>(null)
   const [mounted, setMounted] = useState(false)
   const { user: currentUser } = useAuth()
   const {
     notes,
-    pagination,
-    getNotesUser,
-    getNotesUserMore,
+    pagination: { _page, pagesCount },
+    getNotes,
+    getNotesMore,
     deleteNote,
-    setNotesPage,
     loading,
   } = useNotes()
 
   const { ref, inView } = useInView({ threshold: 0 })
 
   useEffect(() => {
-    if (userProp) {
-      setUser(userProp)
-    } else {
-      setUser(currentUser)
-    }
-  }, [currentUser, userProp])
+    if (userProp) setAuthor(userProp)
+    else if (groupProp) setAuthor(groupProp)
+    else setAuthor(currentUser)
+  }, [currentUser, groupProp, userProp])
 
   useEffect(() => {
-    if (
-      mounted &&
-      !loading &&
-      inView &&
-      pagination.currentPage < pagination.pagesCount
-    ) {
-      setNotesPage(pagination.currentPage + 1)
-      getNotesUserMore(user!._id)
+    if (!mounted && author) {
+      getNotes(author._id, groupProp ? 'group' : 'user')
+      setMounted(true)
+    }
+  }, [getNotes, notes, mounted, author, groupProp])
+
+  useEffect(() => {
+    if (mounted && !loading && inView && _page < pagesCount) {
+      getNotesMore(author!._id, groupProp ? 'group' : 'user')
     }
   })
 
-  useEffect(() => {
-    if (!mounted && user) {
-      getNotesUser(user._id)
-      setMounted(true)
-    }
-  }, [getNotesUser, notes, mounted, user])
-
   return (
     <div className={styles.notes}>
-      {notes.map(({ user, _id, text, created }) => (
-        <div key={_id} className={styles.note}>
-          <div className={styles.card}>
-            <div className={styles.avatar}>
-              <Image
-                fill
-                sizes="(max-width: 1800px) 33vw"
-                src={user.avatarUrl ? user.avatarUrl : defaultAvatar}
-                alt="avatar"
-              />
-            </div>
-            <div className={styles.content}>
-              <div>
-                {text.split('\n').map((item, i) => (
-                  <p key={i}>{item}</p>
-                ))}
-              </div>
-              <div className={styles.time}>
-                <Typography variant="tooltip">
-                  {dayjs(created).format('H:mm, DD.MM.YYYY')}
-                </Typography>
-              </div>
-            </div>
-          </div>
-          {!userProp && (
-            <div className={styles.control}>
-              <IconButton icon="BsTrash3" onClick={() => deleteNote(_id)} />
-            </div>
-          )}
-        </div>
-      ))}
+      <NoteList notes={notes} deleteNote={deleteNote} />
       <div ref={ref} className={styles.more}></div>
     </div>
   )

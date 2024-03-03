@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuth } from '@/store'
 import type { SubscriptionsGroup, SubscriptionsUser, User } from '@/types/auth'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { Popover, PopoverContent, PopoverTrigger } from '@ui'
@@ -84,11 +85,13 @@ function SubscriptionsUser({
   users: SubscriptionsUser[]
   handleClose: () => void
 }) {
+  const { user: currentUser } = useAuth()
+
   return (
     <div className={styles.users}>
       {users.map(({ _id, avatarUrl, fullName }) => (
         <Link
-          href={`/club/users/${_id}`}
+          href={currentUser!._id === _id ? `/club` : `/club/users/${_id}`}
           onClick={handleClose}
           className={styles.user}
           key={_id}
