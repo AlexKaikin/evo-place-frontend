@@ -43,7 +43,7 @@ export function Categories() {
           icon={<Icon name="BsMegaphone" />}
           label="Events"
           variant="category"
-          //action={() => router.push(`/club/events`)}
+          action={() => router.push(`/club/events`)}
           active={currentCategory === 'events' ? true : false}
         />
       </Stack>

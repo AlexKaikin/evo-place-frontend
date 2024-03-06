@@ -1,3 +1,18 @@
+# [3.2.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.1.0...v3.2.0) (2024-03-03)
+
+
+### Features
+
+* Add create group in club ([ee6f4bc](https://github.com/AlexKaikin/evo-place-frontend/commit/ee6f4bc5ed623a6bca270456d046e113d23f4e0a))
+* Add groups page in club ([ba0c916](https://github.com/AlexKaikin/evo-place-frontend/commit/ba0c9165315c21609d6d3e9105161c1e2ccb7d74))
+
+# [3.1.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.0.0...v3.1.0) (2024-02-24)
+
+
+### Features
+
+* Add users page in club ([7a8940b](https://github.com/AlexKaikin/evo-place-frontend/commit/7a8940bebe299a772179117c3542ecd8da0651ef))
+
 # [3.0.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v2.5.0...v3.0.0) (2024-02-22)
 
 
