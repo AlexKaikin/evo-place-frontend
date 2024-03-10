@@ -3,9 +3,8 @@ import { render, screen } from '@testing-library/react'
 import Page from './page'
 
 jest.mock('next/navigation', () => ({
-  useRouter() {
-    return { prefetch: () => null }
-  },
+  ...require('next-router-mock'),
+  useSearchParams: () => jest.fn(),
 }))
 
 describe('Page', () => {

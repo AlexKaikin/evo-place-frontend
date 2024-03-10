@@ -22,7 +22,7 @@ export function Categories() {
           icon={<Icon name="BsChatText" />}
           label="Messenger"
           variant="category"
-          //action={() => router.push(`/club/messenger`)}
+          action={() => router.push(`/club/messenger`)}
           active={currentCategory === 'messenger' ? true : false}
         />
         <Menu
