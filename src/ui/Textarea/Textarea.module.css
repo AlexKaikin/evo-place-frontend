@@ -8,9 +8,6 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: var(--spacing);
-  border-radius: var(--spacing);
-  background-color: var(--gray);
   width: 100%;
 }
 
@@ -19,6 +16,7 @@
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   box-shadow: 0 0 0px 4px var(--primary);
+  border-radius: var(--radius);
 }
 
 .label {
@@ -38,6 +36,9 @@
   width: 100%;
   color: var(--dark);
   resize: none;
+  padding: var(--spacing);
+  background-color: var(--gray);
+  border-radius: var(--radius);
 
   &::placeholder {
     color: var(--dark);
