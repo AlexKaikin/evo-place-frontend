@@ -29,5 +29,5 @@ export function Theme() {
   if (!theme)
     return <IconButton icon="BsMoon" style={{ color: 'transparent' }} />
 
-  return <IconButton icon={icon} onClick={themeChange} />
+  return <IconButton size="1.2rem" icon={icon} onClick={themeChange} />
 }

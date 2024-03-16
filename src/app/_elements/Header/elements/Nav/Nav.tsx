@@ -1,16 +1,26 @@
 import cn from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLangs } from '@store'
 import styles from './Nav.module.css'
 
 export function Nav() {
   const pathname = usePathname()
+  const { lang, translate } = useLangs()
   const links = [
-    { url: '/', title: 'Home', icon: 'BsHouse' },
-    { url: '/shop', title: 'Shop', icon: 'BsShop' },
-    { url: '/blog', title: 'Blog', icon: 'BsJournalText' },
-    { url: '/club', title: 'Club', icon: 'BsPeople' },
-    { url: '/contacts', title: 'Contacts', icon: 'BsEnvelope' },
+    { url: '/', title: translate[lang].header.nav.home, icon: 'BsHouse' },
+    { url: '/shop', title: translate[lang].header.nav.shop, icon: 'BsShop' },
+    {
+      url: '/blog',
+      title: translate[lang].header.nav.blog,
+      icon: 'BsJournalText',
+    },
+    { url: '/club', title: translate[lang].header.nav.club, icon: 'BsPeople' },
+    {
+      url: '/contacts',
+      title: translate[lang].header.nav.contacts,
+      icon: 'BsEnvelope',
+    },
   ]
 
   return (

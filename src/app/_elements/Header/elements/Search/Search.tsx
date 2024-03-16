@@ -6,15 +6,13 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
 import { Form, FormInput, Icon, Menu, MenuItem } from '@/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useLangs } from '@store'
 import styles from './Search.module.css'
 
 type Search = { q: string }
 
-const schema = z.object({
-  q: z.string({ required_error: 'Введите заголовок' }),
-})
-
 export function Search() {
+  const { lang, translate } = useLangs()
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -25,6 +23,15 @@ export function Search() {
   }, [pathname])
 
   const [searchPath, setSearchPath] = useState(path)
+  const searchIn =
+    searchPath === 'shop'
+      ? translate[lang].header.search.inShop
+      : translate[lang].header.search.inBlog
+
+  const schema = z.object({
+    q: z.string({ required_error: translate[lang].header.search.error }),
+  })
+
   const formMethods = useForm<Search>({
     defaultValues: { q: searchParams.get('q') || '' },
     resolver: zodResolver(schema),
@@ -44,7 +51,7 @@ export function Search() {
       <div className={styles.search}>
         <FormInput
           name="q"
-          placeholder="Search..."
+          placeholder={`${translate[lang].header.search.search}...`}
           startIcon="BsSearch"
           className={styles.input}
         />
@@ -53,17 +60,17 @@ export function Search() {
             <Menu
               label={
                 <>
-                  in {searchPath} <Icon name="BsCaretDown" size="16" />
+                  {searchIn} <Icon name="BsCaretDown" size="16" />
                 </>
               }
               noHoverBg
             >
               <MenuItem
-                label={'in shop'}
+                label={translate[lang].header.search.inShop}
                 onClick={() => setSearchPath('shop')}
               />
               <MenuItem
-                label={'in blog'}
+                label={translate[lang].header.search.inBlog}
                 onClick={() => setSearchPath('blog')}
               />
             </Menu>

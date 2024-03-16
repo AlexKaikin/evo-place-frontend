@@ -12,8 +12,8 @@ import styles from './CreateNote.module.css'
 
 const schema = z.object({
   text: z
-    .string({ required_error: 'Enter your note' })
-    .min(1, { message: 'Enter your note' }),
+    .string({ required_error: 'Enter your post' })
+    .min(1, { message: 'Enter your post' }),
 })
 
 type Props = {
@@ -54,7 +54,7 @@ export function CreateNote({ by }: Props) {
       <div className={styles.field}>
         <FormTextarea
           name="text"
-          placeholder="New note..."
+          placeholder="New post..."
           style={{ paddingRight: '60px', height }}
           ref={ref}
         />

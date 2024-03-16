@@ -99,7 +99,7 @@ export function MobileMenu() {
 
   return (
     <div className={styles.mobileMenu}>
-      <Menu label={<Icon name="BsGrid" />}>
+      <Menu variant="text" label={<Icon name="BsGrid" />}>
         <MenuItem
           label="All"
           action={() => changeCategory(null)}
@@ -130,7 +130,7 @@ export function MobileMenu() {
           color={currentCategory === 'Seeds' ? 'primary' : 'secondary'}
         />
       </Menu>
-      <Menu label={<Icon name="BsSortDown" />}>
+      <Menu variant="text" label={<Icon name="BsSortDown" />}>
         <MenuItem label="new" onClick={() => changeSortActive('new')} />
         <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
         <MenuItem
@@ -144,7 +144,7 @@ export function MobileMenu() {
       </Menu>
 
       <Popover open={openFilter} onOpenChange={setOpenFilter}>
-        <PopoverTrigger onClick={() => setOpenFilter(v => !v)}>
+        <PopoverTrigger variant="icon" onClick={() => setOpenFilter(v => !v)}>
           <Icon name="BsFunnel" />
         </PopoverTrigger>
         <PopoverContent>

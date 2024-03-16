@@ -1,0 +1,21 @@
+.button {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.flag {
+  flex: 0 0 20px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0px 5px var(--gray);
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
