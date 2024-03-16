@@ -22,6 +22,23 @@ export function Events() {
     getMore,
     loading,
   } = useEvents()
+  const dates = events.reduce<(number | null)[]>(
+    (result, event, index, arr) => {
+      let item
+      if (index === 0) {
+        item = +event.created
+      } else {
+        item =
+          dayjs(+event!.created).format('D MMMM YYYY') ===
+          dayjs(+arr[index - 1].created).format('D MMMM YYYY')
+            ? null
+            : +event.created
+      }
+      result.push(item)
+      return result
+    },
+    []
+  )
 
   const { ref, inView } = useInView({ threshold: 0 })
 
@@ -48,28 +65,37 @@ export function Events() {
 
   return (
     <div className={styles.notes}>
-      {events.map(({ _id, user, group, text, created }) => (
-        <div key={_id} className={styles.note}>
-          <div className={styles.avatar}>
-            <Image fill src={getAvatarUrl(user, group)} alt="avatar" />
-          </div>
-          <div className={styles.content}>
-            <div className={styles.name}>
-              {user ? (
-                <Link href={`/club/users/${user._id}`}>{user.fullName}</Link>
-              ) : (
-                <Link href={`/club/groups/${group._id}`}>{group.title}</Link>
-              )}
-            </div>
-            <div>
-              {text.split('\n').map((item, i) => (
-                <p key={i}>{item}</p>
-              ))}
-            </div>
-            <div className={styles.time}>
+      {events.map(({ _id, user, group, text, created }, index) => (
+        <div key={_id}>
+          {dates[index] ? (
+            <div className={styles.date}>
               <Typography variant="tooltip">
-                {dayjs(created).format('H:mm, DD.MM.YYYY')}
+                {dayjs(+created).format('D MMMM YYYY')}
               </Typography>
+            </div>
+          ) : null}
+          <div className={styles.note}>
+            <div className={styles.avatar}>
+              <Image fill src={getAvatarUrl(user, group)} alt="avatar" />
+            </div>
+            <div className={styles.content}>
+              <div className={styles.name}>
+                {user ? (
+                  <Link href={`/club/users/${user._id}`}>{user.fullName}</Link>
+                ) : (
+                  <Link href={`/club/groups/${group._id}`}>{group.title}</Link>
+                )}
+              </div>
+              <div>
+                {text.split('\n').map((item, i) => (
+                  <p key={i}>{item}</p>
+                ))}
+              </div>
+              <div className={styles.time}>
+                <Typography variant="tooltip">
+                  {dayjs(created).format('H:mm')}
+                </Typography>
+              </div>
             </div>
           </div>
         </div>

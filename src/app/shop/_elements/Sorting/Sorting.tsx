@@ -1,12 +1,14 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
+import { useLangs } from '@/store'
 import { Icon, Menu, MenuItem, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 import styles from './Sorting.module.css'
 
 export function Sorting() {
   const router = useRouter()
+  const { lang, translate } = useLangs()
   const searchParams = useSearchParams()
 
   function getSortActive() {
@@ -63,8 +65,8 @@ export function Sorting() {
       <div className={styles.sort}>
         <Icon name="BsSortDown" />
         <div className={styles.title}>
-          Sorting:{' '}
-          <Menu label={getSortActive()} color="primary">
+          {translate[lang].shop.sorting.Sorting}:{' '}
+          <Menu variant="text" label={getSortActive()} color="primary">
             <MenuItem label={'new'} onClick={() => changeSortActive('new')} />
             <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
             <MenuItem

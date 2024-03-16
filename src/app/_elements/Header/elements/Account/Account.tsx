@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import { Divider, Icon, Menu, MenuItem } from '@ui'
 import styles from './Account.module.css'
 
 export function Account() {
   const router = useRouter()
+  const { lang, translate } = useLangs()
   const { user, logout } = useAuth()
 
   return (
@@ -16,14 +17,14 @@ export function Account() {
             <span>{user.email}</span>
           </div>
           <MenuItem
-            label={'Account'}
+            label={translate[lang].header.account.account}
             icon={<Icon name="BsPerson" />}
             minWidth={170}
             onClick={() => router.push('/account')}
           />
           <Divider />
           <MenuItem
-            label={'Logout'}
+            label={translate[lang].header.account.logout}
             icon={<Icon name="BsBoxArrowRight" />}
             minWidth={170}
             onClick={logout}
@@ -31,9 +32,12 @@ export function Account() {
         </>
       ) : (
         <>
-          <MenuItem label={'Log In'} onClick={() => router.push('/login')} />
           <MenuItem
-            label={'Sign Up'}
+            label={translate[lang].header.account.login}
+            onClick={() => router.push('/login')}
+          />
+          <MenuItem
+            label={translate[lang].header.account.register}
             onClick={() => router.push('/register')}
           />
         </>

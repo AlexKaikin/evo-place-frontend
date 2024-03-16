@@ -15,6 +15,10 @@
   }
 }
 
+.text {
+  padding: 0px;
+}
+
 .Menu {
   background: var(--bg);
   -webkit-backdrop-filter: blur(10px);

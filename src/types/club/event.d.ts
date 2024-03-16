@@ -10,5 +10,5 @@ export type Event = {
   published: boolean
   user?: User
   group: Group
-  created?: string
+  created: string
 }

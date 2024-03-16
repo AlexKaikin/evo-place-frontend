@@ -31,9 +31,9 @@ export function ShopMenu() {
   if (!cartStore || !favoritesStore || !compareStore)
     return (
       <Stack direction="row" gap={10}>
-        <IconButton size="1.8rem" icon="FiBarChart2" />
-        <IconButton icon="BsBookmark" />
-        <IconButton icon="BsBag" />
+        <IconButton size="1.5rem" icon="FiBarChart2" />
+        <IconButton size="1.2rem" icon="BsBookmark" />
+        <IconButton size="1.2rem" icon="BsBag" />
       </Stack>
     )
 
@@ -47,14 +47,14 @@ export function ShopMenu() {
   }
 
   return (
-    <Stack direction="row" gap={10}>
+    <Stack direction="row" gap={5}>
       <Badge
         value={compareItems.length}
         onClick={() =>
           compareItems.length ? router.push('/shop/compare') : null
         }
       >
-        <IconButton size="1.8rem" icon="FiBarChart2" />
+        <IconButton size="1.5rem" icon="FiBarChart2" />
       </Badge>
       <Badge
         value={favoritesItems.length}
@@ -62,7 +62,7 @@ export function ShopMenu() {
           favoritesItems.length ? router.push('/shop/favorites') : null
         }
       >
-        <IconButton icon="BsBookmark" />
+        <IconButton size="1.2rem" icon="BsBookmark" />
       </Badge>
       <Popover open={open} onOpenChange={setOpen}>
         <Badge
@@ -70,7 +70,7 @@ export function ShopMenu() {
           onClick={() => (!cartItems.length ? null : setOpen(v => !v))}
         >
           <PopoverTrigger>
-            <Icon name="BsBag" />
+            <Icon size="1.2rem" name="BsBag" />
           </PopoverTrigger>
         </Badge>
         <PopoverContent>

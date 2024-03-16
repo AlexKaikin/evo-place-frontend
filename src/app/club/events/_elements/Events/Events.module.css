@@ -23,6 +23,13 @@
   animation-duration: 0.5s;
 }
 
+.date {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing);
+  opacity: 0.5;
+}
+
 .card {
   display: flex;
   gap: calc(var(--spacing) * 2);
