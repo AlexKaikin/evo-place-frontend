@@ -17,6 +17,7 @@ import styles from './Header.module.css'
 import {
   Account,
   BlogMenu,
+  Lang,
   Logo,
   Nav,
   Search,
@@ -64,9 +65,10 @@ export function Header() {
             <div className={styles.control}>
               <ShopMenu />
               <BlogMenu />
-              <Stack direction="row" gap={20}>
+              <Stack direction="row" gap={10}>
+                <Lang />
                 <Theme />
-                {user && <IconButton icon="BsBell" />}
+                {user && <IconButton size="1.2rem" icon="BsBell" />}
               </Stack>
               <Account />
             </div>
@@ -104,6 +106,7 @@ export function Header() {
             <Stack direction="row" justifyContent="center" gap={20}>
               {user && <IconButton icon="BsBell" />}
               <Theme />
+              <Lang />
             </Stack>
           </div>
         </div>

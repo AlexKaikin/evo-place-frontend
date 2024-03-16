@@ -1,3 +1,6 @@
 export type { Note, CreateNote, Pagination } from './note'
 export type { Recommend } from './recommendations'
 export type { Group, Pagination as GroupPagination } from './group'
+export type { Event } from './event'
+export type { Chat } from './chat'
+export type { Message, NewMessage } from './message'

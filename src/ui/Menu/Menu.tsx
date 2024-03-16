@@ -56,7 +56,7 @@ interface MenuProps {
   alignItems?: 'flexStart' | 'center' | 'flexEnd'
   color?: 'primary' | 'secondary'
   action?: () => void
-  variant?: 'category'
+  variant?: 'category' | 'text'
   active?: boolean
   noHoverBg?: boolean
   icon?: React.ReactNode
@@ -189,6 +189,7 @@ export const MenuComponent = React.forwardRef<
           className={cn(isNested ? styles.MenuItem : styles.RootMenu, {
             [styles[color || 'primary']]: color,
             [styles.category]: variant === 'category',
+            [styles.text]: variant === 'text',
             [styles.active]: active,
             [styles.noHoverBg]: noHoverBg,
           })}

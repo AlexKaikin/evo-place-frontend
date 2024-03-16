@@ -22,7 +22,7 @@ export type Note = {
     avatarUrl: string | null
     creator: string
   }
-  created?: string
+  created: string
 }
 
 export type CreateNote = {

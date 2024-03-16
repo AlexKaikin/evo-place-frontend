@@ -38,6 +38,7 @@
       "@configs/*": ["./configs/*"],
       "@store": ["./store/index"],
       "@hocs": ["./hocs/index"],
+      "@langs": ["./langs/index"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/club/users/[id]/_elements/Notes"],

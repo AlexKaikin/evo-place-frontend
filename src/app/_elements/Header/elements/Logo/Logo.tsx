@@ -3,7 +3,7 @@ import styles from './Logo.module.css'
 export function Logo() {
   return (
     <div className={styles.logo}>
-      <LogoSvg /> EVO PLACE
+      <LogoSvg /> EVO
     </div>
   )
 }

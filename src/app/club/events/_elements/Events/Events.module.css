@@ -1,0 +1,83 @@
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 5);
+  position: relative;
+  margin-top: var(--spacing);
+}
+
+.more {
+  position: absolute;
+  bottom: 0;
+  height: 400px;
+  z-index: -1;
+  width: 100%;
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--spacing) * 2);
+  position: relative;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+.date {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing);
+  opacity: 0.5;
+}
+
+.card {
+  display: flex;
+  gap: calc(var(--spacing) * 2);
+  width: 100%;
+}
+
+.control {
+  opacity: 0.5;
+}
+
+.content {
+  width: 100%;
+}
+
+.name {
+  margin-bottom: calc(var(--spacing));
+}
+
+.avatar {
+  flex: 0 0 50px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  > img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.time {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
