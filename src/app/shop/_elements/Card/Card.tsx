@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Product } from '@/types/shop'
@@ -5,11 +6,17 @@ import { Stack, Icon, Typography } from '@ui'
 import styles from './Card.module.css'
 
 export function Card({ product }: { product: Product }) {
-  const { _id, title, price, rating, ratingCount, imgUrl, manufacturer } =
+  const { _id, title, price, rating, ratingCount, imgUrl, manufacturer, id } =
     product
+  const newProduct = dayjs(new Date()).diff(dayjs(id), 'month') < 15
+  const popProduct = rating > 4
 
   return (
     <Link href={`/shop/${_id}`} className={styles.card}>
+      <div className={styles.labels}>
+        {newProduct && <div className={styles.new}>new</div>}
+        {popProduct && <div className={styles.pop}>pop</div>}
+      </div>
       <div className={styles.imgContainer}>
         <Image
           src={imgUrl}
@@ -40,7 +47,7 @@ export function Card({ product }: { product: Product }) {
             gap={5}
             className={styles.reviews}
           >
-            <Icon name="BsChatText" size="17" /> {ratingCount}
+            <Icon name="BsChatLeftText" size="17" /> {ratingCount}
           </Stack>
           <Stack
             direction="row"

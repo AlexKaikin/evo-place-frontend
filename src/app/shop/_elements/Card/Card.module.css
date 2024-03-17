@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -19,6 +20,33 @@
   to {
     opacity: 1;
   }
+}
+
+.labels {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--spacing) * 2.5);
+  left: calc(var(--spacing) * 2.5);
+  display: flex;
+  flex-direction: row;
+  border-radius: calc(var(--spacing) / 2);
+  overflow: hidden;
+}
+
+.new {
+  background-color: var(--info);
+  color: white;
+  padding: calc(var(--spacing) / 2) calc(var(--spacing));
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+.pop {
+  background-color: var(--gold);
+  color: white;
+  padding: calc(var(--spacing) / 2) calc(var(--spacing));
+  font-size: 0.6rem;
+  text-transform: uppercase;
 }
 
 .imgContainer {

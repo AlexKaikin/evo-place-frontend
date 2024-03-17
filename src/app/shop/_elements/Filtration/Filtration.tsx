@@ -16,6 +16,7 @@ import {
   FormCheckbox,
 } from '@ui'
 import { scrollToTop } from '@utils'
+import styles from './Filtration.module.css'
 
 const schema = z.object({
   q: z.string(),
@@ -208,11 +209,11 @@ export function Filtration({ action }: { action?: () => void }) {
         <Widget>
           <FormInput name="manufacturer" placeholder="Grand" label="Maker" />
         </Widget>
-        <Stack gap={10}>
-          <Button type="submit" isFullWidth>
-            Apply
-          </Button>
-          {isDirty && (
+        {isDirty && (
+          <Stack gap={10} className={styles.control}>
+            <Button type="submit" isFullWidth>
+              Apply
+            </Button>
             <Button
               type="button"
               onClick={formReset}
@@ -221,8 +222,8 @@ export function Filtration({ action }: { action?: () => void }) {
             >
               Reset
             </Button>
-          )}
-        </Stack>
+          </Stack>
+        )}
       </WidgetGroup>
     </Form>
   )
