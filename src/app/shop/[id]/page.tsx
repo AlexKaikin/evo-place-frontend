@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { notFound } from 'next/navigation'
 import type { Product } from '@/types/shop'
 import { Aside } from '@app/_elements'
@@ -42,6 +43,8 @@ export default async function Product(urlParams: UrlParams) {
   const [product, reviews] = await Promise.all([productsData, reviewsData])
   urlParams.searchParams.category = product.category
   const { products } = await getPopProducts(urlParams)
+  const newProduct = dayjs(new Date()).diff(dayjs(product.id), 'month') < 15
+  const popProduct = product.rating > 4
 
   return (
     <>
@@ -51,9 +54,16 @@ export default async function Product(urlParams: UrlParams) {
             <Slider product={product} />
           </div>
           <div className={styles.info}>
-            <div className={styles.manufacturer}>
-              By <span>{product.manufacturer}</span>
-            </div>
+            <Stack direction="row" justifyContent="space-between" gap={20}>
+              <div className={styles.manufacturer}>
+                By <span>{product.manufacturer}</span>
+              </div>
+              <div className={styles.labels}>
+                {newProduct && <div className={styles.new}>new</div>}
+                {popProduct && <div className={styles.pop}>pop</div>}
+              </div>
+            </Stack>
+
             <Typography variant="title-1" tag="h1">
               {product.title}
             </Typography>
