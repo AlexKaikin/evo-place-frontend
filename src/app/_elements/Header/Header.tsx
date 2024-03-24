@@ -32,14 +32,40 @@ export function Header() {
   const { user, logout } = useAuth()
 
   useEffect(() => {
+    if (showMenu) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'auto'
+  }, [showMenu])
+
+  useEffect(() => {
     setShowMenu(false)
   }, [pathname])
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Logo />
-        <div className={styles.menuButtonsContainer}>
+        <div className={styles.desktop}>
+          <Logo />
+          <Nav />
+          <Stack direction="row" gap={40} alignItems="center">
+            <Search />
+            <ShopMenu />
+            <BlogMenu />
+            <Stack direction="row" gap={10}>
+              <Lang />
+              <Theme />
+              {user && <IconButton size="1.2rem" icon="BsBell" />}
+            </Stack>
+            <Account />
+          </Stack>
+        </div>
+
+        <div className={styles.mobile}>
+          <IconButton
+            icon={showMenu ? 'BsXLg' : 'BsList'}
+            className={styles.menuButton}
+            onClick={() => setShowMenu(!showMenu)}
+          />
+          <Logo />
           <Popover>
             <PopoverTrigger>
               <Icon name="BsSearch" size="17" />
@@ -48,32 +74,9 @@ export function Header() {
               <Search />
             </PopoverContent>
           </Popover>
-          <IconButton
-            icon="BsList"
-            className={styles.menuButton}
-            onClick={() => setShowMenu(!showMenu)}
-          />
-        </div>
-        <div className={cn(styles.menu, { [styles.show]: showMenu })}>
-          <div className={styles.menuHeader}>
-            <Logo />
-            <IconButton icon="BsXLg" onClick={() => setShowMenu(!showMenu)} />
-          </div>
-          <Nav />
-          <div className={styles.desktop}>
-            <Search />
-            <div className={styles.control}>
-              <ShopMenu />
-              <BlogMenu />
-              <Stack direction="row" gap={10}>
-                <Lang />
-                <Theme />
-                {user && <IconButton size="1.2rem" icon="BsBell" />}
-              </Stack>
-              <Account />
-            </div>
-          </div>
-          <div className={styles.mobile}>
+
+          <div className={cn(styles.menu, { [styles.show]: showMenu })}>
+            <Nav />
             <Stack gap={10}>
               {user ? (
                 <>
@@ -104,9 +107,9 @@ export function Header() {
               )}
             </Stack>
             <Stack direction="row" justifyContent="center" gap={20}>
-              {user && <IconButton icon="BsBell" />}
-              <Theme />
               <Lang />
+              <Theme />
+              {user && <IconButton icon="BsBell" size="1.2rem" />}
             </Stack>
           </div>
         </div>

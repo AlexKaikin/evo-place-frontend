@@ -44,7 +44,7 @@ export default async function Product(urlParams: UrlParams) {
   urlParams.searchParams.category = product.category
   const { products } = await getPopProducts(urlParams)
   const newProduct = dayjs(new Date()).diff(dayjs(product.id), 'month') < 15
-  const popProduct = product.rating > 4
+  const popProduct = product.ratingCount > 1
 
   return (
     <>

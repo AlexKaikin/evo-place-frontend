@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
 import { AutorizedGuard } from '@hocs'
-import { Categories } from './_elements'
+import { Categories, MobileMenu } from './_elements'
 
 export const metadata: Metadata = {
   title: 'Club | EVO PLACE',
@@ -26,6 +26,7 @@ export default function ClubLayout({ children }: { children: ReactNode }) {
         <Categories />
       </Aside>
       {children}
+      <MobileMenu />
     </AutorizedGuard>
   )
 }
