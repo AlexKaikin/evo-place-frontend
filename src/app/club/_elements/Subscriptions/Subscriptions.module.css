@@ -2,6 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: calc(var(--spacing) * 2);
+
+  @media only screen and (max-width: 576px) {
+    gap: calc(var(--spacing));
+  }
 }
 
 .item {
@@ -51,4 +55,18 @@
   display: flex;
   align-items: center;
   gap: calc(var(--spacing));
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) / 4);
+}
+
+.label {
+  opacity: 0.8;
+
+  @media only screen and (max-width: 576px) {
+    font-size: 10px;
+  }
 }

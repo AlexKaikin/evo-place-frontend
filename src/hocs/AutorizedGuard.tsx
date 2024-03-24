@@ -1,14 +1,15 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { redirect } from 'next/navigation'
-import { Spinner, Stack } from '@/ui'
+import { redirect, usePathname } from 'next/navigation'
 import { useAuth } from '@store'
+import { Spinner, Stack } from '@ui'
 
 export function AutorizedGuard({ children }: { children: ReactNode }) {
   const { user, error } = useAuth()
+  const pathname = usePathname().split('/')[1]
 
-  if (error === 'unauthorized') redirect('/login')
+  if (error === 'unauthorized') redirect(`/login?from=${pathname}`)
 
   if (!user)
     return (
@@ -17,5 +18,5 @@ export function AutorizedGuard({ children }: { children: ReactNode }) {
       </Stack>
     )
 
-  return <>{children}</>
+  return children
 }

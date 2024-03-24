@@ -1,40 +1,16 @@
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border-bottom: 1px solid var(--border);
 }
 
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: calc(var(--spacing));
-  padding: calc(var(--spacing));
+  padding: calc(var(--spacing)) calc(var(--spacing) * 2);
   width: 100%;
   max-width: 1920px;
   box-shadow: 0 0 200px var(--shadow);
-}
-
-.menuButtonsContainer {
-  display: none;
-  align-items: center;
-  gap: calc(var(--spacing) * 2);
-
-  @media only screen and (max-width: 1180px) {
-    display: flex;
-  }
-}
-
-.menuButton {
-  display: none;
-
-  @media only screen and (max-width: 1180px) {
-    display: flex;
-  }
-}
-
-.menuHeader {
-  display: none;
 }
 
 .menu {
@@ -47,14 +23,14 @@
 
     &.show {
       position: fixed;
-      top: 0;
+      top: 60px;
       left: 0;
       z-index: 2;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       background-color: var(--bg);
-      padding: calc(var(--spacing));
+      padding: calc(var(--spacing)) calc(var(--spacing) * 2);
       height: 100%;
       width: 100%;
 
@@ -67,21 +43,9 @@
   }
 }
 
-.search {
-  display: flex;
-  align-items: center;
-}
-
-.control {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: calc(var(--spacing) * 2);
-}
-
 .desktop {
   display: flex;
-  gap: calc(var(--spacing) * 5);
+  width: 100%;
 
   @media only screen and (max-width: 1180px) {
     display: none;
@@ -93,7 +57,9 @@
 
   @media only screen and (max-width: 1180px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: calc(var(--spacing) * 2);
+    width: 100%;
   }
 }

@@ -2,10 +2,10 @@
 
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import { Button, FormInput, Typography, Form, Stack } from '@ui'
 import styles from './page.module.css'
 
@@ -14,19 +14,32 @@ type Login = {
   password: string
 }
 
-const schema = z.object({
-  email: z
-    .string({ required_error: 'Enter your email' })
-    .min(1, { message: 'Enter your email' })
-    .email('Enter the correct email'),
-  password: z
-    .string({ required_error: 'Enter password' })
-    .min(8, { message: 'Enter the correct password' })
-    .max(32, { message: 'Enter the correct password' }),
-})
-
 export default function Login() {
+  const { lang, translate } = useLangs()
+  const searchParams = useSearchParams()
+  const from = searchParams.get('from')
   const { user, login } = useAuth()
+
+  const schema = z.object({
+    email: z
+      .string({
+        required_error: translate[lang].auth.login.emailValidate.required_error,
+      })
+      .min(1, {
+        message: translate[lang].auth.login.emailValidate.message,
+      })
+      .email(translate[lang].auth.login.emailValidate.correct),
+    password: z
+      .string({
+        required_error:
+          translate[lang].auth.login.passwordValidate.required_error,
+      })
+      .min(8, { message: translate[lang].auth.login.passwordValidate.message })
+      .max(32, {
+        message: translate[lang].auth.login.passwordValidate.correct,
+      }),
+  })
+
   const formMethods = useForm<Login>({
     defaultValues: { email: '', password: '' },
     resolver: zodResolver(schema),
@@ -34,25 +47,31 @@ export default function Login() {
 
   const handleSubmit = (data: Login) => login(data)
 
-  if (user) redirect('/')
+  if (user && from) redirect(`/${from}`)
+  if (user && !from) redirect(`/`)
+  //if (user) redirect(`/`)
 
   return (
     <div className={styles.container}>
       <Typography variant="title-3" tag="h1">
-        Log In
+        {translate[lang].auth.login.login}
       </Typography>
       <Form id="loginForm" formMethods={formMethods} onSubmit={handleSubmit}>
         <Stack direction="column" gap={30}>
-          <FormInput name="email" label="Email" />
-          <FormInput type="password" name="password" label="Password" />
+          <FormInput name="email" label={translate[lang].auth.login.email} />
+          <FormInput
+            type="password"
+            name="password"
+            label={translate[lang].auth.login.password}
+          />
           <p>
-            You don&apos;t have an account?{' '}
+            {translate[lang].auth.login.have}{' '}
             <Link href="/register" style={{ color: 'var(--primary)' }}>
-              Registration
+              {translate[lang].auth.login.registration}
             </Link>
           </p>
           <Button type="submit" isFullWidth>
-            Send
+            {translate[lang].auth.login.send}
           </Button>
         </Stack>
       </Form>

@@ -24,8 +24,12 @@ export function Subscriptions({ user }: { user: User }) {
             variant="button"
             onClick={() => setShowSubscribers(v => !v)}
           >
-            <span>{subscribers.length}</span>{' '}
-            {getNoun(subscribers.length, ['subscriber', 'subscribers'])}
+            <div className={styles.count}>
+              <span>{subscribers.length}</span>
+              <span className={styles.label}>
+                {getNoun(subscribers.length, ['follower', 'followers'])}
+              </span>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <SubscriptionsUser
@@ -42,11 +46,12 @@ export function Subscriptions({ user }: { user: User }) {
             variant="button"
             onClick={() => setShowSubscriptions(v => !v)}
           >
-            <span>{subscriptionsUser.length}</span>{' '}
-            {getNoun(subscriptionsUser.length, [
-              'subscription',
-              'subscriptions',
-            ])}
+            <div className={styles.count}>
+              <span>{subscriptionsUser.length}</span>
+              <span className={styles.label}>
+                {getNoun(subscriptionsUser.length, ['following', 'following'])}
+              </span>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <SubscriptionsUser
@@ -63,8 +68,12 @@ export function Subscriptions({ user }: { user: User }) {
             variant="button"
             onClick={() => setShowGroups(v => !v)}
           >
-            <span>{subscriptionsGroup.length}</span>{' '}
-            {getNoun(subscriptionsGroup.length, ['group', 'groups'])}
+            <div className={styles.count}>
+              <span>{subscriptionsGroup.length}</span>
+              <span className={styles.label}>
+                {getNoun(subscriptionsGroup.length, ['group', 'groups'])}
+              </span>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <SubscriptionsGroup

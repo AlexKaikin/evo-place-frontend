@@ -47,36 +47,38 @@ export function Search() {
   }, [path, pathname])
 
   return (
-    <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
-      <div className={styles.search}>
-        <FormInput
-          name="q"
-          placeholder={`${translate[lang].header.search.search}...`}
-          startIcon="BsSearch"
-          className={styles.input}
-        />
-        <div className={styles.actions}>
-          <div className={styles.selectContainer}>
-            <Menu
-              label={
-                <>
-                  {searchIn} <Icon name="BsCaretDown" size="16" />
-                </>
-              }
-              noHoverBg
-            >
-              <MenuItem
-                label={translate[lang].header.search.inShop}
-                onClick={() => setSearchPath('shop')}
-              />
-              <MenuItem
-                label={translate[lang].header.search.inBlog}
-                onClick={() => setSearchPath('blog')}
-              />
-            </Menu>
+    <div>
+      <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
+        <div className={styles.search}>
+          <FormInput
+            name="q"
+            placeholder={`${translate[lang].header.search.search}...`}
+            startIcon="BsSearch"
+            className={styles.input}
+          />
+          <div className={styles.actions}>
+            <div className={styles.selectContainer}>
+              <Menu
+                label={
+                  <>
+                    {searchIn} <Icon name="BsCaretDown" size="16" />
+                  </>
+                }
+                noHoverBg
+              >
+                <MenuItem
+                  label={translate[lang].header.search.inShop}
+                  onClick={() => setSearchPath('shop')}
+                />
+                <MenuItem
+                  label={translate[lang].header.search.inBlog}
+                  onClick={() => setSearchPath('blog')}
+                />
+              </Menu>
+            </div>
           </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </div>
   )
 }

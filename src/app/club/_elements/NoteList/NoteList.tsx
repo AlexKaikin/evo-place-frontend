@@ -6,7 +6,7 @@ import { Note } from '@/types/club'
 import defaultUserAvatar from '@assets/img/user/defaultAvatar.png'
 import defaultGroupAvatar from '@assets/img/user/users.jpg'
 import { useAuth } from '@store'
-import { IconButton, Typography } from '@ui'
+import { Button, Icon, IconButton, Input, Typography } from '@ui'
 import styles from './NoteList.module.css'
 
 type Props = {
@@ -47,6 +47,14 @@ export function NoteList({ notes, deleteNote }: Props) {
     }
   }
 
+  function getAuthorName(user: Note['user'], group: Note['group']) {
+    if (group) {
+      return group.title
+    } else {
+      return user.fullName
+    }
+  }
+
   return (
     <>
       {notes.map(({ user, group, _id, text, created }, index) => (
@@ -58,8 +66,8 @@ export function NoteList({ notes, deleteNote }: Props) {
               </Typography>
             </div>
           ) : null}
-          <div className={styles.note}>
-            <div className={styles.card}>
+          <div className={styles.post}>
+            <div className={styles.header}>
               <div className={styles.avatar}>
                 <Image
                   fill
@@ -68,28 +76,39 @@ export function NoteList({ notes, deleteNote }: Props) {
                   alt="avatar"
                 />
               </div>
-              <div className={styles.content}>
-                <div>
-                  {text.split('\n').map((item, i) => (
-                    <p key={i}>{item}</p>
-                  ))}
-                </div>
+              <div className={styles.headerInfo}>
+                <div className={styles.name}>{getAuthorName(user, group)}</div>
                 <div className={styles.time}>
                   <Typography variant="tooltip">
                     {dayjs(created).format('H:mm')}
                   </Typography>
                 </div>
               </div>
-            </div>
-            {getAuthorId(user, group) === currentUser?._id ? (
-              <div className={styles.control}>
-                <IconButton
-                  size="17"
-                  icon="BsTrash3"
-                  onClick={() => deleteNote(_id)}
-                />
+              <div>
+                {getAuthorId(user, group) === currentUser?._id && (
+                  <div className={styles.delete}>
+                    <IconButton
+                      size="17"
+                      icon="BsTrash3"
+                      onClick={() => deleteNote(_id)}
+                    />
+                  </div>
+                )}
               </div>
-            ) : null}
+            </div>
+            <div className={styles.content}>
+              <div>
+                {text.split('\n').map((item, i) => (
+                  <p key={i}>{item}</p>
+                ))}
+              </div>
+            </div>
+            <div className={styles.actions}>
+              <Button variant="text" className={styles.like}>
+                <Icon name="BsHandThumbsUp" size="15" />
+              </Button>
+              <Input placeholder="Write a comment" />
+            </div>
           </div>
         </div>
       ))}

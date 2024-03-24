@@ -42,6 +42,7 @@ export function Profile({ user: userProp }: Props) {
           <div className={styles.nicname}>{user.fullName}</div>
           {!userProp && <Settings user={user} handleUpdate={update} />}
         </div>
+
         {user.about.length ? (
           <div className={styles.item}>
             <span>About</span>

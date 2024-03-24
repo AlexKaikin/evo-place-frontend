@@ -31,7 +31,7 @@ export function Search() {
       <Popover open={!!users.length} onOpenChange={() => setUsers([])}>
         <PopoverTrigger style={{ width: '100%' }}>
           <Input
-            placeholder="Name..."
+            placeholder="Search..."
             value={nameDebounce}
             onChange={e => setNameDebounce(e.target.value)}
           />
