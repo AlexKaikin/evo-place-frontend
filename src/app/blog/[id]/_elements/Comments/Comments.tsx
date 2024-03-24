@@ -35,7 +35,9 @@ export function Comments({
         <Typography variant="title-3">Comments</Typography>
         <Button
           color="primary"
-          onClick={() => (user ? setOpen(true) : router.push('/login'))}
+          onClick={() =>
+            user ? setOpen(true) : router.push(`/login?from=blog/${postId}`)
+          }
         >
           Add comment
         </Button>

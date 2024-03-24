@@ -67,7 +67,7 @@ export function Actions({ product }: Props) {
         </div>
         <div className={styles.productPrice}>
           <div className={styles.priceTitle}>Cost</div>
-          <div className={styles.priceNumber}>$ {cost}</div>
+          <div className={styles.priceNumber}>${cost}</div>
         </div>
       </div>
       <Stack direction="row" gap={10} justifyContent="flex-start">

@@ -38,7 +38,9 @@ export function Reviews({
         <Button
           color="primary"
           startIcon={<Icon name="BsPlusLg" />}
-          onClick={() => (user ? setOpen(true) : router.push('/login'))}
+          onClick={() =>
+            user ? setOpen(true) : router.push(`/login?from=shop/${productId}`)
+          }
         >
           Add review
         </Button>
