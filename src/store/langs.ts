@@ -17,5 +17,12 @@ export const useLangs = create<Lang>()(set => ({
       localStorage.setItem('lang', JSON.stringify(lang))
       return { lang }
     }),
-  getLang: () => set(() => ({ lang: getLocalStorage('lang') })),
+  getLang: () =>
+    set(() => {
+      const lang =
+        typeof getLocalStorage('lang') === 'string'
+          ? getLocalStorage('lang')
+          : Langs.EN
+      return { lang }
+    }),
 }))
