@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.5.0...v3.5.1) (2024-03-30)
+
+
+### Bug Fixes
+
+* Fix useLang hook ([e076bc7](https://github.com/AlexKaikin/evo-place-frontend/commit/e076bc70fecc48e0781c237c34e717065fcccb99))
+
 # [3.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.4.0...v3.5.0) (2024-03-30)
 
 
