@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.4.0...v3.5.0) (2024-03-30)
+
+
+### Features
+
+* Add translate text ([4dfb3fb](https://github.com/AlexKaikin/evo-place-frontend/commit/4dfb3fbcbf80f220d03135b67b0529282f0be043))
+
 # [3.4.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.3.0...v3.4.0) (2024-03-24)
 
 
