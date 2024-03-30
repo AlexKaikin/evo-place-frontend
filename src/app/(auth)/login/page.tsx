@@ -49,7 +49,6 @@ export default function Login() {
 
   if (user && from) redirect(`/${from}`)
   if (user && !from) redirect(`/`)
-  //if (user) redirect(`/`)
 
   return (
     <div className={styles.container}>

@@ -1,12 +1,14 @@
 'use client'
 
 import { useRouter, useSearchParams, useParams } from 'next/navigation'
+import { useLangs } from '@store'
 import { Menu, Stack, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 
 export function Categories() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const { lang, translate } = useLangs()
   const params = useParams<{ productId?: string }>()
   const currentCategory = searchParams.get('category')
 
@@ -16,7 +18,7 @@ export function Categories() {
   }
 
   return (
-    <Widget title="Categories" icon="BsGrid">
+    <Widget title={translate[lang].shop.categories} icon="BsGrid">
       <Stack gap={5}>
         <Menu
           label="All"

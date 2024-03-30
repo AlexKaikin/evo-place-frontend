@@ -1,3 +1,6 @@
+'use client'
+
+import { useLangs } from '@store'
 import {
   Dialog,
   DialogTrigger,
@@ -6,15 +9,19 @@ import {
   DialogDescription,
   DialogClose,
   Typography,
-} from '@/ui'
+} from '@ui'
 import styles from './Footer.module.css'
 
 export function Footer() {
+  const { lang, translate } = useLangs()
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <Dialog>
-          <DialogTrigger variant="text">Confidentiality Policy</DialogTrigger>
+          <DialogTrigger variant="text">
+            {translate[lang].footer.policy}
+          </DialogTrigger>
           <DialogContent>
             <DialogHeading>Privacy Policy</DialogHeading>
             <DialogDescription style={{ maxWidth: '600px' }}>
@@ -55,7 +62,9 @@ export function Footer() {
         </Dialog>
 
         <Dialog>
-          <DialogTrigger variant="text">Use of cookies</DialogTrigger>
+          <DialogTrigger variant="text">
+            {translate[lang].footer.cookies}
+          </DialogTrigger>
           <DialogContent>
             <DialogHeading>Use of cookies</DialogHeading>
             <DialogDescription style={{ maxWidth: '600px' }}>

@@ -15,10 +15,13 @@ export function Sorting() {
     const _sort = searchParams.get('_sort')
     const _order = searchParams.get('_order')
 
-    if (_sort === 'price' && _order === 'desc') return 'price desc'
-    else if (_sort === 'price' && _order === 'asc') return 'price asc'
-    else if (_sort === 'rating' && _order === 'desc') return 'pop'
-    else return 'new'
+    if (_sort === 'price' && _order === 'desc')
+      return translate[lang].shop.priceDesc
+    else if (_sort === 'price' && _order === 'asc')
+      return translate[lang].shop.priceAsc
+    else if (_sort === 'rating' && _order === 'desc')
+      return translate[lang].shop.pop
+    else return translate[lang].shop.new
   }
 
   function changeSortActive(item: string) {
@@ -65,16 +68,22 @@ export function Sorting() {
       <div className={styles.sort}>
         <Icon name="BsSortDown" />
         <div className={styles.title}>
-          {translate[lang].shop.sorting.Sorting}:{' '}
+          {translate[lang].shop.sorting}:{' '}
           <Menu variant="text" label={getSortActive()} color="primary">
-            <MenuItem label={'new'} onClick={() => changeSortActive('new')} />
-            <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
             <MenuItem
-              label="price asc"
+              label={translate[lang].shop.new}
+              onClick={() => changeSortActive('new')}
+            />
+            <MenuItem
+              label={translate[lang].shop.pop}
+              onClick={() => changeSortActive('pop')}
+            />
+            <MenuItem
+              label={translate[lang].shop.priceAsc}
               onClick={() => changeSortActive('priceIncrease')}
             />
             <MenuItem
-              label="price desc"
+              label={translate[lang].shop.priceDesc}
               onClick={() => changeSortActive('priceDecrease')}
             />
           </Menu>

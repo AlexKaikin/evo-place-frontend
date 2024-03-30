@@ -2,18 +2,15 @@
 
 import { useState } from 'react'
 import type { Product } from '@/types/shop'
-import { useCart, useFavoriteProducts, useCompare } from '@store'
+import { useCart, useFavoriteProducts, useCompare, useLangs } from '@store'
 import { Button, Icon, IconButton, Input, Stack } from '@ui'
 import styles from './Actions.module.css'
 
-type Props = {
-  product: Product
-}
-
-export function Actions({ product }: Props) {
+export function Actions({ product }: { product: Product }) {
+  const { setCart } = useCart()
+  const { lang, translate } = useLangs()
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
-  const { setCart } = useCart()
   const { toggleFavorite, favoritesItems } = useFavoriteProducts()
   const { toggleCompare, compareItems } = useCompare()
   const findCompare = compareItems.find(item => item.id === product.id)
@@ -53,7 +50,9 @@ export function Actions({ product }: Props) {
     <>
       <div className={styles.calc}>
         <div className={styles.quantity}>
-          <div className={styles.quantityTitle}>Quantity</div>
+          <div className={styles.quantityTitle}>
+            {translate[lang].shop.product.quantity}
+          </div>
           <div className={styles.quantityContent}>
             <IconButton icon="BsDashLg" onClick={decriment} />
             <Input
@@ -66,7 +65,9 @@ export function Actions({ product }: Props) {
           </div>
         </div>
         <div className={styles.productPrice}>
-          <div className={styles.priceTitle}>Cost</div>
+          <div className={styles.priceTitle}>
+            {translate[lang].shop.product.cost}
+          </div>
           <div className={styles.priceNumber}>${cost}</div>
         </div>
       </div>
@@ -84,7 +85,7 @@ export function Actions({ product }: Props) {
           onClick={() => toggleFavorite(product)}
         />
         <Button endIcon={<Icon name="BsBag" size="17" />} onClick={addToCart}>
-          Add to cart
+          {translate[lang].shop.product.add}
         </Button>
       </Stack>
     </>
