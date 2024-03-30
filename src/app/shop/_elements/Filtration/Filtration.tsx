@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useLangs } from '@store'
 import {
   WidgetGroup,
   Widget,
@@ -48,6 +49,7 @@ type FilterDto = {
 
 export function Filtration({ action }: { action?: () => void }) {
   const router = useRouter()
+  const { lang, translate } = useLangs()
   const searchParams = useSearchParams()
   const [ratings, setRatings] = useState<number[]>(
     searchParams
@@ -164,8 +166,11 @@ export function Filtration({ action }: { action?: () => void }) {
 
   return (
     <Form id="searchForm" formMethods={formMethods} onSubmit={handleSubmit}>
-      <WidgetGroup title="Filtration" icon="BsFunnel">
-        <Widget title="Price">
+      <WidgetGroup
+        title={translate[lang].shop.filter.filtration}
+        icon="BsFunnel"
+      >
+        <Widget title={translate[lang].shop.filter.price}>
           <Stack
             direction="row"
             alignItems="baseline"
@@ -176,7 +181,7 @@ export function Filtration({ action }: { action?: () => void }) {
               type="number"
               name="price_gte"
               placeholder="0"
-              label="from"
+              label={translate[lang].shop.filter.from}
               startIcon="BsCurrencyDollar"
             />
             -
@@ -184,12 +189,12 @@ export function Filtration({ action }: { action?: () => void }) {
               type="number"
               name="price_lte"
               placeholder="10000"
-              label="to"
+              label={translate[lang].shop.filter.to}
               startIcon="BsCurrencyDollar"
             />
           </Stack>
         </Widget>
-        <Widget title="Ratings">
+        <Widget title={translate[lang].shop.filter.ratings}>
           <Stack>
             <FormInput type="hidden" name="ratings" />
             {[5, 4, 3, 2, 1].map(item => (
@@ -204,15 +209,23 @@ export function Filtration({ action }: { action?: () => void }) {
           </Stack>
         </Widget>
         <Widget>
-          <FormInput name="q" placeholder="Monarh" label="Title" />
+          <FormInput
+            name="q"
+            placeholder="Monarh"
+            label={translate[lang].shop.filter.title}
+          />
         </Widget>
         <Widget>
-          <FormInput name="manufacturer" placeholder="Grand" label="Maker" />
+          <FormInput
+            name="manufacturer"
+            placeholder="Grand"
+            label={translate[lang].shop.filter.maker}
+          />
         </Widget>
         {isDirty && (
           <Stack gap={10} className={styles.control}>
             <Button type="submit" isFullWidth>
-              Apply
+              {translate[lang].shop.filter.apply}
             </Button>
             <Button
               type="button"
@@ -220,7 +233,7 @@ export function Filtration({ action }: { action?: () => void }) {
               color="secondary"
               isFullWidth
             >
-              Reset
+              {translate[lang].shop.filter.reset}
             </Button>
           </Stack>
         )}

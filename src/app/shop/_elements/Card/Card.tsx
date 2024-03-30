@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Product } from '@/types/shop'
-import { Stack, Icon, Typography } from '@ui'
+import { Stack, Typography, Rating } from '@ui'
 import styles from './Card.module.css'
 
 export function Card({ product }: { product: Product }) {
@@ -41,16 +41,6 @@ export function Card({ product }: { product: Product }) {
         </div>
         <div className={styles.info}>
           <div className={styles.price}>${price}</div>
-          {ratingCount > 0 ? (
-            <Stack
-              direction="row"
-              alignItems="center"
-              gap={5}
-              className={styles.reviews}
-            >
-              <Icon name="BsChatLeftText" size="17" /> {ratingCount}
-            </Stack>
-          ) : null}
           {rating > 0 ? (
             <Stack
               direction="row"
@@ -58,7 +48,7 @@ export function Card({ product }: { product: Product }) {
               gap={5}
               className={styles.rating}
             >
-              <Icon name="BsStarFill" size="17" /> {rating}
+              <Rating value={rating} />({ratingCount})
             </Stack>
           ) : null}
         </div>

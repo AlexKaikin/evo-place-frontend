@@ -1,13 +1,18 @@
+'use client'
+
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Post } from '@/types/blog'
+import { useLangs } from '@store'
 import { Icon, Stack, Typography, Widget } from '@ui'
 import styles from './Popular.module.css'
 
 export function Popular({ posts }: { posts: Post[] }) {
+  const { lang, translate } = useLangs()
+
   return (
-    <Widget title="Popular">
+    <Widget title={translate[lang].blog.popular}>
       <Stack gap={20} className={styles.pop}>
         {posts
           .splice(0, 5)

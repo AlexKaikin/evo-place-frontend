@@ -83,7 +83,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: calc(var(--spacing) * 2);
+  gap: calc(var(--spacing));
 }
 
 .manufacturer {
@@ -104,4 +104,5 @@
 
 .reviews {
   opacity: 0.5;
+  font-size: 14px;
 }

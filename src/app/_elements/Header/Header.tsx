@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useRouter, usePathname } from 'next/navigation'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import {
   IconButton,
   Stack,
@@ -30,6 +30,7 @@ export function Header() {
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
   const { user, logout } = useAuth()
+  const { lang, translate } = useLangs()
 
   useEffect(() => {
     if (showMenu) document.body.style.overflow = 'hidden'
@@ -85,23 +86,23 @@ export function Header() {
                     color="secondary"
                     onClick={() => router.push('/account')}
                   >
-                    Account
+                    {translate[lang].header.account.account}
                   </Button>
                   <Button isFullWidth color="secondary" onClick={logout}>
-                    Logout
+                    {translate[lang].header.account.logout}
                   </Button>
                 </>
               ) : (
                 <>
                   <Button isFullWidth onClick={() => router.push('/register')}>
-                    Sign Up
+                    {translate[lang].header.account.register}
                   </Button>
                   <Button
                     color="secondary"
                     isFullWidth
                     onClick={() => router.push('/login')}
                   >
-                    Log In
+                    {translate[lang].header.account.login}
                   </Button>
                 </>
               )}

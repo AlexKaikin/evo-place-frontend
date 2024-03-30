@@ -1,8 +1,13 @@
+'use client'
+
+import { useLangs } from '@store'
 import { Stack, Typography } from '@ui'
 import { ContactForm } from './_elements'
 import styles from './page.module.css'
 
 export default function Contacts() {
+  const { lang, translate } = useLangs()
+
   return (
     <div className={styles.container}>
       <Stack
@@ -12,7 +17,9 @@ export default function Contacts() {
         justifyContent="center"
         style={{ maxWidth: '600px' }}
       >
-        <Typography variant="title-3">Send an email</Typography>
+        <Typography variant="title-3">
+          {translate[lang].contacts.sendEmail}
+        </Typography>
         <ContactForm />
       </Stack>
     </div>

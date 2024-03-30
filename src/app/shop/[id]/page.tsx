@@ -4,8 +4,15 @@ import type { Product } from '@/types/shop'
 import { Aside } from '@app/_elements'
 import { productService, reviewService } from '@services'
 import { Rating, Stack, Typography } from '@ui'
-import { UrlParams, getNoun, text } from '@utils'
-import { Slider, Actions, Popular, Reviews, Characteristics } from './_elements'
+import { UrlParams, text } from '@utils'
+import {
+  Slider,
+  Actions,
+  Popular,
+  Reviews,
+  Characteristics,
+  Description,
+} from './_elements'
 import styles from './page.module.css'
 
 export async function generateMetadata({ params }: UrlParams) {
@@ -70,10 +77,7 @@ export default async function Product(urlParams: UrlParams) {
             {!!product.rating && (
               <div className={styles.rating}>
                 <Rating value={product.rating} />{' '}
-                <span>
-                  ({product.ratingCount}{' '}
-                  {getNoun(product.ratingCount, ['review', 'reviews'])})
-                </span>
+                <span>({product.ratingCount})</span>
               </div>
             )}
             <div className={styles.quantity}>
@@ -82,15 +86,7 @@ export default async function Product(urlParams: UrlParams) {
             <Actions product={product} />
           </div>
         </div>
-
-        <div className={styles.description}>
-          <Typography variant="title-3">Description</Typography>
-          {product.text.split('\n').map((item, i) => (
-            <Typography key={i} variant="text" tag="p">
-              {item}
-            </Typography>
-          ))}
-        </div>
+        <Description product={product} />
         <Characteristics product={product} />
         <Reviews productId={product._id} reviews={reviews} />
       </Stack>

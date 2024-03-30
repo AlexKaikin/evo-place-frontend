@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/types/shop/product'
-import { Icon, Stack, Typography, Widget } from '@ui'
+import { useLangs } from '@store'
+import { Rating, Stack, Typography, Widget } from '@ui'
 import styles from './Popular.module.css'
 
 type Props = {
@@ -9,8 +12,10 @@ type Props = {
 }
 
 export function Popular({ products }: Props) {
+  const { lang, translate } = useLangs()
+
   return (
-    <Widget title="Popular in this category">
+    <Widget title={translate[lang].shop.product.popular}>
       <Stack gap={20} className={styles.pop}>
         {products.splice(0, 5).map(product => (
           <Link
@@ -32,13 +37,16 @@ export function Popular({ products }: Props) {
                 {product.title}
               </Typography>
 
-              <Stack direction="row" gap={20} style={{ opacity: '0.5' }}>
+              <Stack direction="row" gap={20}>
                 <div>$ {product.price}</div>
-                <Stack direction="row" alignItems="center" gap={5}>
-                  <Icon name="BsChatText" size="15" /> {product.ratingCount}
-                </Stack>
-                <Stack direction="row" alignItems="center" gap={5}>
-                  <Icon name="BsStarFill" size="15" /> {product.rating}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  gap={5}
+                  className={styles.rating}
+                >
+                  <Rating size={12} value={product.rating} /> (
+                  {product.ratingCount})
                 </Stack>
               </Stack>
             </div>
