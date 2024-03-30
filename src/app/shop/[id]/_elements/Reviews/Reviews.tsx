@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Review } from '@/types/shop'
 import defautAvatar from '@assets/img/user/defaultAvatar.png'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import {
   Button,
   Dialog,
@@ -30,11 +30,14 @@ export function Reviews({
   const router = useRouter()
   const { user } = useAuth()
   const [open, setOpen] = useState(false)
+  const { lang, translate } = useLangs()
 
   return (
     <div className={styles.reviews}>
       <Stack direction="row" justifyContent="space-between">
-        <Typography variant="title-3">Reviews</Typography>
+        <Typography variant="title-3">
+          {translate[lang].shop.product.reviews}
+        </Typography>
         <Button
           color="primary"
           startIcon={<Icon name="BsPlusLg" />}
@@ -42,12 +45,14 @@ export function Reviews({
             user ? setOpen(true) : router.push(`/login?from=shop/${productId}`)
           }
         >
-          Add review
+          {translate[lang].shop.product.addReview}
         </Button>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className={styles.modal}>
             <Stack>
-              <DialogHeading>Add review</DialogHeading>
+              <DialogHeading>
+                {translate[lang].shop.product.addReview}
+              </DialogHeading>
             </Stack>
             <ReviewForm setOpen={setOpen} productId={productId} />
           </DialogContent>
@@ -59,6 +64,8 @@ export function Reviews({
 }
 
 function ReviewsList({ reviews }: { reviews: Review[] }) {
+  const { lang, translate } = useLangs()
+
   return (
     <div>
       {reviews.map(review => (
@@ -91,7 +98,7 @@ function ReviewsList({ reviews }: { reviews: Review[] }) {
           </div>
         </div>
       ))}
-      {!reviews.length ? <>No reviews. Write first!</> : null}
+      {!reviews.length ? <>{translate[lang].shop.product.noReviews}</> : null}
     </div>
   )
 }

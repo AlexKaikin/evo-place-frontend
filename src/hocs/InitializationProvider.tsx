@@ -7,11 +7,13 @@ import {
   useCompare,
   useAuth,
   useFavoritePosts,
+  useLangs,
 } from '@store'
 
 export function InitializationProvider({ children }: { children: ReactNode }) {
   const { getMe } = useAuth()
   const { getCart } = useCart()
+  const { getLang } = useLangs()
   const { getCompare } = useCompare()
   const { getFavoritePosts } = useFavoritePosts()
   const { getFavoriteProducts } = useFavoriteProducts()
@@ -22,7 +24,15 @@ export function InitializationProvider({ children }: { children: ReactNode }) {
     getFavoriteProducts()
     getCompare()
     getFavoritePosts()
-  }, [getCart, getCompare, getFavoritePosts, getFavoriteProducts, getMe])
+    getLang()
+  }, [
+    getCart,
+    getCompare,
+    getFavoritePosts,
+    getFavoriteProducts,
+    getLang,
+    getMe,
+  ])
 
   return <>{children}</>
 }

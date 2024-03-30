@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import { Button, FormInput, Typography, Form, Stack } from '@ui'
 import styles from './page.module.css'
 
@@ -15,23 +15,43 @@ type Register = {
   password: string
 }
 
-const schema = z.object({
-  fullName: z
-    .string({ required_error: 'Enter your login' })
-    .min(2, { message: 'Minimum length 2 characters' })
-    .max(32, { message: 'Maximum length 32 characters' }),
-  email: z
-    .string({ required_error: 'Enter your email' })
-    .min(1, { message: 'Enter your email' })
-    .email('Enter the correct email'),
-  password: z
-    .string({ required_error: 'Enter password' })
-    .min(8, { message: 'Minimum length 8 characters' })
-    .max(32, { message: 'Maximum length 32 characters' }),
-})
-
 export default function Register() {
   const { user, register } = useAuth()
+  const { lang, translate } = useLangs()
+
+  const schema = z.object({
+    fullName: z
+      .string({
+        required_error:
+          translate[lang].auth.register.loginValidate.required_error,
+      })
+      .min(2, {
+        message: translate[lang].auth.register.loginValidate.messageMin,
+      })
+      .max(32, {
+        message: translate[lang].auth.register.loginValidate.messageMax,
+      }),
+    email: z
+      .string({
+        required_error: translate[lang].auth.login.emailValidate.required_error,
+      })
+      .min(1, {
+        message: translate[lang].auth.login.emailValidate.message,
+      })
+      .email(translate[lang].auth.login.emailValidate.correct),
+    password: z
+      .string({
+        required_error:
+          translate[lang].auth.register.passwordValidate.required_error,
+      })
+      .min(8, {
+        message: translate[lang].auth.register.passwordValidate.messageMin,
+      })
+      .max(32, {
+        message: translate[lang].auth.register.passwordValidate.messageMax,
+      }),
+  })
+
   const formMethods = useForm<Register>({
     defaultValues: { fullName: '', email: '', password: '' },
     resolver: zodResolver(schema),
@@ -44,21 +64,28 @@ export default function Register() {
   return (
     <div className={styles.container}>
       <Typography variant="title-3" tag="h1">
-        Registration
+        {translate[lang].auth.login.registration}
       </Typography>
       <Form id="registerForm" formMethods={formMethods} onSubmit={handleSubmit}>
         <Stack direction="column" gap={30}>
-          <FormInput name="fullName" label="Login" />
-          <FormInput name="email" label="Email" />
-          <FormInput type="password" name="password" label="Password" />
+          <FormInput
+            name="fullName"
+            label={translate[lang].auth.register.login}
+          />
+          <FormInput name="email" label={translate[lang].auth.login.email} />
+          <FormInput
+            type="password"
+            name="password"
+            label={translate[lang].auth.login.password}
+          />
           <p>
-            Do you have an account?{' '}
+            {translate[lang].auth.register.have}{' '}
             <Link href="/login" style={{ color: 'var(--primary)' }}>
-              Log In
+              {translate[lang].auth.login.login}
             </Link>
           </p>
           <Button type="submit" isFullWidth>
-            Send
+            {translate[lang].auth.login.send}
           </Button>
         </Stack>
       </Form>

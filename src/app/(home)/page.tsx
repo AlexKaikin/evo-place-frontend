@@ -3,32 +3,31 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import imgUrl from '@assets/img/home/friends-posing-party.jpg'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import { Button, Stack, Typography } from '@ui'
 import styles from './page.module.css'
 
 export default function Home() {
   const router = useRouter()
   const { error } = useAuth()
+  const { lang, translate } = useLangs()
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <Typography variant="title-1" tag="h1">
-          International community
+          {translate[lang].home.title}
         </Typography>
         <Typography variant="text">
-          Welcome to the EVO community space. Here we are interested in the care
-          of health, beauty and longevity. All users have access to such
-          services as e-shop, blog, social network. Every day we are getting
-          bigger. We&apos;ll be glad to see you in the community, and help you
-          reach your goals.
+          {translate[lang].home.description}
         </Typography>
         {error === 'unauthorized' && (
           <Stack direction="row" gap={20}>
-            <Button onClick={() => router.push('/register')}>Sign Up</Button>
+            <Button onClick={() => router.push('/register')}>
+              {translate[lang].header.account.register}
+            </Button>
             <Button color="secondary" onClick={() => router.push('/login')}>
-              Log In
+              {translate[lang].header.account.login}
             </Button>
           </Stack>
         )}
