@@ -6,13 +6,22 @@ import { Stack, Typography, Rating } from '@ui'
 import styles from './Card.module.css'
 
 export function Card({ product }: { product: Product }) {
-  const { _id, title, price, rating, ratingCount, imgUrl, manufacturer, id } =
-    product
+  const {
+    _id,
+    title,
+    price,
+    rating,
+    ratingCount,
+    imgUrl,
+    manufacturer,
+    id,
+    category,
+  } = product
   const newProduct = dayjs(new Date()).diff(dayjs(id), 'month') < 15
   const popProduct = ratingCount > 1
 
   return (
-    <Link href={`/shop/${_id}`} className={styles.card}>
+    <Link href={`/shop/${category}/${_id}`} className={styles.card}>
       <div className={styles.labels}>
         {newProduct && <div className={styles.new}>new</div>}
         {popProduct && <div className={styles.pop}>pop</div>}

@@ -7,11 +7,7 @@ import { useLangs } from '@store'
 import { Rating, Stack, Typography, Widget } from '@ui'
 import styles from './Popular.module.css'
 
-type Props = {
-  products: Product[]
-}
-
-export function Popular({ products }: Props) {
+export function Popular({ products }: { products: Product[] }) {
   const { lang, translate } = useLangs()
 
   return (
@@ -19,7 +15,7 @@ export function Popular({ products }: Props) {
       <Stack gap={20} className={styles.pop}>
         {products.splice(0, 5).map(product => (
           <Link
-            href={`/shop/${product._id}`}
+            href={`/shop/${product.category}/${product._id}`}
             key={product._id}
             className={styles.card}
           >
@@ -39,15 +35,17 @@ export function Popular({ products }: Props) {
 
               <Stack direction="row" gap={20}>
                 <div>$ {product.price}</div>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  gap={5}
-                  className={styles.rating}
-                >
-                  <Rating size={12} value={product.rating} /> (
-                  {product.ratingCount})
-                </Stack>
+                {!!product.ratingCount && (
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    gap={5}
+                    className={styles.rating}
+                  >
+                    <Rating size={12} value={product.rating} /> (
+                    {product.ratingCount})
+                  </Stack>
+                )}
               </Stack>
             </div>
           </Link>
