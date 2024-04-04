@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Metadata } from 'next'
 import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
-import { Categories, MobileMenu } from './_elements'
+import { Categories, MobileMenu, Sidebar } from './_elements'
 
 export const metadata: Metadata = {
   title: 'Shop | EVO PLACE',
@@ -25,6 +25,7 @@ export default function ShopLayout({ children }: { children: ReactNode }) {
         <Categories />
       </Aside>
       {children}
+      <Sidebar />
       <MobileMenu />
     </>
   )

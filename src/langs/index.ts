@@ -24,6 +24,14 @@ export const translate = {
         logout: 'Logout',
         login: 'Log In',
         register: 'Sign Up',
+        close: 'Close',
+      },
+      shopMenu: {
+        cart: 'Cart',
+        ea: 'ea',
+        cost: 'Cost',
+        goToCart: 'Place an order',
+        close: 'Close',
       },
     },
     footer: {
@@ -167,6 +175,13 @@ export const translate = {
         logout: 'Выйти',
         login: 'Войти',
         register: 'Регистрация',
+      },
+      shopMenu: {
+        cart: 'Корзина',
+        ea: 'ед.',
+        cost: 'Стоимость',
+        goToCart: 'Оформить заказ',
+        close: 'Закрыть',
       },
     },
     footer: {

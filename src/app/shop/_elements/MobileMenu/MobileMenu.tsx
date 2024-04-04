@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter, useSearchParams, useParams } from 'next/navigation'
-import { useCart, useFavoriteProducts, useCompare } from '@store'
+import { useRouter, useParams } from 'next/navigation'
+import { useCart, useFavoriteProducts, useCompare, useLangs } from '@store'
 import {
   Menu,
   Icon,
@@ -23,9 +23,9 @@ import styles from './MobileMenu.module.css'
 
 export function MobileMenu() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const params = useParams<{ productId?: string }>()
-  const currentCategory = searchParams.get('category')
+  const { lang, translate } = useLangs()
+  const params = useParams<{ productId?: string; category?: string }>()
+  const currentCategory = params?.category || null
   const cartStore = useCart()
   const favoritesStore = useFavoriteProducts()
   const compareStore = useCompare()
@@ -49,7 +49,7 @@ export function MobileMenu() {
   const { compareItems } = compareStore
 
   const changeCategory = (category: string | null) => {
-    category ? router.push(`/shop?category=${category}`) : router.push(`/shop`)
+    category ? router.push(`/shop/${category}`) : router.push(`/shop`)
     scrollToTop()
   }
 
@@ -186,7 +186,9 @@ export function MobileMenu() {
           </PopoverTrigger>
         </Badge>
         <PopoverContent>
-          <PopoverHeading>Cart</PopoverHeading>
+          <PopoverHeading>
+            {translate[lang].header.shopMenu.cart}
+          </PopoverHeading>
           <div className={styles.products}>
             {cartItems?.map(product => (
               <div key={product._id} className={styles.product}>
@@ -200,7 +202,7 @@ export function MobileMenu() {
                 </div>
                 <div className={styles.info}>
                   <Link
-                    href={`/shop/${product._id}`}
+                    href={`/shop/${product.category}/${product._id}`}
                     onClick={() => setOpen(false)}
                   >
                     {product.title}
@@ -208,7 +210,7 @@ export function MobileMenu() {
                   <div className={styles.cost}>${product.cost}</div>
                   <div className={styles.quantity}>
                     <div className={styles.quantityNumber}>
-                      {product.quantity} ea
+                      {product.quantity} {translate[lang].header.shopMenu.ea}
                     </div>
                     <IconButton
                       icon="BsTrash"
@@ -221,7 +223,7 @@ export function MobileMenu() {
             ))}
           </div>
           <div>
-            Cost <span>${totalCost}</span>
+            {translate[lang].header.shopMenu.cost} <span>${totalCost}</span>
           </div>
           <Button
             onClick={() => {
@@ -230,10 +232,10 @@ export function MobileMenu() {
             }}
             isFullWidth
           >
-            Go to cart
+            {translate[lang].header.shopMenu.goToCart}
           </Button>
           <Button color="secondary" onClick={() => setOpen(false)} isFullWidth>
-            Close
+            {translate[lang].header.shopMenu.close}
           </Button>
         </PopoverContent>
       </Popover>

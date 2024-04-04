@@ -1,6 +1,8 @@
 export type UrlParams = {
   params?: {
     id?: string
+    product?: string
+    category?: string
   }
   searchParams: {
     _page?: string

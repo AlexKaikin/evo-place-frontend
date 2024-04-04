@@ -47,7 +47,9 @@ export default function Cart() {
                     />
                   </div>
                   <div className={styles.title}>
-                    <Link href={`/shop/${product._id}`}>{product.title}</Link>
+                    <Link href={`/shop/${product.category}/${product._id}`}>
+                      {product.title}
+                    </Link>
                   </div>
                   <div className={styles.quantityContainer}>
                     <div className={styles.quantity}>

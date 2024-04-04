@@ -17,12 +17,12 @@ export function Categories() {
           action={() => router.push('/account')}
           active={!currentCategory ? true : false}
         />
-        <Menu
+        {/* <Menu
           label="Orders"
           variant="category"
           action={() => router.push('/account/orders')}
           active={currentCategory === 'orders' ? true : false}
-        />
+        /> */}
         <Menu
           label="Reviews"
           variant="category"

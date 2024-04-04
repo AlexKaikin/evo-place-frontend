@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { useCart, useFavoriteProducts, useCompare } from '@store'
+import { useCart, useFavoriteProducts, useCompare, useLangs } from '@store'
 import {
   Stack,
   IconButton,
@@ -22,6 +22,7 @@ export function ShopMenu() {
   const router = useRouter()
   const pathname = usePathname()
   const cartStore = useCart()
+  const { lang, translate } = useLangs()
   const favoritesStore = useFavoriteProducts()
   const compareStore = useCompare()
   const [open, setOpen] = useState(false)
@@ -74,7 +75,9 @@ export function ShopMenu() {
           </PopoverTrigger>
         </Badge>
         <PopoverContent>
-          <PopoverHeading>Cart</PopoverHeading>
+          <PopoverHeading>
+            {translate[lang].header.shopMenu.cart}
+          </PopoverHeading>
           <div className={styles.products}>
             {cartItems?.map(product => (
               <div key={product._id} className={styles.product}>
@@ -88,7 +91,7 @@ export function ShopMenu() {
                 </div>
                 <div className={styles.info}>
                   <Link
-                    href={`/shop/${product._id}`}
+                    href={`/shop/${product.category}/${product._id}`}
                     onClick={() => setOpen(false)}
                   >
                     {product.title}
@@ -96,7 +99,7 @@ export function ShopMenu() {
                   <div className={styles.cost}>${product.cost}</div>
                   <div className={styles.quantity}>
                     <div className={styles.quantityNumber}>
-                      {product.quantity} ea
+                      {product.quantity} {translate[lang].header.shopMenu.ea}
                     </div>
                     <IconButton
                       icon="BsTrash"
@@ -109,7 +112,7 @@ export function ShopMenu() {
             ))}
           </div>
           <div>
-            Cost <span>${totalCost}</span>
+            {translate[lang].header.shopMenu.cost} <span>${totalCost}</span>
           </div>
           <Button
             onClick={() => {
@@ -118,10 +121,10 @@ export function ShopMenu() {
             }}
             isFullWidth
           >
-            Go to cart
+            {translate[lang].header.shopMenu.goToCart}
           </Button>
           <Button color="secondary" onClick={() => setOpen(false)} isFullWidth>
-            Close
+            {translate[lang].header.shopMenu.close}
           </Button>
         </PopoverContent>
       </Popover>

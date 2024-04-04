@@ -1,19 +1,17 @@
 'use client'
 
-import { useRouter, useSearchParams, useParams } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { useLangs } from '@store'
 import { Menu, Stack, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 
 export function Categories() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const { lang, translate } = useLangs()
-  const params = useParams<{ productId?: string }>()
-  const currentCategory = searchParams.get('category')
-
+  const params = useParams<{ category?: string }>()
+  const category = params?.category || null
   const changeCategory = (category: string | null) => {
-    category ? router.push(`/shop?category=${category}`) : router.push(`/shop`)
+    category ? router.push(`/shop/${category}`) : router.push(`/shop`)
     scrollToTop()
   }
 
@@ -24,31 +22,31 @@ export function Categories() {
           label="All"
           variant="category"
           action={() => changeCategory(null)}
-          active={currentCategory === null && !params?.productId ? true : false}
+          active={category === null}
         />
         <Menu
           label="Tea"
           variant="category"
           action={() => changeCategory('Tea')}
-          active={currentCategory === 'Tea' ? true : false}
+          active={category === 'Tea'}
         />
         <Menu
           label="Coffee"
           variant="category"
           action={() => changeCategory('Coffee')}
-          active={currentCategory === 'Coffee' ? true : false}
+          active={category === 'Coffee'}
         />
         <Menu
           label="Spices"
           variant="category"
           action={() => changeCategory('Spices')}
-          active={currentCategory === 'Spices' ? true : false}
+          active={category === 'Spices'}
         />
         <Menu
           label="Seeds"
           variant="category"
           action={() => changeCategory('Seeds')}
-          active={currentCategory === 'Seeds' ? true : false}
+          active={category === 'Seeds'}
         />
       </Stack>
     </Widget>

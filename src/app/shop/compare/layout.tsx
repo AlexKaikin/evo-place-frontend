@@ -4,11 +4,11 @@ import { Typography } from '@ui'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Favorite products |  EVO PLACE',
+  title: 'Compare products |  EVO PLACE',
   description: 'Products...',
 }
 
-export default function ShopFavoritesLayout({
+export default function ShopCompareLayout({
   children,
 }: {
   children: ReactNode
@@ -16,7 +16,7 @@ export default function ShopFavoritesLayout({
   return (
     <div className={styles.container}>
       <Typography variant="title-3" tag="h1">
-        Favorite products
+        Products for comparison
       </Typography>
       {children}
     </div>

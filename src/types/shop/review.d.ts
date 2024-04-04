@@ -10,6 +10,7 @@ export type Review = {
     _id: string
     title: string
     id: number
+    category: string
   }
   user: {
     avatarUrl: string
