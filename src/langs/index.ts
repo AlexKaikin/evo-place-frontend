@@ -62,6 +62,7 @@ export const translate = {
         reset: 'Reset',
       },
       product: {
+        by: 'By',
         quantity: 'Quantity',
         cost: 'Cost',
         add: 'Add to cart',
@@ -212,6 +213,7 @@ export const translate = {
         reset: 'Сбросить',
       },
       product: {
+        by: 'От',
         quantity: 'Количество',
         cost: 'Стоимость',
         add: 'В корзину',

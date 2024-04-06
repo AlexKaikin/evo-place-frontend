@@ -13,43 +13,44 @@ export function Popular({ products }: { products: Product[] }) {
   return (
     <Widget title={translate[lang].shop.product.popular}>
       <Stack gap={20} className={styles.pop}>
-        {products.splice(0, 5).map(product => (
-          <Link
-            href={`/shop/${product.category}/${product._id}`}
-            key={product._id}
-            className={styles.card}
-          >
-            <div className={styles.imgContainer}>
-              <Image
-                src={product.imgUrl}
-                fill
-                sizes="(max-width: 1800px) 33vw"
-                alt="Картинка не загрузилась"
-                className={styles.img}
-              />
-            </div>
-            <div className={styles.content}>
-              <Typography variant="title-6" tag="h3">
-                {product.title}
-              </Typography>
+        {products.map(
+          ({ _id, category, imgUrl, title, price, rating, ratingCount }) => (
+            <Link
+              href={`/shop/${category}/${_id}`}
+              key={_id}
+              className={styles.card}
+            >
+              <div className={styles.imgContainer}>
+                <Image
+                  src={imgUrl}
+                  fill
+                  sizes="(max-width: 1800px) 33vw"
+                  alt="Картинка не загрузилась"
+                  className={styles.img}
+                />
+              </div>
+              <div className={styles.content}>
+                <Typography variant="title-6" tag="h3">
+                  {title}
+                </Typography>
 
-              <Stack direction="row" gap={20}>
-                <div>$ {product.price}</div>
-                {!!product.ratingCount && (
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    gap={5}
-                    className={styles.rating}
-                  >
-                    <Rating size={12} value={product.rating} /> (
-                    {product.ratingCount})
-                  </Stack>
-                )}
-              </Stack>
-            </div>
-          </Link>
-        ))}
+                <Stack direction="row" gap={20}>
+                  <div>$ {price}</div>
+                  {!!ratingCount && (
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      gap={5}
+                      className={styles.rating}
+                    >
+                      <Rating size={12} value={rating} /> ({ratingCount})
+                    </Stack>
+                  )}
+                </Stack>
+              </div>
+            </Link>
+          )
+        )}
       </Stack>
     </Widget>
   )
