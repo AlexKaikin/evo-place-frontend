@@ -12,6 +12,7 @@ import {
   Reviews,
   Characteristics,
   Description,
+  Manufacturer,
 } from './_elements'
 import styles from './page.module.css'
 
@@ -43,6 +44,8 @@ async function getPopProducts(urlParams: UrlParams) {
 export default async function Product(urlParams: UrlParams) {
   if (urlParams.params?.category)
     urlParams.searchParams.category = urlParams.params.category
+  urlParams.searchParams._limit = '5'
+
   const productsData = await getProduct(urlParams.params!.product!)
   const reviewsData = await getReviews(urlParams.params!.product!)
   const popData = await getPopProducts(urlParams)
@@ -53,6 +56,7 @@ export default async function Product(urlParams: UrlParams) {
   ])
   const newProduct = dayjs(new Date()).diff(dayjs(product.id), 'month') < 15
   const popProduct = product.ratingCount > 1
+
   return (
     <>
       <Stack>
@@ -62,9 +66,7 @@ export default async function Product(urlParams: UrlParams) {
           </div>
           <div className={styles.info}>
             <Stack direction="row" justifyContent="space-between" gap={20}>
-              <div className={styles.manufacturer}>
-                By <span>{product.manufacturer}</span>
-              </div>
+              <Manufacturer product={product} />
               <div className={styles.labels}>
                 {newProduct && <div className={styles.new}>new</div>}
                 {popProduct && <div className={styles.pop}>pop</div>}

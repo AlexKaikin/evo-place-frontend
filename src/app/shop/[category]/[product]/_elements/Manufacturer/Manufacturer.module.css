@@ -1,0 +1,7 @@
+.manufacturer {
+  margin-bottom: 5px;
+
+  > span {
+    color: var(--primary);
+  }
+}

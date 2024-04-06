@@ -1,8 +1,15 @@
+import { toast } from 'react-toastify'
 import { Recommend } from '@/types/club'
 import { api } from '@configs'
 
 export const recommendationService = {
-  getAll() {
-    return api.get<Recommend[]>(`recommendations/`)
+  async getAll() {
+    try {
+      const response = await api.get<Recommend[]>(`recommendations/`)
+      return response.data
+    } catch (error) {
+      toast.info('Error loading recommendations!')
+      return []
+    }
   },
 }

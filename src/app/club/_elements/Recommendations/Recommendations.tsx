@@ -1,21 +1,30 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Recommend } from '@/types/club'
 import { Widget } from '@/ui'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
+import { recommendationService } from '@services'
 import { useLangs } from '@store'
 import styles from './Recommendations.module.css'
 
-type Props = {
-  recommendItems: Recommend[]
-}
-
-export function Recommendations({ recommendItems }: Props) {
+export function Recommendations() {
+  const [recommendations, setRecommendations] = useState<Recommend[]>([])
+  const [loading, setLoading] = useState(true)
   const { lang, translate } = useLangs()
 
-  if (!recommendItems || !recommendItems.length)
+  useEffect(() => {
+    const getRecommendations = async () => {
+      const response = await recommendationService.getAll()
+      setRecommendations(response)
+      setLoading(false)
+    }
+    getRecommendations()
+  }, [])
+
+  if (!loading && !recommendations.length)
     return (
       <Widget title={translate[lang].club.matching}>
         <div className={styles.items}>{translate[lang].club.noMatching}</div>
@@ -25,22 +34,18 @@ export function Recommendations({ recommendItems }: Props) {
   return (
     <Widget title={translate[lang].club.matching}>
       <div className={styles.items}>
-        {recommendItems.map(user => (
-          <Link
-            href={`/club/users/${user._id}`}
-            key={user._id}
-            className={styles.item}
-          >
+        {recommendations.map(({ _id, avatarUrl, fullName, about }) => (
+          <Link href={`/club/users/${_id}`} key={_id} className={styles.item}>
             <div className={styles.avatar}>
               <Image
                 fill
                 sizes="(max-width: 1800px) 33vw"
-                src={user.avatarUrl ? user.avatarUrl : defaultAvatar}
-                alt=""
+                src={avatarUrl || defaultAvatar}
+                alt={`${fullName} avatar`}
               />
             </div>
             <div className={styles.content}>
-              {user.fullName}, <span>{user.about}</span>
+              {fullName}, <span>{about}</span>
             </div>
           </Link>
         ))}
