@@ -24,6 +24,14 @@ export const translate = {
         logout: 'Logout',
         login: 'Log In',
         register: 'Sign Up',
+        close: 'Close',
+      },
+      shopMenu: {
+        cart: 'Cart',
+        ea: 'ea',
+        cost: 'Cost',
+        goToCart: 'Place an order',
+        close: 'Close',
       },
     },
     footer: {
@@ -54,6 +62,7 @@ export const translate = {
         reset: 'Reset',
       },
       product: {
+        by: 'By',
         quantity: 'Quantity',
         cost: 'Cost',
         add: 'Add to cart',
@@ -168,6 +177,13 @@ export const translate = {
         login: 'Войти',
         register: 'Регистрация',
       },
+      shopMenu: {
+        cart: 'Корзина',
+        ea: 'ед.',
+        cost: 'Стоимость',
+        goToCart: 'Оформить заказ',
+        close: 'Закрыть',
+      },
     },
     footer: {
       policy: 'Политика конфиденциальности',
@@ -197,6 +213,7 @@ export const translate = {
         reset: 'Сбросить',
       },
       product: {
+        by: 'От',
         quantity: 'Количество',
         cost: 'Стоимость',
         add: 'В корзину',

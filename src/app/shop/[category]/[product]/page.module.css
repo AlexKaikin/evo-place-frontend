@@ -20,14 +20,6 @@
   }
 }
 
-.manufacturer {
-  margin-bottom: 5px;
-
-  > span {
-    color: var(--primary);
-  }
-}
-
 .labels {
   display: flex;
   flex-direction: row;

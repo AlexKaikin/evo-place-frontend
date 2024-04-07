@@ -6,10 +6,13 @@ import { Icon, Stack, Typography } from '@ui'
 import styles from './Card.module.css'
 
 export function Card({ post }: { post: Post }) {
-  const { _id, title, imgUrl } = post
+  const { _id, title, imgUrl, category, viewsCount, created, text } = post
 
   return (
-    <Link href={`/blog/${_id}`} className={styles.card}>
+    <Link
+      href={`/blog/${category.toLowerCase()}/${_id}`}
+      className={styles.card}
+    >
       <div className={styles.imgContainer}>
         <Image
           src={imgUrl}
@@ -31,19 +34,19 @@ export function Card({ post }: { post: Post }) {
         </div>
         <div className={styles.meta}>
           <Stack direction="row" alignItems="center" gap={5}>
-            <Icon name="BsFolder2Open" size="16" /> {post.category}
+            <Icon name="BsFolder2Open" size="16" /> {category}
           </Stack>
           <Stack direction="row" alignItems="center" gap={5}>
-            <Icon name="BsEye" size="16" /> {post.viewsCount}
+            <Icon name="BsEye" size="16" /> {viewsCount}
           </Stack>
           <Stack direction="row" alignItems="center" gap={5}>
             <Icon name="BsClock" size="16" />{' '}
-            {dayjs(post.created).format('H:m, DD.MM.YYYY')}
+            {dayjs(created).format('H:mm, DD.MM.YYYY')}
           </Stack>
         </div>
 
         <div className={styles.info}>
-          {post.text
+          {text
             .slice(0, 140)
             .concat('...')
             .split('\n')

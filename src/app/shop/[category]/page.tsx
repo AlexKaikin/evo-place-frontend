@@ -1,9 +1,16 @@
 import cn from 'classnames'
 import { productService } from '@services'
 import { Pagination, Typography } from '@ui'
-import type { UrlParams } from '@utils'
-import { Card } from './_elements'
+import { UrlParams, text } from '@utils'
+import { Card } from '../_elements'
 import styles from './page.module.css'
+
+export async function generateMetadata({ params }: UrlParams) {
+  return {
+    title: params?.category + ` |  EVO PLACE`,
+    description: text.getMetaDescription(params?.category || ''),
+  }
+}
 
 async function getProducts(urlParams: UrlParams) {
   const res = await productService.getAll(urlParams)
@@ -11,6 +18,8 @@ async function getProducts(urlParams: UrlParams) {
 }
 
 export default async function Shop(urlParams: UrlParams) {
+  const category = urlParams.params?.category
+  if (category) urlParams.searchParams.category = category
   const productsData = await getProducts(urlParams)
   const [{ products, totalCount }] = await Promise.all([productsData])
 

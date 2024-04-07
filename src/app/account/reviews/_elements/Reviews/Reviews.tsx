@@ -38,7 +38,7 @@ export function Reviews({ reviews }: { reviews: Review[] }) {
             <div className="item">
               Article{' '}
               <Link
-                href={`/shop/${review?.product._id}`}
+                href={`/shop/${review?.product.category}/${review?.product._id}`}
                 className={styles.link}
               >
                 {review?.product.title}
