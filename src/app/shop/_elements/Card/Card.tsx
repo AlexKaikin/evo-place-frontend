@@ -21,7 +21,10 @@ export function Card({ product }: { product: Product }) {
   const popProduct = ratingCount > 1
 
   return (
-    <Link href={`/shop/${category}/${_id}`} className={styles.card}>
+    <Link
+      href={`/shop/${category.toLowerCase()}/${_id}`}
+      className={styles.card}
+    >
       <div className={styles.labels}>
         {newProduct && <div className={styles.new}>new</div>}
         {popProduct && <div className={styles.pop}>pop</div>}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter, useSearchParams, useParams } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { useFavoritePosts } from '@store'
 import { Menu, Icon, MenuItem, Badge, IconButton } from '@ui'
 import { scrollToTop } from '@utils'
@@ -8,9 +8,8 @@ import styles from './MobileMenu.module.css'
 
 export function MobileMenu() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const params = useParams<{ postId?: string }>()
-  const currentCategory = searchParams.get('category')
+  const params = useParams<{ category?: string }>()
+  const category = params?.category || null
   const favoritesStore = useFavoritePosts()
 
   if (!favoritesStore)
@@ -25,7 +24,7 @@ export function MobileMenu() {
   const { favoritesItems } = favoritesStore
 
   const changeCategory = (category: string | null) => {
-    category ? router.push(`/blog?category=${category}`) : router.push(`/blog`)
+    category ? router.push(`/blog/${category}`) : router.push(`/blog`)
     scrollToTop()
   }
 
@@ -69,26 +68,22 @@ export function MobileMenu() {
         <MenuItem
           label="All"
           action={() => changeCategory(null)}
-          color={
-            currentCategory === null && !params?.postId
-              ? 'primary'
-              : 'secondary'
-          }
+          color={category === null ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Reviews"
-          action={() => changeCategory('Reviews')}
-          color={currentCategory === 'Reviews' ? 'primary' : 'secondary'}
+          action={() => changeCategory('reviews')}
+          color={category === 'reviews' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Traditions"
-          action={() => changeCategory('Traditions')}
-          color={currentCategory === 'Traditions' ? 'primary' : 'secondary'}
+          action={() => changeCategory('traditions')}
+          color={category === 'traditions' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Instructions"
-          action={() => changeCategory('Instructions')}
-          color={currentCategory === 'Instructions' ? 'primary' : 'secondary'}
+          action={() => changeCategory('instructions')}
+          color={category === 'instructions' ? 'primary' : 'secondary'}
         />
       </Menu>
       <Menu label={<Icon name="BsSortDown" />}>

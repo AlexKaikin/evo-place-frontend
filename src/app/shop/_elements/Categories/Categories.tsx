@@ -27,26 +27,26 @@ export function Categories() {
         <Menu
           label="Tea"
           variant="category"
-          action={() => changeCategory('Tea')}
-          active={category === 'Tea'}
+          action={() => changeCategory('tea')}
+          active={category === 'tea'}
         />
         <Menu
           label="Coffee"
           variant="category"
-          action={() => changeCategory('Coffee')}
-          active={category === 'Coffee'}
+          action={() => changeCategory('coffee')}
+          active={category === 'coffee'}
         />
         <Menu
           label="Spices"
           variant="category"
-          action={() => changeCategory('Spices')}
-          active={category === 'Spices'}
+          action={() => changeCategory('spices')}
+          active={category === 'spices'}
         />
         <Menu
           label="Seeds"
           variant="category"
-          action={() => changeCategory('Seeds')}
-          active={category === 'Seeds'}
+          action={() => changeCategory('seeds')}
+          active={category === 'seeds'}
         />
       </Stack>
     </Widget>

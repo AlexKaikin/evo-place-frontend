@@ -1,19 +1,17 @@
 'use client'
 
-import { useRouter, useSearchParams, useParams } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import { useLangs } from '@store'
 import { Menu, Stack, Widget } from '@ui'
 import { scrollToTop } from '@utils'
 
 export function Categories() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const { lang, translate } = useLangs()
-  const params = useParams<{ postId?: string }>()
-  const currentCategory = searchParams.get('category')
-
+  const params = useParams<{ category?: string }>()
+  const category = params?.category || null
   const changeCategory = (category: string | null) => {
-    category ? router.push(`/blog?category=${category}`) : router.push(`/blog`)
+    category ? router.push(`/blog/${category}`) : router.push(`/blog`)
     scrollToTop()
   }
 
@@ -24,25 +22,25 @@ export function Categories() {
           label="All"
           variant="category"
           action={() => changeCategory(null)}
-          active={currentCategory === null && !params?.postId ? true : false}
+          active={category === null}
         />
         <Menu
           label="Reviews"
           variant="category"
-          action={() => changeCategory('Reviews')}
-          active={currentCategory === 'Reviews' ? true : false}
+          action={() => changeCategory('reviews')}
+          active={category === 'reviews'}
         />
         <Menu
           label="Traditions"
           variant="category"
-          action={() => changeCategory('Traditions')}
-          active={currentCategory === 'Traditions' ? true : false}
+          action={() => changeCategory('traditions')}
+          active={category === 'traditions'}
         />
         <Menu
           label="Instructions"
           variant="category"
-          action={() => changeCategory('Instructions')}
-          active={currentCategory === 'Instructions' ? true : false}
+          action={() => changeCategory('instructions')}
+          active={category === 'instructions'}
         />
       </Stack>
     </Widget>

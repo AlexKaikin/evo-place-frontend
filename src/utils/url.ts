@@ -1,6 +1,7 @@
 export type UrlParams = {
   params?: {
     id?: string
+    post?: string
     product?: string
     category?: string
   }

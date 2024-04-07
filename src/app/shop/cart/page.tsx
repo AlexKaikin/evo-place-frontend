@@ -36,52 +36,52 @@ export default function Cart() {
           </Typography>
           <div className={styles.productsContainer}>
             <div className={styles.products}>
-              {cartItems?.map(product => (
-                <div key={product._id} className={styles.product}>
-                  <div className={styles.imgContainer}>
-                    <Image
-                      fill
-                      sizes="(max-width: 1800px) 33vw"
-                      src={product.imgUrl}
-                      alt={product.title}
-                    />
-                  </div>
-                  <div className={styles.title}>
-                    <Link href={`/shop/${product.category}/${product._id}`}>
-                      {product.title}
-                    </Link>
-                  </div>
-                  <div className={styles.quantityContainer}>
-                    <div className={styles.quantity}>
-                      <IconButton
-                        icon="BsDashLg"
-                        onClick={() => decriment(product._id)}
+              {cartItems?.map(
+                ({ _id, imgUrl, title, category, quantity, cost }) => (
+                  <div key={_id} className={styles.product}>
+                    <div className={styles.imgContainer}>
+                      <Image
+                        fill
+                        sizes="(max-width: 1800px) 33vw"
+                        src={imgUrl}
+                        alt={title}
                       />
-                      <Input
-                        type="number"
-                        onChange={e =>
-                          changeQuantity(product._id, +e.target.value)
-                        }
-                        value={product.quantity}
-                        align="center"
-                      />
+                    </div>
+                    <div className={styles.title}>
+                      <Link href={`/shop/${category.toLowerCase()}/${_id}`}>
+                        {title}
+                      </Link>
+                    </div>
+                    <div className={styles.quantityContainer}>
+                      <div className={styles.quantity}>
+                        <IconButton
+                          icon="BsDashLg"
+                          onClick={() => decriment(_id)}
+                        />
+                        <Input
+                          type="number"
+                          onChange={e => changeQuantity(_id, +e.target.value)}
+                          value={quantity}
+                          align="center"
+                        />
+                        <IconButton
+                          icon="BsPlusLg"
+                          onClick={() => increment(_id)}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.cost}>${cost}</div>
+                    <div className={styles.delete}>
                       <IconButton
-                        icon="BsPlusLg"
-                        onClick={() => increment(product._id)}
+                        color="error"
+                        icon="BsTrash3"
+                        size="17"
+                        onClick={() => deleteCartItem(_id)}
                       />
                     </div>
                   </div>
-                  <div className={styles.cost}>${product.cost}</div>
-                  <div className={styles.delete}>
-                    <IconButton
-                      color="error"
-                      icon="BsTrash3"
-                      size="17"
-                      onClick={() => deleteCartItem(product._id)}
-                    />
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
         </div>

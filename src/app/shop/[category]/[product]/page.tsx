@@ -37,15 +37,14 @@ async function getReviews(productId: string) {
 }
 
 async function getPopProducts(urlParams: UrlParams) {
+  if (urlParams.params?.category)
+    urlParams.searchParams.category = urlParams.params.category
+  urlParams.searchParams._limit = '5'
   const res = await productService.getAll(urlParams)
   return { products: res.data, totalCount: res.headers['x-total-count'] }
 }
 
 export default async function Product(urlParams: UrlParams) {
-  if (urlParams.params?.category)
-    urlParams.searchParams.category = urlParams.params.category
-  urlParams.searchParams._limit = '5'
-
   const productsData = await getProduct(urlParams.params!.product!)
   const reviewsData = await getReviews(urlParams.params!.product!)
   const popData = await getPopProducts(urlParams)
