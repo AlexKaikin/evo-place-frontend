@@ -1,3 +1,17 @@
+# [3.6.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.5.1...v3.6.0) (2024-04-07)
+
+
+### Bug Fixes
+
+* Fix club recommendations ([225cafc](https://github.com/AlexKaikin/evo-place-frontend/commit/225cafce20957ef7d62558f2a24829e3789677f7))
+
+
+### Features
+
+* Change shop routing ([a252547](https://github.com/AlexKaikin/evo-place-frontend/commit/a25254704605bbd785a1bf7983a70f77705c0484))
+* Update blog routing ([9f0fd17](https://github.com/AlexKaikin/evo-place-frontend/commit/9f0fd172a7cdc4d6a7d3a83fbc4b5ecc4c983824))
+* Update club recommendations ([6a7d319](https://github.com/AlexKaikin/evo-place-frontend/commit/6a7d319c01d510f203181b6db9a544bdeb471475))
+
 ## [3.5.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.5.0...v3.5.1) (2024-03-30)
 
 
