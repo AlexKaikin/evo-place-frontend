@@ -79,37 +79,34 @@ export function ShopMenu() {
             {translate[lang].header.shopMenu.cart}
           </PopoverHeading>
           <div className={styles.products}>
-            {cartItems?.map(product => (
-              <div key={product._id} className={styles.product}>
-                <div className={styles.imgContainer}>
-                  <Image
-                    src={product.imgUrl}
-                    alt={product.title}
-                    width={80}
-                    height={80}
-                  />
-                </div>
-                <div className={styles.info}>
-                  <Link
-                    href={`/shop/${product.category}/${product._id}`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {product.title}
-                  </Link>
-                  <div className={styles.cost}>${product.cost}</div>
-                  <div className={styles.quantity}>
-                    <div className={styles.quantityNumber}>
-                      {product.quantity} {translate[lang].header.shopMenu.ea}
+            {cartItems?.map(
+              ({ _id, imgUrl, title, category, cost, quantity }) => (
+                <div key={_id} className={styles.product}>
+                  <div className={styles.imgContainer}>
+                    <Image src={imgUrl} alt={title} width={80} height={80} />
+                  </div>
+                  <div className={styles.info}>
+                    <Link
+                      href={`/shop/${category.toLowerCase()}/${_id}`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {title}
+                    </Link>
+                    <div className={styles.cost}>${cost}</div>
+                    <div className={styles.quantity}>
+                      <div className={styles.quantityNumber}>
+                        {quantity} {translate[lang].header.shopMenu.ea}
+                      </div>
+                      <IconButton
+                        icon="BsTrash"
+                        size="18"
+                        onClick={() => deleteCartProduct(_id)}
+                      />
                     </div>
-                    <IconButton
-                      icon="BsTrash"
-                      size="18"
-                      onClick={() => deleteCartProduct(product._id)}
-                    />
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
           <div>
             {translate[lang].header.shopMenu.cost} <span>${totalCost}</span>

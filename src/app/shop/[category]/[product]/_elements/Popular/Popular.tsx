@@ -16,7 +16,7 @@ export function Popular({ products }: { products: Product[] }) {
         {products.map(
           ({ _id, category, imgUrl, title, price, rating, ratingCount }) => (
             <Link
-              href={`/shop/${category}/${_id}`}
+              href={`/shop/${category.toLowerCase()}/${_id}`}
               key={_id}
               className={styles.card}
             >

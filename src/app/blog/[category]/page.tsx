@@ -3,8 +3,8 @@ import { Aside } from '@app/_elements'
 import { postService } from '@services'
 import { Pagination, Typography } from '@ui'
 import type { UrlParams } from '@utils'
-import { Card, Popular } from './_elements'
-import styles from './page.module.css'
+import { Card, Popular } from '../_elements'
+import styles from '../page.module.css'
 
 async function getPosts(urlParams: UrlParams) {
   return await postService.getAll(urlParams)

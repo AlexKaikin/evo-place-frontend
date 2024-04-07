@@ -25,7 +25,7 @@ export default function Compare() {
               alt={product.title}
             />
           </div>
-          <Link href={`/shop/${product.category}/${product._id}`}>
+          <Link href={`/shop/${product.category.toLowerCase()}/${product._id}`}>
             {product.title}
           </Link>
           <div>Maker: {product.manufacturer || '-'}</div>

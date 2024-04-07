@@ -25,7 +25,7 @@ export function MobileMenu() {
   const router = useRouter()
   const { lang, translate } = useLangs()
   const params = useParams<{ productId?: string; category?: string }>()
-  const currentCategory = params?.category || null
+  const category = params?.category || null
   const cartStore = useCart()
   const favoritesStore = useFavoriteProducts()
   const compareStore = useCompare()
@@ -104,30 +104,28 @@ export function MobileMenu() {
           label="All"
           action={() => changeCategory(null)}
           color={
-            currentCategory === null && !params?.productId
-              ? 'primary'
-              : 'secondary'
+            category === null && !params?.productId ? 'primary' : 'secondary'
           }
         />
         <MenuItem
           label="Tea"
-          action={() => changeCategory('Tea')}
-          color={currentCategory === 'Tea' ? 'primary' : 'secondary'}
+          action={() => changeCategory('tea')}
+          color={category === 'tea' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Coffee"
-          action={() => changeCategory('Coffee')}
-          color={currentCategory === 'Coffee' ? 'primary' : 'secondary'}
+          action={() => changeCategory('coffee')}
+          color={category === 'coffee' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Spices"
-          action={() => changeCategory('Spices')}
-          color={currentCategory === 'Spices' ? 'primary' : 'secondary'}
+          action={() => changeCategory('spices')}
+          color={category === 'spices' ? 'primary' : 'secondary'}
         />
         <MenuItem
           label="Seeds"
-          action={() => changeCategory('Seeds')}
-          color={currentCategory === 'Seeds' ? 'primary' : 'secondary'}
+          action={() => changeCategory('seeds')}
+          color={category === 'seeds' ? 'primary' : 'secondary'}
         />
       </Menu>
       <Menu variant="text" label={<Icon name="BsSortDown" />}>
