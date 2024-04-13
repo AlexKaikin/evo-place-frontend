@@ -1,4 +1,5 @@
 import { ComponentProps, ReactNode } from 'react'
+import cn from 'classnames'
 import styles from './Badge.module.css'
 
 type Props = ComponentProps<'div'> & {
@@ -12,11 +13,17 @@ type Props = ComponentProps<'div'> & {
 }
 
 export function Badge(props: Props) {
-  const { children, value, ...restProps } = props
+  const { children, value, variant, ...restProps } = props
 
   return (
     <div className={styles.badge} {...restProps}>
-      {!!value && <span className={styles.value}>{value}</span>}
+      {!!value && (
+        <span
+          className={cn(styles.value, { [styles['dot']]: variant === 'dot' })}
+        >
+          {variant !== 'dot' && value}
+        </span>
+      )}
       {children}
     </div>
   )

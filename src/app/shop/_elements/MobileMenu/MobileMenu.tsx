@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams, usePathname } from 'next/navigation'
 import { useCart, useFavoriteProducts, useCompare, useLangs } from '@store'
 import {
   Menu,
@@ -31,16 +31,41 @@ export function MobileMenu() {
   const compareStore = useCompare()
   const [open, setOpen] = useState(false)
   const [openFilter, setOpenFilter] = useState(false)
+  const pathname = usePathname()
+  const pathnameLenght = pathname.split('/').length
+  const isCatalog = pathnameLenght === 2 || (pathnameLenght === 3 && !!category)
 
   if (!cartStore || !favoritesStore || !compareStore)
     return (
       <div className={styles.mobileMenu}>
-        <IconButton icon="BsGrid" />
-        <IconButton icon="BsSortDown" />
-        <IconButton icon="BsFunnel" />
-        <IconButton icon="FiBarChart2" />
-        <IconButton icon="BsBookmark" />
-        <IconButton icon="BsBag" />
+        <div className={styles.item}>
+          <IconButton icon="BsGrid" />
+          <label>{translate[lang].shop.mobileMenu.menu}</label>
+        </div>
+        {isCatalog && (
+          <>
+            <div className={styles.item}>
+              <IconButton icon="BsSortDown" />
+              <label>{translate[lang].shop.mobileMenu.sort}</label>
+            </div>
+            <div className={styles.item}>
+              <IconButton icon="BsFunnel" />
+              <label>{translate[lang].shop.mobileMenu.filter}</label>
+            </div>
+          </>
+        )}
+        <div className={styles.item}>
+          <IconButton icon="FiBarChart2" />
+          <label>{translate[lang].shop.mobileMenu.compare}</label>
+        </div>
+        <div className={styles.item}>
+          <IconButton icon="BsBookmark" />
+          <label>{translate[lang].shop.mobileMenu.favorites}</label>
+        </div>
+        <div className={styles.item}>
+          <IconButton icon="BsBag" />
+          <label>{translate[lang].shop.mobileMenu.cart}</label>
+        </div>
       </div>
     )
 
@@ -99,89 +124,122 @@ export function MobileMenu() {
 
   return (
     <div className={styles.mobileMenu}>
-      <Menu variant="text" label={<Icon name="BsGrid" />}>
-        <MenuItem
-          label="All"
-          action={() => changeCategory(null)}
-          color={
-            category === null && !params?.productId ? 'primary' : 'secondary'
-          }
-        />
-        <MenuItem
-          label="Tea"
-          action={() => changeCategory('tea')}
-          color={category === 'tea' ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Coffee"
-          action={() => changeCategory('coffee')}
-          color={category === 'coffee' ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Spices"
-          action={() => changeCategory('spices')}
-          color={category === 'spices' ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Seeds"
-          action={() => changeCategory('seeds')}
-          color={category === 'seeds' ? 'primary' : 'secondary'}
-        />
-      </Menu>
-      <Menu variant="text" label={<Icon name="BsSortDown" />}>
-        <MenuItem label="new" onClick={() => changeSortActive('new')} />
-        <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
-        <MenuItem
-          label="price asc"
-          onClick={() => changeSortActive('priceIncrease')}
-        />
-        <MenuItem
-          label="price desc"
-          onClick={() => changeSortActive('priceDecrease')}
-        />
-      </Menu>
+      <div className={styles.item}>
+        <Menu variant="text" label={<Icon name="BsGrid" />}>
+          <MenuItem
+            label="All"
+            action={() => changeCategory(null)}
+            color={
+              category === null && !params?.productId ? 'primary' : 'secondary'
+            }
+          />
 
-      <Popover open={openFilter} onOpenChange={setOpenFilter}>
-        <PopoverTrigger variant="icon" onClick={() => setOpenFilter(v => !v)}>
-          <Icon name="BsFunnel" />
-        </PopoverTrigger>
-        <PopoverContent>
-          <div className={styles.filterContainer}>
-            <Filtration action={() => setOpenFilter(false)} />
-            <Button
-              color="secondary"
-              onClick={() => setOpenFilter(false)}
-              isFullWidth
-            >
-              Close
-            </Button>
+          <MenuItem
+            label="Tea"
+            action={() => changeCategory('tea')}
+            color={category === 'tea' ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Coffee"
+            action={() => changeCategory('coffee')}
+            color={category === 'coffee' ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Spices"
+            action={() => changeCategory('spices')}
+            color={category === 'spices' ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Seeds"
+            action={() => changeCategory('seeds')}
+            color={category === 'seeds' ? 'primary' : 'secondary'}
+          />
+        </Menu>
+        <label>{translate[lang].shop.mobileMenu.menu}</label>
+      </div>
+      {isCatalog && (
+        <>
+          <div className={styles.item}>
+            <Menu variant="text" label={<Icon name="BsSortDown" />}>
+              <MenuItem label="new" onClick={() => changeSortActive('new')} />
+              <MenuItem label="pop" onClick={() => changeSortActive('pop')} />
+              <MenuItem
+                label="price asc"
+                onClick={() => changeSortActive('priceIncrease')}
+              />
+              <MenuItem
+                label="price desc"
+                onClick={() => changeSortActive('priceDecrease')}
+              />
+            </Menu>
+            <label>{translate[lang].shop.mobileMenu.sort}</label>
           </div>
-        </PopoverContent>
-      </Popover>
+
+          <Popover open={openFilter} onOpenChange={setOpenFilter}>
+            <div className={styles.item}>
+              <PopoverTrigger
+                variant="icon"
+                onClick={() => setOpenFilter(v => !v)}
+              >
+                <Icon name="BsFunnel" />
+              </PopoverTrigger>
+              <label>{translate[lang].shop.mobileMenu.filter}</label>
+            </div>
+            <PopoverContent>
+              <div className={styles.filterContainer}>
+                <Filtration action={() => setOpenFilter(false)} />
+                <Button
+                  color="secondary"
+                  onClick={() => setOpenFilter(false)}
+                  isFullWidth
+                >
+                  Close
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </>
+      )}
+
       <Badge
+        variant="dot"
         value={compareItems.length}
         onClick={() =>
           compareItems.length ? router.push('/shop/compare') : null
         }
       >
-        <IconButton size="1.8rem" icon="FiBarChart2" />
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="FiBarChart2" />}></Menu>
+
+          <label>{translate[lang].shop.mobileMenu.compare}</label>
+        </div>
       </Badge>
+
       <Badge
+        variant="dot"
         value={favoritesItems.length}
         onClick={() =>
           favoritesItems.length ? router.push('/shop/favorites') : null
         }
       >
-        <IconButton icon="BsBookmark" />
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="BsBookmark" />}></Menu>
+          <label>{translate[lang].shop.mobileMenu.favorites}</label>
+        </div>
       </Badge>
+
       <Popover open={open} onOpenChange={setOpen}>
         <Badge
+          variant="dot"
           value={cartItems.length}
           onClick={() => (!cartItems.length ? null : setOpen(v => !v))}
         >
-          <PopoverTrigger>
-            <Icon name="BsBag" />
-          </PopoverTrigger>
+          <div className={styles.item}>
+            <PopoverTrigger variant="icon">
+              <Icon name="BsBag" />
+            </PopoverTrigger>
+            <label>{translate[lang].shop.mobileMenu.cart}</label>
+          </div>
         </Badge>
         <PopoverContent>
           <PopoverHeading>

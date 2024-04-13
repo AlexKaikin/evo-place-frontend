@@ -51,6 +51,7 @@ export function ShopMenu() {
     <Stack direction="row" gap={5}>
       <Badge
         value={compareItems.length}
+        variant="dot"
         onClick={() =>
           compareItems.length ? router.push('/shop/compare') : null
         }
@@ -59,6 +60,7 @@ export function ShopMenu() {
       </Badge>
       <Badge
         value={favoritesItems.length}
+        variant="dot"
         onClick={() =>
           favoritesItems.length ? router.push('/shop/favorites') : null
         }
@@ -68,6 +70,7 @@ export function ShopMenu() {
       <Popover open={open} onOpenChange={setOpen}>
         <Badge
           value={cartItems.length}
+          variant="dot"
           onClick={() => (!cartItems.length ? null : setOpen(v => !v))}
         >
           <PopoverTrigger>

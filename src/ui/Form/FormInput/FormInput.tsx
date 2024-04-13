@@ -7,7 +7,7 @@ import { Input } from '@ui'
 type Props = ComponentProps<typeof Input>
 
 function ForwardRef(props: Props, ref: Ref<HTMLInputElement>) {
-  const { name = '', defaultValue, ...rest } = props
+  const { name = '', defaultValue = '', ...rest } = props
   const { control } = useFormContext()
 
   return (
