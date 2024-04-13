@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import { Metadata } from 'next'
-import { Aside } from '@app/_elements'
 import { SAIT_URL } from '@configs'
 import { Categories, MobileMenu, Sidebar } from './_elements'
 
@@ -21,9 +20,7 @@ export const metadata: Metadata = {
 export default function ShopLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Aside>
-        <Categories />
-      </Aside>
+      <Categories />
       {children}
       <Sidebar />
       <MobileMenu />

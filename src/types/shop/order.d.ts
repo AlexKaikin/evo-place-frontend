@@ -1,4 +1,4 @@
-import { CartItem, Product } from '.'
+import { CartItem } from '.'
 
 export type Order = {
   _id?: number
@@ -17,4 +17,4 @@ export type Order = {
   created: string
 }
 
-export type CreateOrder = Omit<Product, 'id' | '_id' | 'status' | 'created'>
+export type CreateOrder = Omit<Order, 'id' | '_id' | 'status' | 'created'>
