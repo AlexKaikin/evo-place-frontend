@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.6.0...v3.7.0) (2024-04-13)
+
+
+### Features
+
+* Add product ordering ([72fcb8e](https://github.com/AlexKaikin/evo-place-frontend/commit/72fcb8e086113f5b53bba7080fbd92923bbdec9c))
+
 # [3.6.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.5.1...v3.6.0) (2024-04-07)
 
 
