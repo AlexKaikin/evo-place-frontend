@@ -131,7 +131,7 @@ export const PopoverTrigger = React.forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & PopoverTriggerProps
 >(function PopoverTrigger(
-  { children, variant = 'icon', asChild = false, ...props },
+  { children, variant, asChild = false, ...props },
   propRef
 ) {
   const context = usePopoverContext()
@@ -160,7 +160,7 @@ export const PopoverTrigger = React.forwardRef<
       data-state={context.open ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
       className={cn(styles.trigger, {
-        [styles['button']]: variant === 'button',
+        [styles[variant!]]: variant,
       })}
     >
       {children}
