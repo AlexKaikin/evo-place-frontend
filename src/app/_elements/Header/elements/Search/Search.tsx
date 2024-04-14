@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { z } from 'zod'
-import { Form, FormInput, Icon, Menu, MenuItem } from '@/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLangs } from '@store'
+import { Form, FormInput, Icon, IconButton, Menu, MenuItem } from '@ui'
 import styles from './Search.module.css'
 
 type Search = { q: string }
@@ -53,15 +53,16 @@ export function Search() {
           <FormInput
             name="q"
             placeholder={`${translate[lang].header.search.search}...`}
-            startIcon="BsSearch"
             className={styles.input}
           />
           <div className={styles.actions}>
             <div className={styles.selectContainer}>
               <Menu
+                variant="text"
                 label={
                   <>
-                    {searchIn} <Icon name="BsCaretDown" size="16" />
+                    {searchIn}
+                    <Icon name="BsCaretDown" size="16" />
                   </>
                 }
                 noHoverBg
@@ -76,6 +77,12 @@ export function Search() {
                 />
               </Menu>
             </div>
+            <IconButton
+              color="primary"
+              type="submit"
+              icon="BsSearch"
+              size="15"
+            />
           </div>
         </div>
       </Form>
