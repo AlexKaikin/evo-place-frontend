@@ -1,5 +1,6 @@
 .search {
   display: flex;
+  align-items: center;
   background-color: var(--gray);
   border-radius: var(--radius);
   gap: var(--spacing);
@@ -8,17 +9,16 @@
 }
 
 .input {
-  width: 130px;
-  margin-right: 130px;
+  width: 150px;
+  margin-right: 170px;
   padding: calc(var(--spacing) / 4);
   color: var(--dark);
 }
 
 .actions {
   display: flex;
-  gap: calc(var(--spacing) * 2);
+  gap: calc(var(--spacing));
   position: absolute;
-  top: 0;
   right: 0;
   padding: calc(var(--spacing) / 3);
 }
@@ -26,6 +26,5 @@
 .selectContainer {
   display: flex;
   align-items: center;
-  background-color: var(--bg);
   border-radius: var(--radius);
 }
