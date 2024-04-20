@@ -54,7 +54,7 @@ export function ReviewForm({
   })
 
   const formMethods = useForm<Review>({
-    defaultValues: { body: '', rating: undefined, product: productId },
+    defaultValues: { body: '', rating: -1, product: productId },
     resolver: zodResolver(schema),
   })
 
@@ -62,7 +62,7 @@ export function ReviewForm({
 
   function handleRaiting(rs: string, rn: number) {
     setRatigns(rs)
-    setValue('rating', rn)
+    setValue('rating', rn, { shouldValidate: true })
   }
 
   const handleSubmit = async (data: Review) => {

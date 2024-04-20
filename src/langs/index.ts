@@ -144,6 +144,13 @@ export const translate = {
       events: 'Events',
       matching: 'Matching interests',
       noMatching: 'Fill out your profile so we can recommend users to you',
+      mobileMenu: {
+        myPage: 'My page',
+        messenger: 'Messenger',
+        groups: 'Groups',
+        users: 'Users',
+        events: 'Events',
+      },
     },
     contacts: {
       title: 'Title',
@@ -186,6 +193,19 @@ export const translate = {
           messageMin: 'Minimum length 8 characters',
           messageMax: 'Maximum length 32 characters',
         },
+      },
+    },
+    account: {
+      mobileMenu: {
+        profile: 'Profile',
+        orders: 'Orders',
+        reviews: 'Reviews',
+        comments: 'Comments',
+        sections: 'Sections',
+      },
+      events: {
+        events: 'Events',
+        noEvents: 'No events',
       },
     },
   },
@@ -328,6 +348,13 @@ export const translate = {
       matching: 'Совпадение интересов',
       noMatching:
         'Заполните свой профиль, чтобы мы могли рекомендовать вам пользователей',
+      mobileMenu: {
+        myPage: 'Моя стр.',
+        messenger: 'Мессенджер',
+        groups: 'Группы',
+        users: 'Люди',
+        events: 'Страницы',
+      },
     },
     contacts: {
       title: 'Заголовок',
@@ -370,6 +397,19 @@ export const translate = {
           messageMin: 'Минимум 8 символов',
           messageMax: 'Максимум 32 символа',
         },
+      },
+    },
+    account: {
+      mobileMenu: {
+        profile: 'Профиль',
+        orders: 'Заказы',
+        reviews: 'Отзывы',
+        comments: 'Комментарии',
+        sections: 'Разделы',
+      },
+      events: {
+        events: 'События',
+        noEvents: 'Нет событий',
       },
     },
   },

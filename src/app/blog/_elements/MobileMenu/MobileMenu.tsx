@@ -1,13 +1,14 @@
 'use client'
 
 import { useRouter, useParams } from 'next/navigation'
-import { useFavoritePosts } from '@store'
-import { Menu, Icon, MenuItem, Badge, IconButton } from '@ui'
+import { useFavoritePosts, useLangs } from '@store'
+import { Menu, Icon, MenuItem, Badge } from '@ui'
 import { scrollToTop } from '@utils'
 import styles from './MobileMenu.module.css'
 
 export function MobileMenu() {
   const router = useRouter()
+  const { lang, translate } = useLangs()
   const params = useParams<{ category?: string }>()
   const category = params?.category || null
   const favoritesStore = useFavoritePosts()
@@ -15,9 +16,18 @@ export function MobileMenu() {
   if (!favoritesStore)
     return (
       <div className={styles.mobileMenu}>
-        <IconButton icon="BsGrid" />
-        <IconButton icon="BsSortDown" />
-        <IconButton icon="BsBookmark" />
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="BsGrid" />}></Menu>
+          <label>{translate[lang].shop.mobileMenu.menu}</label>
+        </div>
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="BsSortDown" />}></Menu>
+          <label>{translate[lang].shop.mobileMenu.sort}</label>
+        </div>
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="BsBookmark" />}></Menu>
+          <label>{translate[lang].shop.mobileMenu.favorites}</label>
+        </div>
       </div>
     )
 
@@ -64,40 +74,53 @@ export function MobileMenu() {
 
   return (
     <div className={styles.mobileMenu}>
-      <Menu label={<Icon name="BsGrid" />}>
-        <MenuItem
-          label="All"
-          action={() => changeCategory(null)}
-          color={category === null ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Reviews"
-          action={() => changeCategory('reviews')}
-          color={category === 'reviews' ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Traditions"
-          action={() => changeCategory('traditions')}
-          color={category === 'traditions' ? 'primary' : 'secondary'}
-        />
-        <MenuItem
-          label="Instructions"
-          action={() => changeCategory('instructions')}
-          color={category === 'instructions' ? 'primary' : 'secondary'}
-        />
-      </Menu>
-      <Menu label={<Icon name="BsSortDown" />}>
-        <MenuItem label="new" onClick={() => changeSortActive('id')} />
-        <MenuItem label="pop" onClick={() => changeSortActive('viewsCount')} />
-      </Menu>
+      <div className={styles.item}>
+        <Menu variant="text" label={<Icon name="BsGrid" />}>
+          <MenuItem
+            label="All"
+            action={() => changeCategory(null)}
+            color={category === null ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Reviews"
+            action={() => changeCategory('reviews')}
+            color={category === 'reviews' ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Traditions"
+            action={() => changeCategory('traditions')}
+            color={category === 'traditions' ? 'primary' : 'secondary'}
+          />
+          <MenuItem
+            label="Instructions"
+            action={() => changeCategory('instructions')}
+            color={category === 'instructions' ? 'primary' : 'secondary'}
+          />
+        </Menu>
+        <label>{translate[lang].shop.mobileMenu.menu}</label>
+      </div>
+      <div className={styles.item}>
+        <Menu variant="text" label={<Icon name="BsSortDown" />}>
+          <MenuItem label="new" onClick={() => changeSortActive('id')} />
+          <MenuItem
+            label="pop"
+            onClick={() => changeSortActive('viewsCount')}
+          />
+        </Menu>
+        <label>{translate[lang].shop.mobileMenu.sort}</label>
+      </div>
 
       <Badge
+        variant="dot"
         value={favoritesItems.length}
         onClick={() =>
           favoritesItems.length ? router.push('/blog/favorites') : null
         }
       >
-        <IconButton icon="BsBookmark" />
+        <div className={styles.item}>
+          <Menu variant="text" label={<Icon name="BsBookmark" />}></Menu>
+          <label>{translate[lang].shop.mobileMenu.favorites}</label>
+        </div>
       </Badge>
     </div>
   )

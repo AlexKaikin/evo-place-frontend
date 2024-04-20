@@ -39,31 +39,31 @@ export function MobileMenu() {
     return (
       <div className={styles.mobileMenu}>
         <div className={styles.item}>
-          <IconButton icon="BsGrid" />
+          <Menu variant="text" label={<Icon name="BsGrid" />}></Menu>
           <label>{translate[lang].shop.mobileMenu.menu}</label>
         </div>
         {isCatalog && (
           <>
             <div className={styles.item}>
-              <IconButton icon="BsSortDown" />
+              <Menu variant="text" label={<Icon name="BsSortDown" />}></Menu>
               <label>{translate[lang].shop.mobileMenu.sort}</label>
             </div>
             <div className={styles.item}>
-              <IconButton icon="BsFunnel" />
+              <Menu variant="text" label={<Icon name="BsFunnel" />}></Menu>
               <label>{translate[lang].shop.mobileMenu.filter}</label>
             </div>
           </>
         )}
         <div className={styles.item}>
-          <IconButton icon="FiBarChart2" />
+          <Menu variant="text" label={<Icon name="FiBarChart2" />}></Menu>
           <label>{translate[lang].shop.mobileMenu.compare}</label>
         </div>
         <div className={styles.item}>
-          <IconButton icon="BsBookmark" />
+          <Menu variant="text" label={<Icon name="BsBookmark" />}></Menu>
           <label>{translate[lang].shop.mobileMenu.favorites}</label>
         </div>
         <div className={styles.item}>
-          <IconButton icon="BsBag" />
+          <Menu variant="text" label={<Icon name="BsBag" />}></Menu>
           <label>{translate[lang].shop.mobileMenu.cart}</label>
         </div>
       </div>
