@@ -1,3 +1,11 @@
+# [3.8.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.7.0...v3.8.0) (2024-04-20)
+
+
+### Features
+
+* Add labels for mobile menu ([be899f0](https://github.com/AlexKaikin/evo-place-frontend/commit/be899f0839e4173dc3117dcb0cff8b41cc1c32dd))
+* Update search in header ([4a06ba7](https://github.com/AlexKaikin/evo-place-frontend/commit/4a06ba7e829b43fda11ac61ee3e16a3342b030c8))
+
 # [3.7.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.6.0...v3.7.0) (2024-04-13)
 
 
