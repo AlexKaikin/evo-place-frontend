@@ -15,7 +15,7 @@ export function MobileMenu() {
         <Menu
           variant="text"
           label={<Icon name="BsPerson" />}
-          onClick={() => router.push('/account')}
+          action={() => router.push('/account')}
         ></Menu>
         <label>{translate[lang].account.mobileMenu.profile}</label>
       </div>
@@ -23,7 +23,7 @@ export function MobileMenu() {
         <Menu
           variant="text"
           label={<Icon name="BsBag" />}
-          onClick={() => router.push('/account/orders')}
+          action={() => router.push('/account/orders')}
         ></Menu>
         <label>{translate[lang].account.mobileMenu.orders}</label>
       </div>
@@ -31,7 +31,7 @@ export function MobileMenu() {
         <Menu
           variant="text"
           label={<Icon name="BsStarHalf" />}
-          onClick={() => router.push('/account/reviews')}
+          action={() => router.push('/account/reviews')}
         ></Menu>
         <label>{translate[lang].account.mobileMenu.reviews}</label>
       </div>
@@ -39,7 +39,7 @@ export function MobileMenu() {
         <Menu
           variant="text"
           label={<Icon name="BsChatLeftText" />}
-          onClick={() => router.push('/account/comments')}
+          action={() => router.push('/account/comments')}
         ></Menu>
         <label>{translate[lang].account.mobileMenu.comments}</label>
       </div>

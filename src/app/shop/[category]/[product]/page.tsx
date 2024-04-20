@@ -89,7 +89,7 @@ export default async function Product(urlParams: UrlParams) {
         </div>
         <Description product={product} />
         <Characteristics product={product} />
-        <Reviews productId={product._id} reviews={reviews} />
+        <Reviews product={product} reviews={reviews} />
       </Stack>
       <Aside position="right" width={350}>
         <Popular products={pop.products} />
