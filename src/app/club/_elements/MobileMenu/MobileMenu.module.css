@@ -17,50 +17,14 @@
   }
 }
 
-.products {
-  max-height: 400px;
-  overflow: auto;
-}
-
-.product {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.imgContainer {
-  width: 80px;
-
-  > img {
-    border-radius: var(--radius);
-  }
-}
-
-.info {
-  width: 160px;
-}
-
-.cost {
-  font-weight: 300;
-}
-
-.quantity {
-  display: flex;
-  justify-content: space-between;
-}
-
-.quantityNumber {
-  font-weight: 300;
-}
-
-.filterContainer {
+.item {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  max-height: 85vh;
-  overflow: auto;
+  align-items: center;
+  justify-content: flex-end;
+
+  > label {
+    font-size: 10px;
+    font-weight: 400;
+  }
 }
