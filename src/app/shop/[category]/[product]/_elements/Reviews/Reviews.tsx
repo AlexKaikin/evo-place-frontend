@@ -4,7 +4,7 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Review } from '@/types/shop'
+import { Product, Review } from '@/types/shop'
 import defautAvatar from '@assets/img/user/defaultAvatar.png'
 import { useAuth, useLangs } from '@store'
 import {
@@ -21,16 +21,18 @@ import { ReviewForm } from '..'
 import styles from './Reviews.module.css'
 
 export function Reviews({
-  productId,
+  product,
   reviews,
 }: {
-  productId: string
+  product: Product
   reviews: Review[]
 }) {
   const router = useRouter()
   const { user } = useAuth()
+  const { _id, category } = product
   const [open, setOpen] = useState(false)
   const { lang, translate } = useLangs()
+  const productLink = `/login?from=shop/${category.toLowerCase()}/${_id}`
 
   return (
     <div className={styles.reviews}>
@@ -41,9 +43,7 @@ export function Reviews({
         <Button
           color="primary"
           startIcon={<Icon name="BsPlusLg" />}
-          onClick={() =>
-            user ? setOpen(true) : router.push(`/login?from=shop/${productId}`)
-          }
+          onClick={() => (user ? setOpen(true) : router.push(productLink))}
         >
           {translate[lang].shop.product.addReview}
         </Button>
@@ -54,7 +54,7 @@ export function Reviews({
                 {translate[lang].shop.product.addReview}
               </DialogHeading>
             </Stack>
-            <ReviewForm setOpen={setOpen} productId={productId} />
+            <ReviewForm setOpen={setOpen} productId={_id} />
           </DialogContent>
         </Dialog>
       </Stack>
