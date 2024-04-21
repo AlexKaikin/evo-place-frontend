@@ -1,3 +1,10 @@
+## [3.8.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.8.0...v3.8.1) (2024-04-20)
+
+
+### Bug Fixes
+
+* Fix links in mobile menu ([1600d73](https://github.com/AlexKaikin/evo-place-frontend/commit/1600d73c1a3396974cc23e40da29f8c1950bef9f))
+
 # [3.8.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.7.0...v3.8.0) (2024-04-20)
 
 
