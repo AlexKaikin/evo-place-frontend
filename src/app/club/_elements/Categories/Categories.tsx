@@ -11,7 +11,7 @@ export function Categories() {
   const currentCategory = pathname.split('/')[2]
 
   return (
-    <Widget title={translate[lang].club.categories} icon="BsGrid">
+    <Widget>
       <Stack gap={10}>
         <Menu
           icon={<Icon name="BsPerson" />}

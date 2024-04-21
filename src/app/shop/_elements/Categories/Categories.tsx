@@ -20,7 +20,7 @@ export function Categories() {
   if (isNotCatalog) return null
 
   return (
-    <Aside>
+    <Aside hideInMobile>
       <Widget title={translate[lang].shop.categories} icon="BsGrid">
         <Stack gap={5}>
           <Menu

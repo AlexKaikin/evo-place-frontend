@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function ClubLayout({ children }: { children: ReactNode }) {
   return (
     <AutorizedGuard>
-      <Aside>
+      <Aside hideInMobile>
         <Categories />
       </Aside>
       {children}
