@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function BlogLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Aside>
+      <Aside hideInMobile>
         <Categories />
       </Aside>
       {children}

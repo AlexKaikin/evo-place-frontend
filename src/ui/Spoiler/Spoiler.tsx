@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react'
 import cn from 'classnames'
 import { useElementSize } from '@hooks'
 import { Button } from '@ui'
+import { sizes, solors } from '../constants'
 import styles from './Spoiler.module.css'
 
 type Props = {
@@ -11,10 +12,21 @@ type Props = {
   maxHeight?: number
   showLabel: string
   hideLabel: string
+  labelSize?: (typeof sizes)[number]
+  color?: (typeof solors)[number]
+  hideShadow?: boolean
 }
 
 export function Spoiler(props: Props) {
-  const { children, maxHeight = 100, showLabel, hideLabel } = props
+  const {
+    children,
+    maxHeight = 100,
+    showLabel,
+    hideLabel,
+    labelSize = 'medium',
+    color = 'primary',
+    hideShadow,
+  } = props
   const [show, setShowState] = useState(false)
   const { ref: contentRef, height } = useElementSize()
   const spoilerMoreContent = show ? hideLabel : showLabel
@@ -23,7 +35,10 @@ export function Spoiler(props: Props) {
   return (
     <div className={styles.spoiler}>
       <div
-        className={cn(styles.content, { [styles.hide]: !show })}
+        className={cn(styles.content, {
+          [styles.hide]: !show,
+          [styles.hideShadow]: hideShadow,
+        })}
         style={{
           maxHeight: !show
             ? maxHeight + 'px'
@@ -36,7 +51,11 @@ export function Spoiler(props: Props) {
         <div ref={contentRef}>{children}</div>
       </div>
       {spoiler && (
-        <Button onClick={() => setShowState(opened => !opened)}>
+        <Button
+          color={color}
+          size={labelSize}
+          onClick={() => setShowState(opened => !opened)}
+        >
           {spoilerMoreContent}
         </Button>
       )}

@@ -10,7 +10,7 @@
   color: white;
   width: max-content;
   user-select: none;
-  transition-property: background-color, box-shadow, color;
+  transition-property: background-color, box-shadow, color, transform;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   cursor: pointer;
@@ -18,7 +18,10 @@
 
   &:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }
 

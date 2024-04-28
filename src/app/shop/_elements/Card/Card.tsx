@@ -17,7 +17,7 @@ export function Card({ product }: { product: Product }) {
     id,
     category,
   } = product
-  const newProduct = dayjs(new Date()).diff(dayjs(id), 'month') < 15
+  const newProduct = dayjs(new Date()).diff(dayjs(id), 'month') < 40
   const popProduct = ratingCount > 1
 
   return (

@@ -5,14 +5,24 @@ import { useInView } from 'react-intersection-observer'
 import cn from 'classnames'
 import dayjs from 'dayjs'
 import Image from 'next/image'
-import { Typography } from '@/ui'
+import { useParams } from 'next/navigation'
 import defaultAvatar from '@assets/img/user/defaultAvatar.png'
-import { useAuth, useMessages } from '@store'
+import { useAuth, useChats, useMessages } from '@store'
+import { IconButton, Typography } from '@ui'
 import { socket } from '@utils'
 import { NewMessageForm } from '../NewMessageForm/NewMessageForm'
 import styles from './Chat.module.css'
 
 export function Chat() {
+  const { getChat } = useChats()
+  const { chat: chatId } = useParams<{ chat: string }>()
+
+  useEffect(() => {
+    if (chatId) {
+      getChat(chatId)
+    }
+  }, [chatId, getChat])
+
   return (
     <div className={styles.chat}>
       <Messages />
@@ -22,8 +32,16 @@ export function Chat() {
 }
 
 export function Messages() {
-  const { userId, roomId, messages, setMessage, getMore, pagination, loading } =
-    useMessages()
+  const {
+    userId,
+    roomId,
+    messages,
+    setMessage,
+    getMore,
+    pagination,
+    loading,
+    delete: remove,
+  } = useMessages()
   const { user: myProfile } = useAuth()
   const scrollToBottomChatRef = useRef<HTMLDivElement | null>(null)
   const [isScrollActive, setIsScrollActive] = useState(true)
@@ -75,7 +93,6 @@ export function Messages() {
 
   useEffect(() => {
     if (inView && pagination._page < pagination.pagesCount && !loading) {
-      //   setMessagesPage(pagination._page + 1)
       getMore(userId!)
 
       setIsMoreMessage(false)
@@ -83,13 +100,6 @@ export function Messages() {
       setTimeout(() => {
         setIsMoreMessage(true)
       }, 1000)
-
-      //   const fetchData = async () => {
-      //     const beforeMessages: any = await getMore(user._id)
-      //     beforeMessages && setMessages([...beforeMessages, ...messages])
-      //   }
-
-      //fetchData()
     }
   }, [
     getMore,
@@ -154,12 +164,21 @@ export function Messages() {
                       {dayjs(+message.date).format('H:mm')}
                     </Typography>
                   </div>
+                  <div className={styles.trash}>
+                    <IconButton
+                      icon="BsTrash"
+                      size="15"
+                      onClick={() => remove(message._id)}
+                    />
+                  </div>
                 </div>
-                <div>
-                  {message.text.split('\n').map((item, i) => (
-                    <p key={i}>{item}</p>
-                  ))}
-                </div>
+                {message.user._id === myProfile?._id && (
+                  <div>
+                    {message.text.split('\n').map((item, i) => (
+                      <p key={i}>{item}</p>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

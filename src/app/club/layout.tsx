@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: 'Club...',
   metadataBase: new URL(SAIT_URL),
   alternates: { canonical: '/club' },
+  robots: { index: false, follow: false },
   openGraph: {
     title: 'Club | EVO PLACE',
     description: 'Club...',
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export default function ClubLayout({ children }: { children: ReactNode }) {
   return (
     <AutorizedGuard>
-      <Aside>
+      <Aside hideInMobile>
         <Categories />
       </Aside>
       {children}

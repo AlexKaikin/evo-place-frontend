@@ -1,6 +1,8 @@
 export type Message = {
+  _id: string
   id: number
   user: {
+    _id: string
     id: number
     fullName: string
     avatarUrl: string
@@ -10,4 +12,4 @@ export type Message = {
   socketID: string
 }
 
-export type NewMessage = Omit<Message, 'user'> & { user: string }
+export type NewMessage = Omit<Message, 'user' | '_id'> & { user: string }
