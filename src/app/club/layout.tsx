@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: 'Club...',
   metadataBase: new URL(SAIT_URL),
   alternates: { canonical: '/club' },
+  robots: { index: false, follow: false },
   openGraph: {
     title: 'Club | EVO PLACE',
     description: 'Club...',

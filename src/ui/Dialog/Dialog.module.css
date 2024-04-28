@@ -19,7 +19,7 @@
 .title {
   font-size: 1.8rem;
   font-weight: 300;
-  color: var(--heading);
+  color: var(--dark);
 }
 
 .btn {

@@ -11,10 +11,14 @@
 }
 
 .wrapper {
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
   position: relative;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .shadow {
@@ -33,14 +37,12 @@
 }
 
 .messages {
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing) * 5);
-  position: absolute;
   margin-top: var(--spacing);
-  height: 100%;
   width: 100%;
-  overflow: auto;
 }
 
 .new {
@@ -118,6 +120,13 @@
   justify-content: flex-end;
   opacity: 0.5;
   font-size: 0.9rem;
+}
+
+.trash {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0.5;
 }
 
 .select {

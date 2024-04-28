@@ -7,13 +7,16 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition-property: background-color, color;
+  transition-property: background-color, color, active, transform;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
 
   &:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
+  }
+
+  &:active {
+    transform: scale(0.9);
   }
 }
 

@@ -61,5 +61,7 @@
     justify-content: space-between;
     gap: calc(var(--spacing) * 2);
     width: 100%;
+    position: relative;
+    z-index: 10;
   }
 }

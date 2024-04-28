@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description: 'Account...',
   metadataBase: new URL(SAIT_URL),
   alternates: { canonical: '/account' },
+  robots: { index: false, follow: false },
   openGraph: {
     title: 'Account | EVO PLACE',
     description: 'Account...',
