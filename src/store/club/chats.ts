@@ -19,9 +19,9 @@ export type Chats = {
   pagination: Pagination
   loading: boolean
   getChats: () => void
+  getChat: (id: string) => void
   getNotesMore: (id: string, by: string) => void
   open: (id: string, chatId: string) => void
-  //   deleteNote: (id: string) => void
 }
 
 export const useChats = create<Chats>()((set, get) => ({
@@ -36,6 +36,18 @@ export const useChats = create<Chats>()((set, get) => ({
       const halper = new Halper(res, get)
       const pagination = halper.getPagination()
       set(() => ({ chats, pagination, loading: false }))
+    } catch (error) {
+      set(() => ({ loading: false }))
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  getChat: async (id: string) => {
+    try {
+      set(() => ({ loading: true }))
+      const res = await chatService.getOne(id)
+      const { getMessages } = useMessages.getState()
+      getMessages(id, res.data._id)
+      set(() => ({ loading: false }))
     } catch (error) {
       set(() => ({ loading: false }))
       toast.info('Something went wrong. Try again!')
@@ -62,15 +74,6 @@ export const useChats = create<Chats>()((set, get) => ({
     const { getMessages } = useMessages.getState()
     getMessages(id, chatId)
   },
-  //   deleteNote: async id => {
-  //     try {
-  //       await noteService.delete(id)
-  //       const notes = get().notes!.filter(note => note._id !== id)
-  //       set(() => ({ notes }))
-  //     } catch (error) {
-  //       toast.info('Something went wrong. Try again!')
-  //     }
-  //   },
 }))
 
 function getUrlParams(get: () => Chats, pagi?: object) {

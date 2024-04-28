@@ -15,7 +15,7 @@ export const messageService = {
   update(data: Message) {
     return api.patch<Message>(`messages/${data.id}`, data, options.json)
   },
-  delete(id: number) {
+  delete(id: string) {
     return api.delete<Message>(`messages/${id}`)
   },
 }

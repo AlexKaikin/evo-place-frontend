@@ -21,7 +21,7 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => {
     return (
-      <Stack gap={40}>
+      <Stack gap={20}>
         {fontVariants.map(fontVariant => (
           <Typography key={fontVariant} variant={fontVariant}>
             {fontVariant}

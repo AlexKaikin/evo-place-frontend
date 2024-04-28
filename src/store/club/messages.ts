@@ -24,7 +24,7 @@ export type Messages = {
   create: (data: NewMessage) => void
   getMessages: (id: string, chatId: string) => void
   getMore: (id: string) => void
-  delete: (id: number) => void
+  delete: (id: string) => void
   setMessage: (data: Message[]) => void
 }
 
@@ -61,11 +61,15 @@ export const useMessages = create<Messages>()((set, get) => ({
 
     try {
       set(() => ({ loading: true }))
-      //const { data: created } = await
-      messageService.create(newMessage as NewMessage)
-      //   const messages = get().messages
-      //   messages.push(created)
-      //   set(() => ({ messages, loading: false }))
+      const res = await messageService.create(newMessage as NewMessage)
+      const messages = get().messages.map(message => {
+        if (message.id === res.data.id) {
+          return { ...message, _id: res.data._id }
+        } else {
+          return message
+        }
+      })
+      set(() => ({ messages }))
     } catch (error) {
       set(() => ({ loading: false }))
       toast.info('Something went wrong. Try again!')
@@ -110,7 +114,7 @@ export const useMessages = create<Messages>()((set, get) => ({
   delete: async id => {
     try {
       await messageService.delete(id)
-      const messages = get().messages!.filter(message => message.id !== id)
+      const messages = get().messages!.filter(message => message._id !== id)
       set(() => ({ messages }))
     } catch (error) {
       toast.info('Something went wrong. Try again!')

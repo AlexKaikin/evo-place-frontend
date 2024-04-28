@@ -15,8 +15,12 @@ export function Profile({ user: userProp }: { user?: User }) {
   const router = useRouter()
   const { user: currentUser, update } = useAuth()
   const { user, setUser, follow, unFollow, loading } = useUsers()
-  const isFollow = userProp?.subscribers.find(el => el._id === currentUser?._id)
-  const isMutualSubscription = isFollow
+  const isFollower = userProp?.subscribers.find(
+    el => el._id === currentUser?._id
+  )
+  const isFollowing = userProp?.subscriptionsUser.find(
+    el => el._id === currentUser?._id
+  )
 
   useEffect(() => {
     if (userProp) setUser(userProp)
@@ -33,40 +37,42 @@ export function Profile({ user: userProp }: { user?: User }) {
           <Image
             fill
             sizes="(max-width: 1800px) 50vw"
-            src={user.avatarUrl ? user.avatarUrl : defaultAvatar}
+            src={user.avatarUrl || defaultAvatar}
             alt="avatar"
           />
         </div>
         <div className={styles.info}>
           <div className={styles.nicname}>{user.fullName}</div>
           <div className={styles.actions}>
-            {userProp ? (
-              isFollow ? (
-                <Button
-                  variant="outlined"
-                  size="small"
-                  onClick={() => unFollow(user!)}
-                  disabled={loading}
-                >
-                  Unsubscribe
-                </Button>
-              ) : (
-                <Button
-                  size="small"
-                  onClick={() => follow(user!)}
-                  disabled={loading}
-                >
-                  Subscribe
-                </Button>
-              )
-            ) : null}
-            {isMutualSubscription && (
-              <Button color="primary" size="small">
+            {userProp && isFollower && (
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => unFollow(user!)}
+                disabled={loading}
+              >
+                Unsubscribe
+              </Button>
+            )}
+            {userProp && !isFollower && (
+              <Button
+                size="small"
+                onClick={() => follow(user!)}
+                disabled={loading}
+              >
+                Subscribe
+              </Button>
+            )}
+            {isFollower && isFollowing && (
+              <Button
+                color="primary"
+                size="small"
+                onClick={() => router.push(`/club/messenger/${userProp?._id}`)}
+              >
                 <Icon name="BsChatLeftText" size="14" />
               </Button>
             )}
           </div>
-
           {!userProp && <Settings user={user} handleUpdate={update} />}
         </div>
       </div>
@@ -77,6 +83,7 @@ export function Profile({ user: userProp }: { user?: User }) {
           hideLabel="Hide"
           showLabel="More"
           labelSize="small"
+          color="secondary"
         >
           <div className={styles.more}>
             {user.about.length ? (
