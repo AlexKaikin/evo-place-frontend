@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.8.1...v3.9.0) (2024-04-28)
+
+
+### Features
+
+* Update profile in club ([62bd6ec](https://github.com/AlexKaikin/evo-place-frontend/commit/62bd6ece50669c30d4a7d54dbb31cb470b9baa28))
+
 ## [3.8.1](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.8.0...v3.8.1) (2024-04-20)
 
 
