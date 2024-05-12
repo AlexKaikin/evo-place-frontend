@@ -1,18 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import dayjs from 'dayjs'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Comment } from '@/types/blog'
 import defautAvatar from '@assets/img/user/defaultAvatar.png'
-import { useAuth } from '@store'
+import { useAuth, useLangs } from '@store'
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
-  Dialog,
-  DialogContent,
-  DialogHeading,
-  Stack,
+  Icon,
   Typography,
 } from '@ui'
 import { CommentForm } from '..'
@@ -25,42 +24,46 @@ export function Comments({
   postId: string
   comments: Comment[]
 }) {
-  const router = useRouter()
   const { user } = useAuth()
-  const [open, setOpen] = useState(false)
+  const { lang, translate } = useLangs()
+  const loginLink = `/login?from=blog/${postId}`
 
   return (
     <div className={styles.comments}>
-      <Stack direction="row" justifyContent="space-between">
-        <Typography variant="title-3">Comments</Typography>
-        <Button
-          color="primary"
-          onClick={() =>
-            user ? setOpen(true) : router.push(`/login?from=blog/${postId}`)
+      <Accordion shadow={false}>
+        <AccordionSummary
+          id={`panel-header`}
+          aria-controls={`panel-content`}
+          expandIcon={
+            <Button color="primary" startIcon={<Icon name="BsPlusLg" />}>
+              {translate[lang].blog.post.add}
+            </Button>
           }
         >
-          Add comment
-        </Button>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent className={styles.modal}>
-            <Stack>
-              <DialogHeading>Add comment</DialogHeading>
-            </Stack>
-            <CommentForm setOpen={setOpen} postId={postId} />
-          </DialogContent>
-        </Dialog>
-      </Stack>
+          <Typography variant="title-3">
+            {translate[lang].blog.post.comments}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {user ? (
+            <CommentForm postId={postId} />
+          ) : (
+            <div>
+              Что бы написать комментарий необходимо{' '}
+              <Link href={loginLink} style={{ color: 'var(--primary)' }}>
+                авторизоваться <Icon size="14" name="BsLink45Deg" />
+              </Link>
+            </div>
+          )}
+        </AccordionDetails>
+      </Accordion>
       <div>
-        {comments.map(comment => (
-          <div key={comment.id} className={styles.review}>
+        {comments.map(({ _id, user, body }) => (
+          <div key={_id} className={styles.review}>
             <div className={styles.user}>
               <div className={styles.avatar}>
                 <Image
-                  src={
-                    comment.user.avatarUrl
-                      ? comment.user.avatarUrl
-                      : defautAvatar
-                  }
+                  src={user.avatarUrl || defautAvatar}
                   width={70}
                   height={70}
                   alt="avatar"
@@ -69,12 +72,12 @@ export function Comments({
             </div>
             <div className={styles.body}>
               <div className={styles.header}>
-                <div className={styles.name}>{comment.user.fullName}, </div>
+                <div className={styles.name}>{user.fullName}, </div>
                 <div className={styles.date}>
-                  {dayjs(new Date()).format('H:m, DD.MM.YYYY')}
+                  {dayjs(new Date()).format('H:mm, DD.MM.YYYY')}
                 </div>
               </div>
-              {comment.body.split('\n').map((item, i) => (
+              {body.split('\n').map((item, i) => (
                 <Typography key={i} variant="text" tag="p">
                   {item}
                 </Typography>

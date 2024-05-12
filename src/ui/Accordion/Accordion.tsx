@@ -11,6 +11,7 @@ type Props = {
   defaultExpanded?: boolean
   disabled?: boolean
   children: ReactNode
+  shadow?: boolean
   onChange?: (e: SyntheticEvent, expanded: boolean) => void
 }
 
@@ -19,6 +20,7 @@ export function Accordion(props: Props) {
     children,
     disabled,
     onChange,
+    shadow = true,
     expanded: expandedProp,
     defaultExpanded = false,
   } = props
@@ -45,6 +47,7 @@ export function Accordion(props: Props) {
       className={cn(styles.accordion, {
         [styles['expanded']]: expanded,
         [styles['disabled']]: disabled,
+        [styles['shadow']]: shadow,
       })}
     >
       <AccordionContext.Provider value={contextValue}>

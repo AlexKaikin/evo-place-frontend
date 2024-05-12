@@ -2,11 +2,10 @@
   display: flex;
   align-items: flex-start;
   width: 100%;
-  padding: calc(var(--spacing) * 2);
   box-sizing: border-box;
   cursor: pointer;
 
-  span {
+  > span {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -24,7 +23,7 @@
     justify-content: flex-end;
     flex-grow: 1;
 
-    svg {
+    > svg {
       width: 24px;
       height: 24px;
       fill-opacity: 0.56;
@@ -36,7 +35,7 @@
 
   &.expanded {
     .icon {
-      svg {
+      > svg {
         transform: rotate(180deg);
       }
     }
