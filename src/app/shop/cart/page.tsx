@@ -104,6 +104,7 @@ export default function Cart() {
   const handleSubmit = async (data: CreateOrder) => {
     try {
       data.cartItems = getLocalStorage('cart') || []
+      data.totalCost = totalCost
       await orderService.create(data)
       router.push('/account/orders')
     } catch (error) {

@@ -1,85 +1,58 @@
 'use client'
 
-import { useState } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { Comment } from '@/types/blog'
-import { Dialog, DialogContent, DialogHeading, DialogClose } from '@ui'
+import { Accordion, AccordionSummary, AccordionDetails, Icon } from '@ui'
 import styles from './Comments.module.css'
 
 export function Comments({ comments }: { comments: Comment[] }) {
-  const [open, setOpen] = useState(false)
-  const [comment, setComment] = useState<Comment | null>(null)
-
-  const handleShowDetails = (comment: Comment) => {
-    setOpen(true)
-    setComment(comment)
-  }
-
   if (!comments.length) return <div>No comments</div>
 
   return (
     <div>
       <div className={styles.comments}>
-        <div className={styles.header}>
-          <div>Comment</div>
+        <div className={styles.thead}>
+          <div>Comment to</div>
           <div>Created</div>
           <div>Status</div>
         </div>
-        <CommentsList
-          comments={comments}
-          handleShowDetails={handleShowDetails}
-        />
+        <div>
+          {comments.map(({ id, created, published, post }, i) => (
+            <Accordion key={id}>
+              <AccordionSummary
+                id={`panel${id}-header`}
+                aria-controls={`panel${id}-content`}
+                expandIcon={<Icon name="BsChevronDown" />}
+              >
+                <div key={id} className={styles.tbody}>
+                  <div> {post.title}</div>
+                  <div>{dayjs(created).format('H:mm, DD.MM.YYYY')}</div>
+                  <div>{published}</div>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                <CommentDetails comment={comments[i]} />
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </div>
       </div>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeading>Comment details</DialogHeading>
-          <div className={styles.detail}>
-            <CommentsText text={comment?.body || ''} />
-            <div className="item">
-              Article{' '}
-              <Link href={`/blog/${comment?.post._id}`} className={styles.link}>
-                {comment?.post.title}
-              </Link>
-            </div>
-          </div>
-
-          <DialogClose>Close</DialogClose>
-        </DialogContent>
-      </Dialog>
     </div>
   )
 }
 
-function CommentsList({
-  comments,
-  handleShowDetails,
-}: {
-  comments: Comment[]
-  handleShowDetails: (comment: Comment) => void
-}) {
+function CommentDetails({ comment }: { comment: Comment }) {
+  const text = comment.body.split('\n').map((p, i) => <p key={i}>{p}</p>)
   return (
-    <>
-      {comments.map(({ id, body, created, published }, i) => (
-        <div key={id} className={styles.comment}>
-          <button onClick={() => handleShowDetails(comments[i])}>
-            {body.slice(0, 50) + '...'}
-          </button>
-          <div>{dayjs(created).format('H:m, DD.MM.YYYY')}</div>
-          <div>{published}</div>
-        </div>
-      ))}
-    </>
-  )
-}
-
-function CommentsText({ text }: { text: string }) {
-  return (
-    <div>
-      {text.split('\n').map((p, i) => (
-        <p key={i}>{p}</p>
-      ))}
+    <div className={styles.detail}>
+      <div>{text}</div>
+      <div className="item">
+        Link to{' '}
+        <Link href={`/blog/${comment?.post._id}`} className={styles.link}>
+          {comment?.post.title}
+        </Link>
+      </div>
     </div>
   )
 }

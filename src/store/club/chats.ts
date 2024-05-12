@@ -19,6 +19,7 @@ export type Chats = {
   pagination: Pagination
   loading: boolean
   getChats: () => void
+  setChats: (q: string) => void
   getChat: (id: string) => void
   getNotesMore: (id: string, by: string) => void
   open: (id: string, chatId: string) => void
@@ -36,6 +37,16 @@ export const useChats = create<Chats>()((set, get) => ({
       const halper = new Halper(res, get)
       const pagination = halper.getPagination()
       set(() => ({ chats, pagination, loading: false }))
+    } catch (error) {
+      set(() => ({ loading: false }))
+      toast.info('Something went wrong. Try again!')
+    }
+  },
+  setChats: async (q: string) => {
+    try {
+      const res = await chatService.getAll({ searchParams: { q } })
+      const chats = res.data.reverse()
+      set(() => ({ chats }))
     } catch (error) {
       set(() => ({ loading: false }))
       toast.info('Something went wrong. Try again!')

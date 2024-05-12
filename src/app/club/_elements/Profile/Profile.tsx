@@ -51,7 +51,7 @@ export function Profile({ user: userProp }: { user?: User }) {
                 onClick={() => unFollow(user!)}
                 disabled={loading}
               >
-                Unsubscribe
+                unfollow
               </Button>
             )}
             {userProp && !isFollower && (
@@ -60,7 +60,7 @@ export function Profile({ user: userProp }: { user?: User }) {
                 onClick={() => follow(user!)}
                 disabled={loading}
               >
-                Subscribe
+                follow
               </Button>
             )}
             {isFollower && isFollowing && (

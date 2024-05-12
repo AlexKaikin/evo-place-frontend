@@ -1,86 +1,70 @@
 'use client'
 
-import { useState } from 'react'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { Review } from '@/types/shop'
-import { Dialog, DialogContent, DialogHeading, DialogClose, Rating } from '@ui'
+import {
+  Rating,
+  Accordion,
+  AccordionSummary,
+  Icon,
+  AccordionDetails,
+} from '@ui'
 import styles from './Reviews.module.css'
 
 export function Reviews({ reviews }: { reviews: Review[] }) {
-  const [open, setOpen] = useState(false)
-  const [review, setReview] = useState<Review | null>(null)
-
-  const handleShowDetails = (review: Review) => {
-    setOpen(true)
-    setReview(review)
-  }
-
   if (!reviews.length) return <div>No reviews</div>
 
   return (
     <div>
       <div className={styles.reviews}>
-        <div className={styles.header}>
-          <div>Review</div>
+        <div className={styles.thead}>
+          <div>Review to</div>
           <div>Created</div>
           <div>Status</div>
         </div>
-        <ReviewsList reviews={reviews} handleShowDetails={handleShowDetails} />
-      </div>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeading>Review details</DialogHeading>
-          <div className={styles.detail}>
-            {review?.rating ? <Rating value={review.rating} /> : null}
-            <ReviewText text={review?.body || ''} />
-            <div className="item">
-              Article{' '}
-              <Link
-                href={`/shop/${review?.product.category}/${review?.product._id}`}
-                className={styles.link}
+        <div>
+          {reviews.map(({ id, product, created, published }, i) => (
+            <Accordion key={id}>
+              <AccordionSummary
+                id={`panel${id}-header`}
+                aria-controls={`panel${id}-content`}
+                expandIcon={<Icon name="BsChevronDown" />}
               >
-                {review?.product.title}
-              </Link>
-            </div>
-          </div>
-
-          <DialogClose>Close</DialogClose>
-        </DialogContent>
-      </Dialog>
+                <div key={id} className={styles.tbody}>
+                  <div>{product.title}</div>
+                  <div>{dayjs(created).format('H:mm, DD.MM.YYYY')}</div>
+                  <div>{published}</div>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                <ReviewDetails review={reviews[i]} />
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
-function ReviewsList({
-  reviews,
-  handleShowDetails,
-}: {
-  reviews: Review[]
-  handleShowDetails: (review: Review) => void
-}) {
+function ReviewDetails({ review }: { review: Review }) {
+  const {
+    product: { _id, category, title },
+    rating,
+    body,
+  } = review
+  const text = body.split('\n').map((p, i) => <p key={i}>{p}</p>)
   return (
-    <>
-      {reviews.map(({ id, body, created, published }, i) => (
-        <div key={id} className={styles.review}>
-          <button onClick={() => handleShowDetails(reviews[i])}>
-            {body.slice(0, 50) + '...'}
-          </button>
-          <div>{dayjs(created).format('H:m, DD.MM.YYYY')}</div>
-          <div>{published}</div>
-        </div>
-      ))}
-    </>
-  )
-}
-
-function ReviewText({ text }: { text: string }) {
-  return (
-    <div>
-      {text.split('\n').map((p, i) => (
-        <p key={i}>{p}</p>
-      ))}
+    <div className={styles.detail}>
+      {review?.rating ? <Rating value={rating} /> : null}
+      <div>{text}</div>
+      <div className="item">
+        Link to{' '}
+        <Link href={`/shop/${category}/${_id}`} className={styles.link}>
+          {title}
+        </Link>
+      </div>
     </div>
   )
 }
