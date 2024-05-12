@@ -128,9 +128,9 @@ export function Messages() {
   return (
     <div className={styles.wrapper} onScroll={scrollHandler}>
       <div className={styles.shadow}></div>
+      {userId ? null : <div className={styles.select}>Select chat</div>}
       <div className={styles.messages}>
         {isMoreMessage && <div ref={ref} className={styles.more}></div>}
-        {userId ? null : <div className={styles.select}>Select chat</div>}
         {messages.map((message, index) => (
           <div key={message.id} className={styles.message}>
             {dates[index] ? (
@@ -144,11 +144,7 @@ export function Messages() {
               <div className={styles.avatar}>
                 <Image
                   fill
-                  src={
-                    message?.user.avatarUrl
-                      ? message.user.avatarUrl
-                      : defaultAvatar
-                  }
+                  src={message?.user.avatarUrl || defaultAvatar}
                   alt="avatar"
                 />
               </div>
