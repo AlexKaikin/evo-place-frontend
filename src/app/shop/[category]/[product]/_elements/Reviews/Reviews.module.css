@@ -5,6 +5,13 @@
   padding: calc(var(--spacing) * 2);
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--spacing);
+}
+
 .review {
   display: flex;
   gap: calc(var(--spacing) * 2);

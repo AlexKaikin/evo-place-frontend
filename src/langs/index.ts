@@ -73,7 +73,7 @@ export const translate = {
         year: 'Year',
         popular: 'Popular in this category',
         reviews: 'Reviews',
-        addReview: 'Add review',
+        addReview: 'Add',
         noReviews: 'No reviews. Write first!',
         send: 'Send',
         cancel: 'cancel',
@@ -134,6 +134,10 @@ export const translate = {
     blog: {
       categories: 'Categories',
       popular: 'Popular',
+      post: {
+        comments: 'Comments',
+        add: 'Add',
+      },
     },
     club: {
       categories: 'Categories',
@@ -277,7 +281,7 @@ export const translate = {
         year: 'Год',
         popular: 'Популярное в этой категории',
         reviews: 'Отзывы',
-        addReview: 'Добавить отзыв',
+        addReview: 'Добавить',
         noReviews: 'Отзывов нет. Напишите первый!',
         send: 'Отправить',
         cancel: 'Отмена',
@@ -337,6 +341,10 @@ export const translate = {
     blog: {
       categories: 'Категории',
       popular: 'Популярное',
+      post: {
+        comments: 'Комментарии',
+        add: 'Добавить',
+      },
     },
     club: {
       categories: 'Категории',

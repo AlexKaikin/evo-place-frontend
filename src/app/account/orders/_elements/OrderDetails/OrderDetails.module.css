@@ -1,14 +1,13 @@
 .detail {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: calc(var(--spacing) * 2);
   width: 100%;
-  max-width: 900px;
 }
 
 .productsContainer {
   display: flex;
-  gap: 40px;
+  gap: calc(var(--spacing) * 2);
   flex-direction: column;
 }
 
@@ -20,38 +19,18 @@
 
 .product {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+  gap: 20px;
   padding: var(--spacing);
-  box-shadow: 0 0px 20px var(--shadow);
+  border: 1px solid color-mix(in srgb, var(--dark) 20%, var(--light) 80%);
   border-radius: calc(var(--spacing));
   background-color: var(--bg);
   position: relative;
   z-index: 0;
-
-  @media only screen and (max-width: 700px) {
-    flex-wrap: wrap;
-    gap: var(--spacing);
-
-    margin-bottom: 20px;
-  }
 }
 
 .imgContainer {
   flex: 0 0 80px;
   position: relative;
-
-  @media only screen and (max-width: 600px) {
-    flex: 0 0 80px;
-  }
-
-  @media only screen and (max-width: 540px) {
-    flex: auto;
-
-    text-align: center;
-    width: 50%;
-  }
 
   > img {
     border-radius: calc(var(--radius));
@@ -62,22 +41,19 @@
   }
 }
 
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+
 .title {
-  flex: 1 1 130px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  @media only screen and (max-width: 540px) {
-    flex: 1 1 auto;
-    width: 100%;
-    font-weight: bold;
-    text-align: center;
-  }
 }
 
 .quantityContainer {
-  flex: 0 0 60px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -86,7 +62,6 @@
 .quantity {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
 
   > span {
     font-size: 1rem;
@@ -95,7 +70,6 @@
 }
 
 .cost {
-  flex: 0 0 120px;
   display: flex;
   gap: 10px;
 
@@ -132,23 +106,24 @@
   flex-direction: column;
   gap: var(--spacing);
   width: 100%;
+  min-width: 150px;
 }
 
 .field {
   position: relative;
   border-radius: var(--radius);
-  background-color: var(--gray);
+  background-color: var(--bg);
 
   > label {
     position: absolute;
     font-size: 13px;
-    top: 3px;
-    left: 10px;
+    top: 0px;
+    left: 0px;
     opacity: 0.5;
   }
 
   > p {
-    padding: 30px 10px 10px 10px;
+    padding: 20px 10px 10px 0px;
     transition: all 0.5s ease 0s;
     width: 100%;
   }

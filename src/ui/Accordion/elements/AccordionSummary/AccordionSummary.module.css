@@ -1,0 +1,43 @@
+.accordion-summary {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  > span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.15px;
+
+    &:first-child {
+      width: 32%;
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+
+    > svg {
+      width: 24px;
+      height: 24px;
+      fill-opacity: 0.56;
+      transition-property: transform;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+    }
+  }
+
+  &.expanded {
+    .icon {
+      > svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

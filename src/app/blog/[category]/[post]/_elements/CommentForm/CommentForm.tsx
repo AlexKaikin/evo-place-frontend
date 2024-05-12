@@ -5,7 +5,8 @@ import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { commentService } from '@services'
-import { Button, Form, FormInput, FormTextarea, Stack } from '@ui'
+import { Button, Form, FormInput, FormTextarea } from '@ui'
+import styles from './CommentForm.module.css'
 
 type Post = {
   body: string
@@ -14,56 +15,38 @@ type Post = {
 
 const schema = z.object({
   body: z
-    .string({ required_error: 'Enter your comment' })
-    .min(1, { message: 'Enter your comment' }),
+    .string({ required_error: 'Required' })
+    .min(1, { message: 'Required' }),
   post: z.string(),
 })
 
-export function CommentForm({
-  postId,
-  setOpen,
-}: {
-  postId: string
-  setOpen: (v: boolean) => void
-}) {
+export function CommentForm({ postId }: { postId: string }) {
   const formMethods = useForm<Post>({
     defaultValues: { body: '', post: postId },
     resolver: zodResolver(schema),
   })
+  const { reset } = formMethods
 
   const handleSubmit = async (data: Post) => {
     try {
-      const res = await commentService.create(data)
-
-      if (res.status === 201) {
-        setOpen(false)
-        toast.info(
-          'Your comment has been sent to the administrator for review.'
-        )
-      }
+      await commentService.create(data)
+      toast.info('Your comment has been sent to the administrator for review.')
+      reset()
     } catch (error) {
       toast.info('Something went wrong!')
     }
   }
 
   return (
-    <Form id="reviewForm" formMethods={formMethods} onSubmit={handleSubmit}>
-      <Stack direction="column" gap={30}>
-        <FormTextarea name="body" rows={5} label="Text" />
-        <Stack>
-          <FormInput type="hidden" name="rating" />
-        </Stack>
-        <Stack direction="row" justifyContent="space-between" gap={20}>
-          <Button type="submit">Send</Button>
-          <Button
-            type="button"
-            color="secondary"
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-        </Stack>
-      </Stack>
+    <Form
+      id="reviewForm"
+      formMethods={formMethods}
+      onSubmit={handleSubmit}
+      className={styles.form}
+    >
+      <FormTextarea name="body" rows={5} label="Text" />
+      <FormInput type="hidden" name="rating" />
+      <Button type="submit">Send</Button>
     </Form>
   )
 }
