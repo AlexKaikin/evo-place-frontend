@@ -40,7 +40,7 @@ export function Comments({
             </Button>
           }
         >
-          <Typography variant="title-3">
+          <Typography variant="title3">
             {translate[lang].blog.post.comments}
           </Typography>
         </AccordionSummary>

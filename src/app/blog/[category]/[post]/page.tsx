@@ -52,7 +52,7 @@ export default async function Product(urlParams: UrlParams) {
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <Typography variant="title-1" tag="h1">
+          <Typography variant="title1" tag="h1">
             {title}
           </Typography>
           <Stack direction="row" gap={20}>

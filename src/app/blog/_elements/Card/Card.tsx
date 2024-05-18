@@ -24,11 +24,7 @@ export function Card({ post }: { post: Post }) {
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Typography
-            variant="title-4"
-            tag="h2"
-            style={{ marginBottom: '0px' }}
-          >
+          <Typography variant="title4" tag="h2" style={{ marginBottom: '0px' }}>
             {title}
           </Typography>
         </div>

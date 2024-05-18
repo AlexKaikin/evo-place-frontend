@@ -130,7 +130,7 @@ export default function Cart() {
               </p>
             </div>
           )}
-          <Typography variant="title-3" tag="h1">
+          <Typography variant="title3" tag="h1">
             {translate[lang].shop.cart.cart}
           </Typography>
           <div className={styles.productsContainer}>

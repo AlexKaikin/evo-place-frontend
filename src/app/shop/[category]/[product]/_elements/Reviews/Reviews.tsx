@@ -43,7 +43,7 @@ export function Reviews({
               </Button>
             }
           >
-            <Typography variant="title-3">
+            <Typography variant="title3">
               {translate[lang].shop.product.reviews}
             </Typography>
           </AccordionSummary>

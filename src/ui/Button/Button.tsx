@@ -1,12 +1,12 @@
 import { ComponentProps, ReactNode } from 'react'
 import cn from 'classnames'
-import { sizes, solors, variants } from '../constants'
+import { sizes, colors, variants } from '../constants'
 import styles from './Button.module.css'
 
 type Props = ComponentProps<'button'> & {
-  size?: (typeof sizes)[number]
-  color?: (typeof solors)[number]
-  variant?: (typeof variants)[number]
+  size?: keyof typeof sizes
+  color?: keyof typeof colors
+  variant?: keyof typeof variants
   endIcon?: ReactNode
   children?: ReactNode
   startIcon?: ReactNode
@@ -29,9 +29,9 @@ export function Button(props: Props) {
     <button
       className={cn(styles.btn, {
         [styles.fullWidth]: isFullWidth,
-        [styles[size || 'medium']]: size,
-        [styles[color || 'primary']]: color,
-        [styles[variant || 'contained']]: variant,
+        [styles[size || sizes.medium]]: size,
+        [styles[color || colors.primary]]: color,
+        [styles[variant || variants.contained]]: variant,
       })}
       {...restProps}
     >

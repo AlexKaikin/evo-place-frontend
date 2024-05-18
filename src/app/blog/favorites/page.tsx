@@ -12,7 +12,7 @@ export default function Favorites() {
   if (!favoritesItems.length)
     return (
       <div className={styles.container}>
-        <Typography variant="title-3" tag="h1">
+        <Typography variant="title3" tag="h1">
           Favorite posts
         </Typography>
         <div>Empty</div>
@@ -21,7 +21,7 @@ export default function Favorites() {
 
   return (
     <div className={styles.container}>
-      <Typography variant="title-3" tag="h1">
+      <Typography variant="title3" tag="h1">
         Favorite posts
       </Typography>
       <div className={cn(styles.posts, styles.content)}>
