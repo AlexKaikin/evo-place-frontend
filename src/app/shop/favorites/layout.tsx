@@ -15,7 +15,7 @@ export default function ShopFavoritesLayout({
 }) {
   return (
     <div className={styles.container}>
-      <Typography variant="title-3" tag="h1">
+      <Typography variant="title3" tag="h1">
         Favorite products
       </Typography>
       {children}

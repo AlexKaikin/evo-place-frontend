@@ -5,12 +5,12 @@ import { tags, fontVariants } from '../constants'
 import styles from './Typography.module.css'
 
 type Props = {
-  variant: (typeof fontVariants)[number]
-  tag?: (typeof tags)[number]
+  variant: keyof typeof fontVariants
+  tag?: keyof typeof tags
 } & HTMLAttributes<HTMLElement>
 
 export function Typography(props: Props) {
-  const { children, variant, tag = 'p', ...restProps } = props
+  const { children, variant, tag = tags.p, ...restProps } = props
   const CustomTag: ElementType = `${tag}`
 
   return (

@@ -1,33 +1,33 @@
-.title-1 {
+.title1 {
   --size: 2.2rem;
 }
 
-.title-2 {
+.title2 {
   --size: 2rem;
 }
 
-.title-3 {
+.title3 {
   --size: 1.8rem;
 }
 
-.title-4 {
+.title4 {
   --size: 1.6rem;
 }
 
-.title-5 {
+.title5 {
   --size: 1.4rem;
 }
 
-.title-6 {
+.title6 {
   --size: 1rem;
 }
 
-.title-1,
-.title-2,
-.title-3,
-.title-4,
-.title-5,
-.title-6 {
+.title1,
+.title2,
+.title3,
+.title4,
+.title5,
+.title6 {
   font-size: var(--size);
   font-weight: 600;
   color: var(--dark);

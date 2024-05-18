@@ -29,7 +29,7 @@ export function Popular({ posts }: { posts: Post[] }) {
               />
             </div>
             <div className={styles.content}>
-              <Typography variant="title-6" tag="h3">
+              <Typography variant="title6" tag="h3">
                 {title}
               </Typography>
               <div className={styles.meta}>

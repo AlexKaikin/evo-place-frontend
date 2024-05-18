@@ -10,7 +10,7 @@ export function Characteristics({ product }: { product: Product }) {
 
   return (
     <div className={styles.characteristics}>
-      <Typography variant="title-3">
+      <Typography variant="title3">
         {translate[lang].shop.product.characteristics}
       </Typography>
       <div className={styles.items}>
