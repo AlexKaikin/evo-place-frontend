@@ -10,7 +10,7 @@ export function Description({ product }: { product: Product }) {
 
   return (
     <div className={styles.description}>
-      <Typography variant="title-3">
+      <Typography variant="title3">
         {translate[lang].shop.product.description}
       </Typography>
       {product.text.split('\n').map((item, i) => (

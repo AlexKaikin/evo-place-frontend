@@ -30,7 +30,7 @@ export function Popular({ products }: { products: Product[] }) {
                 />
               </div>
               <div className={styles.content}>
-                <Typography variant="title-6" tag="h3">
+                <Typography variant="title6" tag="h3">
                   {title}
                 </Typography>
 

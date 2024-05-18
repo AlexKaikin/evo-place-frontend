@@ -63,7 +63,7 @@ export default function Register() {
 
   return (
     <div className={styles.container}>
-      <Typography variant="title-3" tag="h1">
+      <Typography variant="title3" tag="h1">
         {translate[lang].auth.login.registration}
       </Typography>
       <Form id="registerForm" formMethods={formMethods} onSubmit={handleSubmit}>

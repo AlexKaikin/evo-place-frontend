@@ -1,3 +1,12 @@
+# [3.10.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.9.0...v3.10.0) (2024-05-12)
+
+
+### Features
+
+* Edit account item list ([8c737d3](https://github.com/AlexKaikin/evo-place-frontend/commit/8c737d3780d3ad8f7f0604d0e263e49873a7ed40))
+* Edit product review form ([a29f103](https://github.com/AlexKaikin/evo-place-frontend/commit/a29f103ab5c18965611fd193f53b01aaf3b30839))
+* Update npm packages ([2993cc3](https://github.com/AlexKaikin/evo-place-frontend/commit/2993cc3c14dab5f7a35d4b0c501876508dee0793))
+
 # [3.9.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.8.1...v3.9.0) (2024-04-28)
 
 

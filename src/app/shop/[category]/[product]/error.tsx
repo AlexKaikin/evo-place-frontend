@@ -14,7 +14,7 @@ export default function Error({
   return (
     <main style={{ padding: '20px', flexGrow: 1 }}>
       <Stack gap={20}>
-        <Typography variant="title-1" tag="h1">
+        <Typography variant="title1" tag="h1">
           Something went wrong!
         </Typography>
         <Stack direction="row" gap={20}>

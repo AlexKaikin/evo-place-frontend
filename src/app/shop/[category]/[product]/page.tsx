@@ -72,7 +72,7 @@ export default async function Product(urlParams: UrlParams) {
               </div>
             </Stack>
 
-            <Typography variant="title-1" tag="h1">
+            <Typography variant="title1" tag="h1">
               {product.title}
             </Typography>
             {!!product.rating && (

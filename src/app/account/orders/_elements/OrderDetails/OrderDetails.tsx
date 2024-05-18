@@ -52,7 +52,7 @@ export function OrderDetails({ order }: { order: Order }) {
       </div>
       <div className={styles.contacts}>
         <div className={styles.column}>
-          <Typography variant="title-6">Recipient</Typography>
+          <Typography variant="title6">Recipient</Typography>
           <div className={styles.field}>
             <label>Surname</label>
             <p>{order.surname}</p>
@@ -67,7 +67,7 @@ export function OrderDetails({ order }: { order: Order }) {
           </div>
         </div>
         <div className={styles.column}>
-          <Typography variant="title-6">Address</Typography>
+          <Typography variant="title6">Address</Typography>
           <div className={styles.field}>
             <label>Region</label>
             <p>{order.region}</p>

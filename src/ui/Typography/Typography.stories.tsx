@@ -22,11 +22,13 @@ export const Variants: Story = {
   render: () => {
     return (
       <Stack gap={20}>
-        {fontVariants.map(fontVariant => (
-          <Typography key={fontVariant} variant={fontVariant}>
-            {fontVariant}
-          </Typography>
-        ))}
+        {(Object.values(fontVariants) as Array<keyof typeof fontVariants>).map(
+          fontVariant => (
+            <Typography key={fontVariant} variant={fontVariant}>
+              {fontVariant}
+            </Typography>
+          )
+        )}
       </Stack>
     )
   },

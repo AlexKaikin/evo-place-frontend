@@ -64,8 +64,13 @@
   font-size: 1.2rem;
 }
 
-.text {
-  background-color: transparent;
+.outlined {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+.contained {
+  background-color: var(--primary);
   color: var(--dark);
 
   &:hover {

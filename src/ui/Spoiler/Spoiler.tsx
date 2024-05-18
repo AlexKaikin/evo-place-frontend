@@ -4,7 +4,7 @@ import { ReactNode, useState } from 'react'
 import cn from 'classnames'
 import { useElementSize } from '@hooks'
 import { Button } from '@ui'
-import { sizes, solors } from '../constants'
+import { sizes, colors } from '../constants'
 import styles from './Spoiler.module.css'
 
 type Props = {
@@ -12,8 +12,8 @@ type Props = {
   maxHeight?: number
   showLabel: string
   hideLabel: string
-  labelSize?: (typeof sizes)[number]
-  color?: (typeof solors)[number]
+  labelSize?: keyof typeof sizes
+  color?: keyof typeof colors
   hideShadow?: boolean
 }
 
@@ -23,8 +23,8 @@ export function Spoiler(props: Props) {
     maxHeight = 100,
     showLabel,
     hideLabel,
-    labelSize = 'medium',
-    color = 'primary',
+    labelSize = sizes.medium,
+    color = colors.primary,
     hideShadow,
   } = props
   const [show, setShowState] = useState(false)

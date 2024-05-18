@@ -15,7 +15,7 @@ import {
   useId,
   useTransitionStyles,
 } from '@floating-ui/react'
-import { sizes, solors, variants } from '../constants'
+import { sizes, colors, variants } from '../constants'
 import styles from './Dialog.module.css'
 
 interface DialogOptions {
@@ -100,9 +100,9 @@ export function Dialog({
 interface DialogTriggerProps {
   children: React.ReactNode
   asChild?: boolean
-  size?: (typeof sizes)[number]
-  color?: (typeof solors)[number]
-  variant?: (typeof variants)[number]
+  size?: keyof typeof sizes
+  color?: keyof typeof colors
+  variant?: keyof typeof variants
   endIcon?: React.ReactNode
   startIcon?: React.ReactNode
   isFullWidth?: boolean
@@ -151,9 +151,9 @@ export const DialogTrigger = React.forwardRef<
       {...context.getReferenceProps(props)}
       className={cn(styles.btn, {
         [styles.fullWidth]: isFullWidth,
-        [styles[size || 'medium']]: size,
-        [styles[color || 'primary']]: color,
-        [styles[variant || 'contained']]: variant,
+        [styles[size || sizes.medium]]: size,
+        [styles[color || colors.primary]]: color,
+        [styles[variant || variants.contained]]: variant,
       })}
     >
       {startIcon}

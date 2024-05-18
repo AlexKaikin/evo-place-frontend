@@ -40,11 +40,7 @@ export function Card({ product }: { product: Product }) {
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Typography
-            variant="title-6"
-            tag="h2"
-            style={{ marginBottom: '0px' }}
-          >
+          <Typography variant="title6" tag="h2" style={{ marginBottom: '0px' }}>
             {title}
           </Typography>
           <Typography variant="subtitle" className={styles.manufacturer}>

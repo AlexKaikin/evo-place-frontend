@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Typography variant="title-1" tag="h1">
+        <Typography variant="title1" tag="h1">
           {translate[lang].home.title}
         </Typography>
         <Typography variant="text">

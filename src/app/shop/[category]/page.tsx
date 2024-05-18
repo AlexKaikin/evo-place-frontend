@@ -26,7 +26,7 @@ export default async function Shop(urlParams: UrlParams) {
   if (!products.length)
     return (
       <div className={styles.container}>
-        <Typography variant="title-3" tag="h2" style={{ marginBottom: '0px' }}>
+        <Typography variant="title3" tag="h2" style={{ marginBottom: '0px' }}>
           No products found
         </Typography>
       </div>

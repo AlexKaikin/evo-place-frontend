@@ -17,7 +17,7 @@ export default function Contacts() {
         justifyContent="center"
         style={{ maxWidth: '600px' }}
       >
-        <Typography variant="title-3">
+        <Typography variant="title3">
           {translate[lang].contacts.sendEmail}
         </Typography>
         <ContactForm />

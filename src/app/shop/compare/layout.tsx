@@ -15,7 +15,7 @@ export default function ShopCompareLayout({
 }) {
   return (
     <div className={styles.container}>
-      <Typography variant="title-3" tag="h1">
+      <Typography variant="title3" tag="h1">
         Products for comparison
       </Typography>
       {children}
