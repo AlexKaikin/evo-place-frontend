@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.10.0...v3.11.0) (2024-05-18)
+
+
+### Features
+
+* Edit ui constants ([f707fdf](https://github.com/AlexKaikin/evo-place-frontend/commit/f707fdf52ca1160bb725765d540cd43a1616ec76))
+
 # [3.10.0](https://github.com/AlexKaikin/evo-place-frontend/compare/v3.9.0...v3.10.0) (2024-05-12)
 
 
