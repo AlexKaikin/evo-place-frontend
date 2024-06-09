@@ -7,14 +7,13 @@ import styles from './Card.module.css'
 
 export function Card({ product }: { product: Product }) {
   const {
-    _id,
+    id,
     title,
     price,
     rating,
     ratingCount,
     imgUrl,
     manufacturer,
-    id,
     category,
   } = product
   const newProduct = dayjs(new Date()).diff(dayjs(id), 'month') < 40
@@ -22,7 +21,7 @@ export function Card({ product }: { product: Product }) {
 
   return (
     <Link
-      href={`/shop/${category.toLowerCase()}/${_id}`}
+      href={`/shop/${category.toLowerCase()}/${id}`}
       className={styles.card}
     >
       <div className={styles.labels}>

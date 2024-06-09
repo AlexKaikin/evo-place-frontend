@@ -21,6 +21,7 @@ export const translate = {
       },
       account: {
         account: 'Account',
+        admin: 'Admin',
         logout: 'Logout',
         login: 'Log In',
         register: 'Sign Up',
@@ -212,6 +213,18 @@ export const translate = {
         noEvents: 'No events',
       },
     },
+    admin: {
+      nav: {
+        title: 'Admin panel',
+        dashboard: 'Dashboard',
+        products: 'Products',
+        reviews: 'Reviews',
+        orders: 'Orders',
+        articles: 'Articles',
+        comments: 'Comments',
+        feedback: 'Feedback',
+      },
+    },
   },
   ru: {
     header: {
@@ -230,6 +243,7 @@ export const translate = {
       },
       account: {
         account: 'Кабинет',
+        admin: 'Админка',
         logout: 'Выйти',
         login: 'Войти',
         register: 'Регистрация',
@@ -418,6 +432,18 @@ export const translate = {
       events: {
         events: 'События',
         noEvents: 'Нет событий',
+      },
+    },
+    admin: {
+      nav: {
+        title: 'Админ панель',
+        dashboard: 'Дашборд',
+        products: 'Товары',
+        reviews: 'Отзывы',
+        orders: 'Заказы',
+        articles: 'Статьи',
+        comments: 'Комментарии',
+        feedback: 'Фидбек',
       },
     },
   },

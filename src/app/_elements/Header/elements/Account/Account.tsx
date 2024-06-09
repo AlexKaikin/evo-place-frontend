@@ -22,6 +22,15 @@ export function Account() {
             minWidth={170}
             onClick={() => router.push('/account')}
           />
+          {user.role === 'admin' && (
+            <MenuItem
+              label={translate[lang].header.account.admin}
+              icon={<Icon name="BsGear" />}
+              minWidth={170}
+              onClick={() => router.push('/admin')}
+            />
+          )}
+
           <Divider />
           <MenuItem
             label={translate[lang].header.account.logout}

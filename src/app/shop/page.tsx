@@ -27,7 +27,7 @@ export default async function Shop(urlParams: UrlParams) {
     <div className={styles.container}>
       <div className={cn(styles.products, styles.content)}>
         {products.map(product => (
-          <Card key={product._id} product={product} />
+          <Card key={product.id} product={product} />
         ))}
       </div>
       <Pagination totalCount={totalCount} />

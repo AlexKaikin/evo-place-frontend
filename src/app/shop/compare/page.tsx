@@ -16,7 +16,7 @@ export default function Compare() {
   return (
     <div className={cn(styles.products)}>
       {compareItems?.map(product => (
-        <div key={product._id} className={styles.product}>
+        <div key={product.id} className={styles.product}>
           <div className={styles.imgContainer}>
             <Image
               src={product.imgUrl}
@@ -25,7 +25,7 @@ export default function Compare() {
               alt={product.title}
             />
           </div>
-          <Link href={`/shop/${product.category.toLowerCase()}/${product._id}`}>
+          <Link href={`/shop/${product.category.toLowerCase()}/${product.id}`}>
             {product.title}
           </Link>
           <div>Maker: {product.manufacturer || '-'}</div>

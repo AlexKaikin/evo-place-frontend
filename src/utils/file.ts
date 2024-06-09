@@ -20,3 +20,27 @@ export function validateFileSize(file: File, sizeMb: number) {
   if (fileSize > sizeMb) return false
   else return true
 }
+
+export function toFormData<Type extends object>(
+  obj: Type,
+  formData = new FormData(),
+  prevKey: string | null | undefined = null
+): Type {
+  Object.entries(obj).forEach(([key, value]) => {
+    const fieldName = prevKey
+      ? `${prevKey}[${value instanceof File ? '' : key}]`
+      : key
+
+    if (
+      value instanceof Object &&
+      !(value instanceof File || value instanceof Date)
+    ) {
+      toFormData(value, formData, fieldName)
+    } else {
+      formData.append(fieldName, value)
+    }
+  })
+
+  return formData as Type
+}
+// const fieldName = prevKey ? `${prevKey}[${key}]` : key

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
-import { Layout } from '@app/_elements'
+import { Footer, Header, Main } from '@app/_elements'
 import '@assets/styles/globals.css'
 import { GTM } from '@configs'
 import { Providers } from '@hocs'
@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" data-theme={theme?.value || 'light'}>
       <body>
         <Providers>
-          <Layout>{children}</Layout>
+          <Header />
+          <Main>{children}</Main>
+          <Footer />
         </Providers>
       </body>
       {GTM && <GoogleTagManager gtmId={GTM} />}
