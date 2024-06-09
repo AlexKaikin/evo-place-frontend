@@ -83,14 +83,14 @@ export function ShopMenu() {
           </PopoverHeading>
           <div className={styles.products}>
             {cartItems?.map(
-              ({ _id, imgUrl, title, category, cost, quantity }) => (
-                <div key={_id} className={styles.product}>
+              ({ id, imgUrl, title, category, cost, quantity }) => (
+                <div key={id} className={styles.product}>
                   <div className={styles.imgContainer}>
                     <Image src={imgUrl} alt={title} width={80} height={80} />
                   </div>
                   <div className={styles.info}>
                     <Link
-                      href={`/shop/${category.toLowerCase()}/${_id}`}
+                      href={`/shop/${category.toLowerCase()}/${id}`}
                       onClick={() => setOpen(false)}
                     >
                       {title}
@@ -103,7 +103,7 @@ export function ShopMenu() {
                       <IconButton
                         icon="BsTrash"
                         size="18"
-                        onClick={() => deleteCartProduct(_id)}
+                        onClick={() => deleteCartProduct(id)}
                       />
                     </div>
                   </div>

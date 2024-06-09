@@ -136,8 +136,8 @@ export default function Cart() {
           <div className={styles.productsContainer}>
             <div className={styles.products}>
               {cartItems?.map(
-                ({ _id, imgUrl, title, category, quantity, cost }) => (
-                  <div key={_id} className={styles.product}>
+                ({ id, imgUrl, title, category, quantity, cost }) => (
+                  <div key={id} className={styles.product}>
                     <div className={styles.imgContainer}>
                       <Image
                         fill
@@ -147,7 +147,7 @@ export default function Cart() {
                       />
                     </div>
                     <div className={styles.title}>
-                      <Link href={`/shop/${category.toLowerCase()}/${_id}`}>
+                      <Link href={`/shop/${category.toLowerCase()}/${id}`}>
                         {title}
                       </Link>
                     </div>
@@ -155,17 +155,17 @@ export default function Cart() {
                       <div className={styles.quantity}>
                         <IconButton
                           icon="BsDashLg"
-                          onClick={() => decriment(_id)}
+                          onClick={() => decriment(id)}
                         />
                         <Input
                           type="number"
-                          onChange={e => changeQuantity(_id, +e.target.value)}
+                          onChange={e => changeQuantity(id, +e.target.value)}
                           value={quantity}
                           align="center"
                         />
                         <IconButton
                           icon="BsPlusLg"
-                          onClick={() => increment(_id)}
+                          onClick={() => increment(id)}
                         />
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export default function Cart() {
                         color="error"
                         icon="BsTrash3"
                         size="17"
-                        onClick={() => deleteCartItem(_id)}
+                        onClick={() => deleteCartItem(id)}
                       />
                     </div>
                   </div>

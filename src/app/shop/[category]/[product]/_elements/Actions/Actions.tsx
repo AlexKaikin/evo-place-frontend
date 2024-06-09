@@ -42,8 +42,8 @@ export function Actions({ product }: { product: Product }) {
   }
 
   function addToCart() {
-    const { _id, imgUrl, title, price, inStock, category } = product
-    setCart({ _id, imgUrl, title, price, quantity, cost, inStock, category })
+    const { id, imgUrl, title, price, inStock, category } = product
+    setCart({ id, imgUrl, title, price, quantity, cost, inStock, category })
   }
 
   return (

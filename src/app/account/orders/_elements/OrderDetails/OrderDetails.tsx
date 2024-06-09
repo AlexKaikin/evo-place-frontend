@@ -13,8 +13,8 @@ export function OrderDetails({ order }: { order: Order }) {
     <div className={styles.detail}>
       <div className={styles.productsContainer}>
         <div className={styles.products}>
-          {cartItems.map(({ _id, imgUrl, title, quantity, cost, category }) => (
-            <div key={_id} className={styles.product}>
+          {cartItems.map(({ id, imgUrl, title, quantity, cost, category }) => (
+            <div key={id} className={styles.product}>
               <div className={styles.imgContainer}>
                 <Image
                   fill
@@ -25,7 +25,7 @@ export function OrderDetails({ order }: { order: Order }) {
               </div>
               <div className={styles.productInfo}>
                 <div className={styles.title}>
-                  <Link href={`/shop/${category.toLowerCase()}/${_id}`}>
+                  <Link href={`/shop/${category.toLowerCase()}/${id}`}>
                     {title}
                   </Link>
                 </div>

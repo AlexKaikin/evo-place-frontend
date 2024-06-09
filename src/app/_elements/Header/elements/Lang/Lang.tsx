@@ -17,10 +17,10 @@ export function Lang() {
     <Button onClick={handleToggle} className={styles.button}>
       <div className={styles.flag}>
         <Image
-          fill
-          sizes="(max-width: 1800px) 33vw"
+          width={20}
+          height={20}
           src={lang === 'en' ? en : ru}
-          alt="avatar"
+          alt="lang"
         />
       </div>
       {lang.toUpperCase()}

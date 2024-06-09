@@ -1,6 +1,5 @@
 export type Product = {
-  _id: string
-  id: number
+  id: string
   title: string
   imgUrl: string
   galleryUrl: string[]
@@ -22,9 +21,5 @@ export type Product = {
   published: boolean
 }
 
-export type CreateProduct = Omit<
-  Product,
-  'id' | '_id' | 'rating' | 'ratingCount'
->
-
-export type UpdateProduct = CreateProduct & { id: number }
+export type CreateProduct = Omit<Product, 'id' | 'rating' | 'ratingCount'>
+export type UpdateProduct = CreateProduct & { id: string }

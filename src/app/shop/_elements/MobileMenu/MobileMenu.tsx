@@ -247,7 +247,7 @@ export function MobileMenu() {
           </PopoverHeading>
           <div className={styles.products}>
             {cartItems?.map(product => (
-              <div key={product._id} className={styles.product}>
+              <div key={product.id} className={styles.product}>
                 <div className={styles.imgContainer}>
                   <Image
                     src={product.imgUrl}
@@ -258,7 +258,7 @@ export function MobileMenu() {
                 </div>
                 <div className={styles.info}>
                   <Link
-                    href={`/shop/${product.category}/${product._id}`}
+                    href={`/shop/${product.category}/${product.id}`}
                     onClick={() => setOpen(false)}
                   >
                     {product.title}
@@ -271,7 +271,7 @@ export function MobileMenu() {
                     <IconButton
                       icon="BsTrash"
                       size="18"
-                      onClick={() => deleteCartProduct(product._id)}
+                      onClick={() => deleteCartProduct(product.id)}
                     />
                   </div>
                 </div>

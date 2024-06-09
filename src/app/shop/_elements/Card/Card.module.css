@@ -29,7 +29,7 @@
   left: calc(var(--spacing) * 2.5);
   display: flex;
   flex-direction: row;
-  border-radius: calc(var(--spacing) / 2);
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
