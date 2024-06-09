@@ -26,9 +26,9 @@ export function Reviews({
   reviews: Review[]
 }) {
   const { user } = useAuth()
-  const { _id, category } = product
+  const { id, category } = product
   const { lang, translate } = useLangs()
-  const loginLink = `/login?from=shop/${category.toLowerCase()}/${_id}`
+  const loginLink = `/login?from=shop/${category.toLowerCase()}/${id}`
 
   return (
     <div className={styles.reviews}>
@@ -49,7 +49,7 @@ export function Reviews({
           </AccordionSummary>
           <AccordionDetails>
             {user ? (
-              <ReviewForm productId={_id} />
+              <ReviewForm productId={id} />
             ) : (
               <div>
                 Что бы написать отзыв необходимо{' '}

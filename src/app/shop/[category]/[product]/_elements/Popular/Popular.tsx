@@ -14,10 +14,10 @@ export function Popular({ products }: { products: Product[] }) {
     <Widget title={translate[lang].shop.product.popular}>
       <Stack gap={20} className={styles.pop}>
         {products.map(
-          ({ _id, category, imgUrl, title, price, rating, ratingCount }) => (
+          ({ id, category, imgUrl, title, price, rating, ratingCount }) => (
             <Link
-              href={`/shop/${category.toLowerCase()}/${_id}`}
-              key={_id}
+              href={`/shop/${category.toLowerCase()}/${id}`}
+              key={id}
               className={styles.card}
             >
               <div className={styles.imgContainer}>

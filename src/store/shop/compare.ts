@@ -21,7 +21,7 @@ export const useCompare = create<Compare>()(set => ({
 
 function handleToggleCompare(product: Product) {
   const compareItems: Product[] = getLocalStorage('compare')
-  const findProduct = compareItems.find(item => item._id === product._id)
+  const findProduct = compareItems.find(item => item.id === product.id)
 
   if (!findProduct) {
     compareItems.push(product)

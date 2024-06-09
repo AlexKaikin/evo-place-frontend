@@ -43,7 +43,7 @@ export const useCart = create<Cart>()(set => ({
 
 function addToCart(product: CartItem) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item._id === product._id)
+  const findProduct = cartItems.find(item => item.id === product.id)
 
   toast.info('Added to cart')
 
@@ -72,7 +72,7 @@ function getTotalCost() {
 
 function deleteItem(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item._id === id)
+  const findProduct = cartItems.find(item => item.id === id)
   findProduct && cartItems.splice(cartItems.indexOf(findProduct), 1)
   localStorage.setItem('cart', JSON.stringify(cartItems))
 
@@ -81,7 +81,7 @@ function deleteItem(id: string) {
 
 function handleChangeQuantity(id: string, quantity: number) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item._id === id)
+  const findProduct = cartItems.find(item => item.id === id)
   if (findProduct) {
     if (quantity > findProduct.inStock || quantity < 1) {
       findProduct.quantity = 1
@@ -98,7 +98,7 @@ function handleChangeQuantity(id: string, quantity: number) {
 
 function handleIncrement(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item._id === id)
+  const findProduct = cartItems.find(item => item.id === id)
   if (findProduct && findProduct.quantity < findProduct.inStock) {
     findProduct.quantity = findProduct.quantity + 1
     findProduct.cost = findProduct.cost + findProduct.price
@@ -110,7 +110,7 @@ function handleIncrement(id: string) {
 
 function handleDecriment(id: string) {
   const cartItems: CartItem[] = getLocalStorage('cart')
-  const findProduct = cartItems.find(item => item._id === id)
+  const findProduct = cartItems.find(item => item.id === id)
   if (findProduct && findProduct.quantity > 1) {
     findProduct.quantity = findProduct.quantity - 1
     findProduct.cost = findProduct.cost - findProduct.price

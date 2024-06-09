@@ -1,0 +1,28 @@
+.col {
+  display: flex;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  transition: all ease 0.3s;
+}
+
+.product {
+  display: grid;
+  grid-auto-columns: 12fr;
+  grid-template-columns: 5fr 2fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+  transition: all ease 0.3s;
+}
+
+.deleteActions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing);
+}

@@ -10,7 +10,7 @@
   align-items: center;
   gap: 5px;
   padding: var(--spacing);
-  border-radius: var(--spacing);
+  border-radius: var(--radius);
   background-color: var(--gray);
   width: 100%;
 
@@ -54,6 +54,13 @@
     -webkit-appearance: none;
     margin: 0;
   }
+}
+
+.input:-webkit-autofill {
+  transition-delay: 9999s;
+  transition-property: background-color;
+  -webkit-text-fill-color: var(--dark);
+  caret-color: var(--dark);
 }
 
 .left {

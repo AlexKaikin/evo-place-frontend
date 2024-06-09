@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 4);
+  margin: calc(var(--spacing) * 2) 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 6);
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--spacing) * 4);
+}
+
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing);
+}
+
+.imgContainer {
+  position: relative;
+  width: 130px;
+
+  > img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+}
+
+.removeImg {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
